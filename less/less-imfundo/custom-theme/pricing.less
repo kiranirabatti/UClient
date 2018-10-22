@@ -1,0 +1,41 @@
+/*
+ * Shortcode: pricing.less
+ * -----------------------------------------------
+*/
+.pricing-table {
+	border: 1px solid #ddd;
+	margin-bottom: 30px;
+	position: relative;
+	border-radius: 5px 5px 0 0;
+	&.featured .package-type,
+	&:hover .package-type {
+	 background: #1F3345;
+	 color: #fff;
+	}
+	&.style2 .package-type {
+	    padding: 15px 10px;
+	}
+	.package-type {
+	    border-radius: 5px 5px 0 0;
+	    margin: 0px;
+	    padding: 30px 10px;
+	}
+	.price {
+	    padding: 10px 10px;
+	    margin: 0;
+	    color: #fff;
+	}
+	.price-list {
+		 li {
+		  border-top: 1px solid #eee;
+		  padding: 10px 45px;
+		  &:first-child {
+			  margin-top: 0;
+			}
+		}
+	}
+	.btn-signup {
+		margin-right: 0;
+		width: 100%;
+	}
+}

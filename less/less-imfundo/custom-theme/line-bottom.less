@@ -1,0 +1,259 @@
+/*
+ * line-bottom.less
+ * -----------------------------------------------
+*/
+.line-bottom {
+	position: relative;
+	margin-bottom: 30px;
+	padding-bottom: 10px;
+
+	&:after {
+		bottom: -1px;
+		content: "";
+		height: 2px;
+		left: 0;
+		position: absolute;
+		width: 50px;
+	}
+}
+.line-bottom-theme-colored2 {
+	position: relative;
+	margin-bottom: 30px;
+	padding-bottom: 10px;
+
+	&:after {
+	    border-radius: 10px;
+		bottom: -1px;
+		content: "";
+		height: 4px;
+		left: 0;
+		position: absolute;
+		width: 50px;
+	}
+}
+
+.line-bottom-bordered {
+	position: relative;
+	&:before {
+		content: "";
+		background: #eee;
+		position: absolute;
+		height: 3px;
+		width: 110px;
+		top: -2px;
+		border-radius: 6px;
+	}
+	&:after {
+		position: absolute;
+		background: #76B947;
+		content: "";
+		height: 3px;
+		width: 35px;
+		left: 20px;
+		top: -2px;
+		border-radius: 6px;
+	}
+}
+.line-bottom-centered {
+    position: relative;
+    margin: 10px 0 35px;
+
+	&:after {
+        bottom: -12px;
+	    border-radius: 10px;
+        content: "";
+        height: 4px;
+        left: 0;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0;
+        position: absolute;
+        right: 0;
+        width: 50px;
+    }
+    &:before {
+		content: "";
+		position: absolute;
+		height: 3px;
+		width: 120px;
+		background: #eee;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		top: 9px;
+	}
+}
+.line-bottom-rounded-theme-colored2 {
+	position: relative;
+	margin-bottom: 12px;
+	padding-bottom: 4px;
+
+	&:after {
+	    border-radius: 15px;
+		bottom: -1px;
+		content: "";
+		height: 4px;
+		border-radius: 6px;
+		left: 0;
+		position: absolute;
+		width: 42px;
+	}
+}
+.double-line-bottom-theme-colored2 {
+	margin-bottom: 20px;
+    margin-top: 8px;
+    padding-bottom: 5px;
+    position: relative;
+	&:after {
+		border-radius: 8px;
+        bottom: 1px;
+        content: "";
+        height: 2px;
+        left: 0;
+        position: absolute;
+        width: 64px;
+	}
+	&:before {
+		border-radius: 8px;
+        bottom: -1px;
+        content: "";
+        height: 6px;
+        left: 10px;
+        position: absolute;
+        width: 24px;
+	}
+}
+.circled-line-centered-theme-colored2 {
+	margin-bottom: 25px;
+    margin-top: 25px;
+    padding-bottom: 5px;
+    position: relative;
+	&:after {
+	    top: 0;
+	    content: "";
+	    height: 3px;
+	    left: 0;
+	    margin: 0 auto;
+	    position: absolute;
+	    right: 0;
+	    width: 90px;
+	}
+	&:before {
+	    border: 3px solid #fff;
+	    border-radius: 30px;
+	    bottom: -5px;
+	    content: "";
+	    height: 20px;
+	    left: 0;
+	    margin: 0 auto;
+	    position: absolute;
+	    right: 0;
+	    width: 10px;
+	    z-index: 3;
+	}
+}
+.circled-line-centered-theme-white {
+	margin-bottom: 25px;
+    margin-top: 25px;
+    padding-bottom: 5px;
+    position: relative;
+	&:after {
+	    top: 0;
+	    content: "";
+	    height: 3px;
+	    left: 0;
+	    margin: 0 auto;
+	    position: absolute;
+	    right: 0;
+	    width: 90px;
+	    background-color: #fff;
+	}
+	&:before {
+	    background-color: #fff;	    
+	    border-radius: 30px;
+	    border: 3px solid #fff;
+	    bottom: -5px;
+	    content: "";
+	    height: 20px;
+	    left: 0;
+	    margin: 0 auto;
+	    position: absolute;
+	    right: 0;
+	    width: 10px;
+	    z-index: 3;
+	}
+}
+.circled-line-left-theme-colored2 {
+	margin-bottom: 25px;
+    margin-top: 25px;
+    padding-bottom: 5px;
+    position: relative;
+	&:after {
+	    top: 0;
+	    content: "";
+	    height: 3px;
+	    left: 0;
+	    position: absolute;
+	    right: 0;
+	    width: 90px;
+	}
+	&:before {
+	    border: 3px solid #fff;
+	    border-radius: 30px;
+	    bottom: -5px;
+	    content: "";
+	    height: 20px;
+	    left: 15px;
+	    position: absolute;
+	    right: 0;
+	    width: 10px;
+	    z-index: 3;
+	}
+}
+
+.line-bottom-double-line-centered {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  position: relative;
+}
+.line-bottom-double-line-centered::before {
+  bottom: 3px;
+  content: "";
+  height: 1px;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  width: 20px;
+}
+.line-bottom-double-line-centered::after {
+  bottom: 7px;
+  content: "";
+  height: 1px;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  width: 45px;
+}
+.side-line {
+  position: relative;
+}
+.side-line::after {
+  background: #24bbd0 none repeat scroll 0 0;
+  bottom: 5px;
+  content: "";
+  height: 50%;
+  left: -10px;
+  position: absolute;
+  width: 3px;
+}
+.side-line::before {
+  background: #fff none repeat scroll 0 0;
+  content: "";
+  height: 40%;
+  left: -10px;
+  position: absolute;
+  top: 7px;
+  width: 3px;
+}

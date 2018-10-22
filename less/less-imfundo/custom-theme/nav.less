@@ -1,0 +1,35 @@
+/*
+ * nav.less
+ * -----------------------------------------------
+*/
+.menuzord-menu > li > a,
+.menuzord-menu ul.dropdown li a {
+  font-family: @font-montserrat;
+}
+.menuzord-menu > li > a {
+  color: #404040;
+  font-size: 14px;
+}
+.menuzord-menu > li {
+  padding: 24px 0;
+}
+.menuzord-menu.sm-padding > li {
+    padding: 18px 0;
+}
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 900px) {
+	.menuzord.small-padding .menuzord-menu > li {
+	  padding: 0;
+	}
+	.menuzord-responsive .showhide {
+	    margin: 0 0 0 0;
+	}
+}
+@media (max-width: 900px){
+	.menuzord-menu.sm-padding > li {
+	    padding: 0;
+	}
+}
+.menuzord.small-padding .menuzord-menu ul.dropdown {
+  top: 71px;
+}

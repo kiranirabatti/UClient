@@ -1,0 +1,39 @@
+/*
+ * widgets.less
+ * -----------------------------------------------
+*/
+.widget.dark .tags a {
+  border: 1px solid @black-444;
+}
+.sidebar .widget .widget-title {
+	background: #f7f7f7 none repeat scroll 0 0;
+	font-family: "Roboto", sans-serif;
+	font-size: 17px;
+	font-weight: 500;
+	margin-bottom: 20px;
+	margin-top: 0;
+	padding: 5px 15px 8px 16px;
+	position: relative;
+}
+.sidebar .widget .widget-title {
+    background: #f7f7f7 none repeat scroll 0 0;
+    font-size: 17px;
+    margin-bottom: 20px;
+    margin-top: 0;
+    padding: 5px 15px 8px 18px;
+    position: relative;
+    border: 1px solid #eee;
+    font-weight: 600;
+}
+.sidebar .widget .widget-title::after {
+    content: "";
+    height: 36%;
+    left: -3px;
+    position: absolute;
+    top: 11px;
+    width: 6px;
+}
+.sidebar .widget .widget-title.title-dots.small {
+	padding: 0;
+	background: url("../images/title-dots.png") repeat scroll 0 0;
+}

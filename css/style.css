@@ -1,0 +1,8 @@
+
+.style {
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+body[style] {
+	padding-right: 0 !important;
+} 

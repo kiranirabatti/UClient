@@ -1,0 +1,561 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="Imfundo - Education University School Kindergarten Learning HTML Template" />
+    <meta name="keywords" content="education,school,university,educational,learn,learning,teaching,workshop" />
+    <meta name="author" content="ThemeMascot" />
+    <title>UGPS</title>
+    <link href="images/favicon.png" rel="shortcut icon" type="image/png">
+    <link href="images/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
+    <link href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
+    <link href="images/apple-touch-icon-144x144.png" rel="apple-touch-icon" sizes="144x144">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+    <link href="css/css-plugin-collections.css" rel="stylesheet" />
+    <link href="css/menuzord-megamenu.css" rel="stylesheet" />
+    <link id="menuzord-menu-skins" href="css/menuzord-skins/menuzord-boxed.css" rel="stylesheet" />
+    <link href="css/style-main.css" rel="stylesheet" type="text/css">
+    <link href="css/preloader.css" rel="stylesheet" type="text/css">
+    <link href="css/custom-bootstrap-margin-padding.css" rel="stylesheet" type="text/css">
+    <link href="css/responsive.css" rel="stylesheet" type="text/css">
+    <link href="js/revolution-slider/css/settings.css" rel="stylesheet" type="text/css" />
+    <link href="js/revolution-slider/css/layers.css" rel="stylesheet" type="text/css" />
+    <link href="js/revolution-slider/css/navigation.css" rel="stylesheet" type="text/css" />
+    <link href="css/colors/theme-skin-color-set1.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-plugin-collection.js"></script>
+    <script src="js/revolution-slider/js/jquery.themepunch.tools.min.js"></script>
+    <script src="js/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="custom-js/MemberLogin.js"></script>
+    <script src="custom-js/MatrimonialMember.js"></script>
+    <script src="custom-js/bannerPhotos.js"></script>
+    <script src="js/global.js"></script>
+    <script src="custom-js/Advertisement.js"></script>
+    <script src="custom-js/StatisticalInfo.js"></script>
+    <script src="custom-js/UpcomingEvents.js"></script>
+    <script src="custom-js/NewMembers.js"></script>
+    <script src="custom-js/Header.js"></script>
+</head>
+<body class="has-side-panel side-panel-right fullwidth-page">
+    <div id="wrapper" class="clearfix">
+        <div id="preloader">
+            <div id="spinner">
+                <img src="images/preloaders/5.gif">
+            </div>
+            <div id="disable-preloader" class="btn btn-default btn-sm">Disable Preloader</div>
+        </div>
+        <header id="header" class="header">
+            <div class="header-top bg-theme-colored border-top-theme-colored2-2px sm-text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-2">
+                                <h5 class="text-white">Welcome:</h5>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="btn-group">
+                                    <button class="btn btn-primary pr-0 pl-0" style="background-color:transparent;border-color:transparent" type="button" id="memberWelcome"></button>
+                                    <button aria-expanded="false" style="background-color:transparent;border-color:transparent" aria-haspopup="true" data-toggle="dropdown" class="btn btn-dark btn-flat dropdown-toggle" type="button">
+                                        <span class="caret" id="showMenuMember"></span> <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="MemberProfileEdit.html">Member Profile</a></li>
+                                        <li><a href="FamilyMembersList.html">Family Member</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="widget">
+                                <ul class="list-inline text-right flip sm-text-center">
+                                    <li id="login">
+                                        <a class="text-white" data-toggle="modal" href="LoginModal.html" data-target="#myModal">Login</a>
+                                    </li>
+                                    <li id="logOut">
+                                        <a href="index.html" class="text-white" id="memberLogout">Logout</a>
+                                    </li>
+                                    <li class="text-white">|</li>
+                                    <li>
+                                        <a class="text-white" href="ContactUs.html">Contact Us</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="header-nav">
+                <div class="header-nav-wrapper navbar-scrolltofixed bg-white">
+                    <div class="container">
+                        <nav id="menuzord-right" class="menuzord default theme-colored">
+                            <a class="pull-left flip mt-5 mb-5"><img src="images/logo.png"></a>
+                            <ul class="menuzord-menu">
+                                <li class="active">
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">About Us</a>
+                                    <ul class="dropdown">
+                                        <li><a href="mandalHistory.html">Mandal History</a></li>
+                                        <li><a href="prajapatiHistory.html">Prajapati History</a></li>
+                                        <li><a href="presidentMessage.html">Preseident Message</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="CommitteeMember.html">Committee</a>
+                                </li>
+                                <li>
+                                    <a href="Members.html">Member</a>
+                                </li>
+                                <li>
+                                    <a href="Event.html">Event</a>
+                                </li>
+                                <li>
+                                    <a href="MatrimonialSearch.html">Matrimonial</a>
+                                </li>
+                                <li>
+                                    <a href="Gallery.html">Gallery</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="main-content">
+            <section id="home" class="divider">
+                <div class="container-fluid p-0">
+                    <div id="rev_slider_home_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-alias="news-gallery34" style="margin:0px auto;background-color:#ffffff;padding:0px;margin-top:0px;margin-bottom:0px;">
+                        <div id="rev_slider_home" class="rev_slider fullwidthabanner banner" style="display:none;" data-version="5.0.7">
+                            <ul id="banner1234"></ul>
+                            <div class="tp-bannertimer tp-bottom" style="height: 5px; background-color: rgba(255, 255, 255, 0.4);"></div>
+                        </div>
+                    </div>
+                    <script>
+                        var tpj = jQuery;
+                        var revapi34;
+                        tpj(document).ready(function () {
+                            if (tpj("#rev_slider_home").revolution == undefined) {
+                                revslider_showDoubleJqueryError("#rev_slider_home");
+                            } else {
+                                revapi34 = tpj("#rev_slider_home").show().revolution({
+                                    sliderType: "standard",
+                                    jsFileLocation: "js/revolution-slider/js/",
+                                    sliderLayout: "fullwidth",
+                                    dottedOverlay: "none",
+                                    delay: 9000,
+                                    navigation: {
+                                        keyboardNavigation: "on",
+                                        keyboard_direction: "horizontal",
+                                        mouseScrollNavigation: "off",
+                                        onHoverStop: "on",
+                                        touch: {
+                                            touchenabled: "on",
+                                            swipe_threshold: 75,
+                                            swipe_min_touches: 1,
+                                            swipe_direction: "horizontal",
+                                            drag_block_vertical: false
+                                        }
+                                        ,
+                                        arrows: {
+                                            enable: true,
+                                            style: 'gyges',
+                                            left: {
+                                                h_align: "left",
+                                                v_align: "center",
+                                                h_offset: 0,
+                                                v_offset: 0
+                                            },
+                                            right: {
+                                                h_align: "right",
+                                                v_align: "center",
+                                                h_offset: 0,
+                                                v_offset: 0
+                                            }
+                                        },
+                                        bullets: {
+                                            enable: true,
+                                            style: 'hebe',
+                                            tmp: '<span class="tp"></span>',
+                                            hide_onmobile: true,
+                                            hide_under: 600,
+                                            hide_onleave: true,
+                                            hide_delay: 200,
+                                            hide_delay_mobile: 1200,
+                                            direction: "horizontal",
+                                            h_align: "center",
+                                            v_align: "bottom",
+                                            h_offset: 0,
+                                            v_offset: 30,
+                                            space: 5
+                                        }
+                                    },
+                                    viewPort: {
+                                        enable: true,
+                                        outof: "pause",
+                                        visible_area: "80%"
+                                    },
+                                    responsiveLevels: [1240, 1024, 778, 480],
+                                    gridwidth: [1240, 1024, 778, 480],
+                                    gridheight: [660, 550, 500, 450],
+                                    lazyType: "none",
+                                    parallax: {
+                                        type: "scroll",
+                                        origo: "enterpoint",
+                                        speed: 400,
+                                        levels: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50],
+                                    },
+                                    shadow: 0,
+                                    spinner: "off",
+                                    stopLoop: "off",
+                                    stopAfterLoops: -1,
+                                    stopAtSlide: 1,
+                                    shuffle: "off",
+                                    autoHeight: "off",
+                                    hideThumbsOnMobile: "off",
+                                    hideSliderAtLimit: 0,
+                                    hideCaptionAtLimit: 0,
+                                    hideAllCaptionAtLilmit: 0,
+                                    debugMode: false,
+                                    fallbacks: {
+                                        simplifyAll: "off",
+                                        nextSlideOnWindowFocus: "off",
+                                        disableFocusListener: false,
+                                    }
+                                });
+                            }
+                        });
+                    </script>
+                </div>
+            </section>
+            <section id="schedule" class="divider parallax overlay-white-8 bg-silver-deep">
+                <div class="container-fluid pt-40 pb-40">
+                    <div class="row">
+                        <div class="col-md-12 pl-10">
+                            <div class="col-md-2 mt-20">
+                                <div class="sidebar sidebar-left mt-sm-30">
+                                    <div class="widget">
+                                        <div class="categories">
+                                            <div class="row" id="leftSide">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-md-5 pl-40 mt-60">
+                                        <h2 class="font-26 mt-md-30 mt-0 mb-0 ml-10 pb-0"><span class="text-theme-colored2">Upcoming</span> Events  <i class="pe-7s-date mb-20 ml-10"></i></h2>
+                                        <div class="line-bottom-theme-colored2 ml-10"></div>
+                                        <div class="font-16" id="noEvents">No upcoming events</div>
+                                        <article class="pt-5" id="article1">
+                                            <div class="event-small media sm-maxwidth400 bg-silver-light border-1px mt-5 mb-20 p-15">
+                                                <div class="event-date text-center">
+                                                    <ul class="text-white">
+                                                        <li class="font-18 font-weight-700 border-bottom" id="date0"></li>
+                                                        <li class="font-14 text-center text-uppercase mt-5" id="month0"></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="event-content pt-5">
+                                                    <a class="font-weight-700 media-heading font-16 mb-5 text-black" href="" id="eventname0"></a><br />
+                                                    <i class="fa fa-map-marker text-theme-colored2"></i> <span id="location0"> </span>
+                                                </div>
+                                            </div>
+                                        </article>
+                                        <article id="article2">
+                                            <div class="event-small media sm-maxwidth400 bg-silver-light border-1px mt-0 mb-20 p-15">
+                                                <div class="event-date text-center">
+                                                    <ul class="text-white">
+                                                        <li class="font-18 font-weight-700 border-bottom" id="date1"></li>
+                                                        <li class="font-14 text-center text-uppercase mt-5" id="month1"></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="event-content pt-5">
+                                                    <a class="font-weight-700 media-heading font-16 mb-5 text-black" href="" id="eventname1"></a><br />
+                                                    <i class="fa fa-map-marker text-theme-colored2"></i> <span id="location1"> </span>
+                                                </div>
+                                            </div>
+                                        </article>
+                                        <article id="article3">
+                                            <div class="event-small media sm-maxwidth400 bg-silver-light border-1px mt-0 mb-20 p-15">
+                                                <div class="event-date text-center">
+                                                    <ul class="text-white">
+                                                        <li class="font-18 font-weight-700 border-bottom" id="date2"></li>
+                                                        <li class="font-14 text-center text-uppercase mt-5" id="month2"></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="event-content pt-5">
+                                                    <a class="font-weight-700 media-heading font-16 mb-5 text-black" href="" id="eventname2"></a><br />
+                                                    <i class="fa fa-map-marker text-theme-colored2"></i> <span id="location2"> </span>
+                                                </div>
+                                            </div>
+                                        </article>
+                                        <a id="more" class="font-16 text-theme-colored2 mt-5" href="Event.html">View More</a>
+                                    </div>
+                                    <div class="col-md-7 pr-30 mt-50">
+                                        <h2 class="font-26 mt-md-30 mt-0 ml-20"><span class="text-theme-colored2">New</span> Members <i class="pe-7s-users text-black ml-10 mt-10 font-weight-300"></i></h2>
+                                        <div class="line-bottom-theme-colored2 ml-20 mb-40"></div>
+                                        <div class="col-xs-12">
+                                            <div class="mb-20 border-1px">
+                                                <div class="team-thumb pull-left">
+                                                    <img id="memberImage1" width="170" height="153">
+                                                </div>
+                                                <div class="team-bottom-part p-15">
+                                                    <h4 class="m-0 pb-5 text-center" id="name1"></h4>
+                                                    <ul class="list-inline mt-15 text-center">
+                                                        <li class="m-0 pr-10 text-center"><i class="fa fa-map-marker text-theme-colored2 mr-5"></i><span id="address1"></span> </li>
+                                                    </ul>
+                                                    <ul class="styled-icons icon-sm icon-dark icon-theme-colored2 mt-15 text-center">
+                                                        <li><a><i class="fa fa-facebook"></i></a></li>
+                                                        <li><a><i class="fa fa-twitter"></i></a></li>
+                                                        <li><a><i class="fa fa-vk"></i></a></li>
+                                                        <li><a><i class="fa fa-instagram"></i></a></li>
+                                                        <li><a><i class="fa fa-google-plus"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <div class="mb-20 border-1px">
+                                                <div class="team-thumb pull-left">
+                                                    <img id="memberImage2" width="170" height="153">
+                                                </div>
+                                                <div class="team-bottom-part p-15">
+                                                    <h4 class="m-0 pb-5 text-center" id="name2"></h4>
+                                                    <ul class="list-inline mt-15 text-center">
+                                                        <li class="m-0 pr-10 text-center"><i class="fa fa-map-marker text-theme-colored2 mr-5"></i><span id="address2"></span> </li>
+                                                    </ul>
+                                                    <ul class="styled-icons icon-sm icon-dark icon-theme-colored2 mt-15 text-center">
+                                                        <li><a><i class="fa fa-facebook"></i></a></li>
+                                                        <li><a><i class="fa fa-twitter"></i></a></li>
+                                                        <li><a><i class="fa fa-vk"></i></a></li>
+                                                        <li><a><i class="fa fa-instagram"></i></a></li>
+                                                        <li><a><i class="fa fa-google-plus"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <div class="mb-20 border-1px">
+                                                <div class="team-thumb pull-left">
+                                                    <img id="memberImage3" width="170" height="153">
+                                                </div>
+                                                <div class="team-bottom-part p-15">
+                                                    <h4 class="m-0 pb-5 text-center" id="name3"></h4>
+                                                    <ul class="list-inline mt-15 text-center">
+                                                        <li class="m-0 pr-10 text-center"><i class="fa fa-map-marker text-theme-colored2 mr-5"></i><span id="address3"></span> </li>
+                                                    </ul>
+                                                    <ul class="styled-icons icon-sm icon-dark icon-theme-colored2 mt-15 text-center">
+                                                        <li><a><i class="fa fa-facebook"></i></a></li>
+                                                        <li><a><i class="fa fa-twitter"></i></a></li>
+                                                        <li><a><i class="fa fa-vk"></i></a></li>
+                                                        <li><a><i class="fa fa-instagram"></i></a></li>
+                                                        <li><a><i class="fa fa-google-plus"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 mt-50">
+                                        <h2 class="font-28 mt-0 ml-20"><span class="text-theme-colored2">Visiting</span> Card <i class="pe-7s-photo text-black mb-20 ml-10"></i></h2>
+                                        <div class="line-bottom-theme-colored2 ml-20"></div>
+                                        <div class="image-box-thum gallery-item" id="visitingCard" data-lightbox="gallery">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="sidebar sidebar-right mt-40">
+                                    <div class="widget">
+                                        <div class="categories">
+                                            <div class="row" id="rightSide">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="layer-overlay overlay-dark-7 parallax">
+                <div class="container pt30 pb-30 pt-md-70 pb-md-50 pb-sm-50">
+                    <div class="row mt-30 text-center">
+                        <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                            <div class="funfact">
+                                <i class="pe-7s-users mb-20 text-white"></i>
+                                <h2 data-animation-duration="2000" class="animate-number text-theme-colored2 font-42 font-weight-600 mt-0 mb-15" id="members">0</h2>
+                                <h5 class="text-white text-uppercase">Members</h5>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                            <div class="funfact">
+                                <i class="pe-7s-users mb-20 text-white"></i>
+                                <h2 data-animation-duration="2000" class="animate-number text-theme-colored2 font-42 font-weight-600 mt-0 mb-15" id="familyMembers">0</h2>
+                                <h5 class="text-white text-uppercase">Family Members</h5>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                            <div class="funfact">
+                                <i class="pe-7s-user mb-20 text-white"></i>
+                                <h2 data-animation-duration="2000" class="animate-number text-theme-colored2 font-42 font-weight-600 mt-0 mb-15" id="male">0</h2>
+                                <h5 class="text-white text-uppercase">Male</h5>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-3 mb-md-50">
+                            <div class="funfact">
+                                <i class="pe-7s-user-female mb-20 text-white"></i>
+                                <h2 data-animation-duration="2000" class="animate-number text-theme-colored2 font-42 font-weight-600 mt-0 mb-15" id="female">0</h2>
+                                <h5 class="text-white text-uppercase">Female</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="about">
+                <div class="container pt-50 pb-40">
+                    <div class="section-title" id="matrimonialDisplay">
+                        <div class="row">
+                            <div class="col-md-11">
+                                <div class="section-content pr-60 pl-50 ml-40">
+                                    <div class="section-title mb-20">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h2 class="title text-uppercase"> <span class="text-theme-colored2">Matrimonial</span></h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h5 class="font-17 mt-5" id="maleHead">Male</h5>
+                                            <div class="owl-carousel-3col owl-next pb-40" data-nav="true" id="maleSlider">
+                                            </div>
+                                            <div class="row pb-40" id="maleIndividual"></div>
+                                            <h5 class="font-17" id="femaleHead">Female</h5>
+                                            <div class="owl-carousel-3col owl-next pb-20" data-nav="true" id="femaleSlider">
+                                            </div>
+                                            <div class="row" id="femaleIndividual"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade bs-example-modal-md" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+                    <div class="modal-dialog modal-md" role="document">
+                        <div class="modal-content bg-lighter">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer id="footer" class="footer" data-bg-color="#20232E">
+                <div class="container pt-30">
+                    <div class="col-sm-6 col-md-4">
+                        <div class="widget dark">
+                            <img src="images/logo.png">
+                            <p class="mt-20">
+                                103,Benifit Complex, 12/B, Seventeen<br /> Taluka Society,Against the old High Court,<br /> Post:Regeneration,<br />
+                                Navarangpura, Ahmedabad - 14
+                            </p>
+                            <ul class="list-inline">
+                                <li class="m-0 pl-10 pr-10"> <i class="fa fa-phone mr-5"></i> <a href="#"> 079-27545050</a> </li>
+                                <li class="m-0 pl-10 pr-10"> <i class="fa fa-envelope-o mr-5"></i> <a href="#">prajapatimanch@ymail.com</a> </li>
+                                <li class="m-0 pl-10 pr-10"> <i class="fa fa-globe mr-5"></i> <a href="#">www.yuvaprajapati.org</a> </li>
+                            </ul> <ul class="styled-icons icon-sm icon-dark icon-theme-colored2 icon-circled clearfix mt-10">
+                                <li><a><i class="fa fa-facebook"></i></a></li>
+                                <li><a><i class="fa fa-twitter"></i></a></li>
+                                <li><a><i class="fa fa-vk"></i></a></li>
+                                <li><a><i class="fa fa-instagram"></i></a></li>
+                                <li><a><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="widget dark">
+                            <h4 class="widget-title line-bottom-theme-colored2">Latest News</h4>
+                            <div class="latest-posts">
+                                <article class="post media-post clearfix pb-0 mb-10">
+                                    <a class="post-thumb"><img src="http://placehold.it/80x55"></a>
+                                    <div class="post-right">
+                                        <h5 class="post-title mt-0 mb-5"><a href="#">PHP Learning</a></h5>
+                                        <p class="post-date mb-0 font-12">Mar 08, 2015</p>
+                                    </div>
+                                </article>
+                                <article class="post media-post clearfix pb-0 mb-10">
+                                    <a class="post-thumb" href="#"><img src="http://placehold.it/80x55"></a>
+                                    <div class="post-right">
+                                        <h5 class="post-title mt-0 mb-5"><a href="#">Web Development</a></h5>
+                                        <p class="post-date mb-0 font-12">Mar 08, 2015</p>
+                                    </div>
+                                </article>
+                                <article class="post media-post clearfix pb-0 mb-10">
+                                    <a class="post-thumb" href="#"><img src="http://placehold.it/80x55"></a>
+                                    <div class="post-right">
+                                        <h5 class="post-title mt-0 mb-5"><a href="#">Spoken English</a></h5>
+                                        <p class="post-date mb-0 font-12">Mar 08, 2015</p>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="widget dark">
+                            <h4 class="widget-title line-bottom-theme-colored2">Opening Hours</h4>
+                            <div class="opening-hours">
+                                <ul class="list-border">
+                                    <li class="clearfix">
+                                        <span> Mon - Tues :  </span>
+                                        <div class="value pull-right"> 6.00 am - 10.00 pm </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span> Wednes - Thurs :</span>
+                                        <div class="value pull-right"> 8.00 am - 6.00 pm </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span> Fri : </span>
+                                        <div class="value pull-right"> 3.00 pm - 8.00 pm </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span> Sun : </span>
+                                        <div class="value pull-right bg-theme-colored2 text-white closed"> Closed </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom" data-bg-color="#1B1D26">
+                    <div class="container pt-20 pb-20">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <p class="font-14 sm-text-center m-0">Copyright &copy;2018 <span class="text-theme-colored2">Uttar Gujarat Prajapati Samaj</span> Powered by ScriptsHub Technologies pvt ltd.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+        </div>
+        <script src="js/chart.js"></script>
+        <script src="js/custom.js"></script>
+        <script src="js/revolution-slider/js/extensions/revolution.extension.actions.min.js"></script>
+        <script src="js/revolution-slider/js/extensions/revolution.extension.carousel.min.js"></script>
+        <script src="js/revolution-slider/js/extensions/revolution.extension.kenburn.min.js"></script>
+        <script src="js/revolution-slider/js/extensions/revolution.extension.layeranimation.min.js"></script>
+        <script src="js/revolution-slider/js/extensions/revolution.extension.migration.min.js"></script>
+        <script src="js/revolution-slider/js/extensions/revolution.extension.navigation.min.js"></script>
+        <script src="js/revolution-slider/js/extensions/revolution.extension.parallax.min.js"></script>
+        <script src="js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
+        <script src="js/revolution-slider/js/extensions/revolution.extension.video.min.js"></script>
+    </div>
+</body>
+</html>

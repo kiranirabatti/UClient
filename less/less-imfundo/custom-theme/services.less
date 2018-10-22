@@ -1,0 +1,89 @@
+/*
+ * services.less
+ * -----------------------------------------------
+*/
+.rotated-service-box {    
+  position: relative;
+  .icon {
+    background-color: @gray-lightgray;
+    display: inline-block;
+    height: 90px;
+    left: 0;
+    margin: 0 auto;
+    padding: 30px;    
+    position: absolute;
+    right: 0;
+    top: -45px;
+    .rotate(45deg);
+    width: 90px;
+
+    i {
+      color: @white-base;
+      font-size: 32px;
+      .rotate(-45deg);
+    }
+
+  }
+
+  .heading  {
+	  .transition(all .2s ease-in-out);
+  }
+}
+.services-list li {
+	border: medium none;
+	padding: 0 !important;
+}
+.services-list li.active {
+	position: relative;
+	padding-left: 30px;
+}
+.services-list ul li a {
+	background: #f8f8f8 none repeat scroll 0 0;
+	border: 1px solid #f1f1f1;
+	color: @black-111;
+	display: inline-block;
+	font-size: 15px;
+	font-weight: 500;
+	padding: 15px 30px;
+	width: 100%;
+	.transition(all 50ms ease);
+}
+.services-list li.active a {
+	border: 1px solid transparent;
+	color: @white-base;
+	font-weight: 600;
+}
+.services-list li.active::after {
+	color: @white-base;
+	content: "\f061";
+	font-family: "FontAwesome";
+	font-size: 22px;
+	right: 18px;
+	position: absolute;
+	top: 10px;
+}
+.brochured li a {
+      background: #f8f8f8 none repeat scroll 0 0;
+      border: 1px solid #f1f1f1;
+      display: inline-block;
+      padding: 16px 30px;
+      width: 100%;
+    .transition(all .1s ease) !important;
+}
+.brochured li a i {
+    font-size: 18px;
+    margin-right: 12px;
+    vertical-align: middle;
+}
+.icon-box.icon-filled i {
+  border-radius: 50%;
+  color: #fff;
+  font-size: 32px;
+  height: 68px;
+  line-height: 68px;
+  text-align: center;
+  width: 68px;
+}
+.icon-box.icon-filled:hover i {
+  .rotateY(180deg);
+}

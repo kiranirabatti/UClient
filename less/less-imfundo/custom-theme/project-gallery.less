@@ -1,0 +1,57 @@
+/*
+ * project-gallery.less
+ * -----------------------------------------------
+*/
+.project-item {
+	position: relative;
+	overflow: hidden;
+}
+.project-thumb::after {
+	content: "";
+	position: absolute;
+	background: rgba(0,0,0,0.7);
+	height: 100%;
+	width: 100%;
+	left: 0;
+	top: 0;
+	opacity: 0;
+	.transition(all 300ms ease-in-out);
+}
+.project-item:hover .project-thumb::after {
+	opacity: 1;
+}
+.project-description {
+	position: absolute;
+	bottom: -70px;
+	left: 25px;
+	opacity: 0;
+	.transition(all 300ms ease-in-out);
+}
+.project-item:hover .project-description {
+	opacity: 1;
+	bottom: 0px;
+}
+.project-item .project-view {
+	position: absolute;
+	top: 20%;
+	left: 0;
+	right: 0;
+	text-align: center;
+	margin: -35px auto;
+	opacity: 0;
+	.transition(all 300ms ease-in-out);
+}
+.project-item:hover .project-view {
+	opacity: 1;
+	top: 50%;
+}
+.project-item .project-view a {
+	height: 46px;
+	width: 46px;
+	display: inline-block;
+	line-height: 52px;
+	border-radius: 50%;
+}
+.project-item .project-view a i {
+	font-size: 20px;
+}

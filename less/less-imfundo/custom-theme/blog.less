@@ -1,0 +1,77 @@
+/*
+ * blog.less
+ * -----------------------------------------------
+*/
+.post .post-thumb {
+  position: relative;
+  overflow: hidden;
+}
+.post .post-thumb .post-date {
+	top: 0;
+	color: #fff;
+	font-size: 11px;
+	padding: 10px 15px 10px;
+	position: absolute;
+	right: 0;
+	text-align: center;
+}
+.post .post-thumb .post-date span {
+	font-size: 20px;
+	line-height: 20px;
+}
+.post .post-meta {
+	display: inline-block;
+	padding: 10px 22px;
+	width: 100%;
+	border: 1px solid #eee;
+	border-top: 1px solid transparent;
+}
+.post .post-meta ul li {
+	font-size: 14px;
+	vertical-align: middle;
+	font-weight: 400;
+}
+.post .post-meta ul li i {
+	vertical-align: middle;
+	margin-top: -4px;
+	margin-right: 8px;
+}
+.post .post-top-meta {
+	position: absolute;
+	bottom: -32px;
+	left: 0;
+	background: rgba(0, 0, 0, 0.6);
+	padding: 4px 20px;
+	border-radius: 0 4px 0 0;
+	.transition(all 300ms ease-in-out 0s);
+}
+.post:hover .post-thumb .post-top-meta {
+	bottom: 0;
+}
+.post .post-top-meta li {
+	color: #fff;
+	font-size: 12px;
+}
+.post .post-top-meta ul li i {
+	vertical-align: middle;
+	margin-right: 8px;
+}
+@media only screen and (max-width : 1199px) {
+	.media-post .post-thumb {
+    float: none;
+    display: inline-block;
+	}
+}
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 991px) {
+	.media-post .post-thumb {
+    float: left;
+	}
+}
+.blog-posts .post .entry-content {
+  border: 1px solid transparent;
+  position: relative;
+}
+.post .entry-content {
+  border: 1px solid transparent;
+}

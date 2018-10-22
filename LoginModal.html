@@ -1,0 +1,76 @@
+﻿<style type="text/css">
+    #loading {
+        text-align: center;
+        background: #ccc;
+        opacity: 0.65;
+        margin-bottom: 10px;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        position: absolute;
+        display: none;
+        border: 1px solid #2E5C2E;
+        z-index: 999;
+    }
+        #loading:before {
+            content: '';
+            display: block;
+            height: 100%;
+            vertical-align: middle;
+            margin-right: -0.25em;
+        }
+
+        #loading > div {
+            display: inline-block;
+            vertical-align: middle;
+            color: white;
+        }
+
+    #loaderImage {
+        display: block;
+        width: 50px; 
+        height: 50px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-top: -25px; 
+        margin-left: -25px;
+    }
+</style>
+<div id="loading">
+    <div class="preloader-orbit-loading" id="loaderImage">
+        <div class="cssload-inner cssload-one"></div>
+        <div class="cssload-inner cssload-two"></div>
+        <div class="cssload-inner cssload-three"></div>
+    </div>
+</div>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">x</button>
+    <div class="text-center mb-20"><a href="#" class=""><img alt="" src="images/logo.png"></a></div>
+    <h4 class="text-theme-colored mt-0 pt-5"> Login</h4>
+</div>
+<div class="modal-body">
+    <form id="login-form">
+        <div class="form-group">
+            <label for="InputEmail">Email</label>
+            <input type="email" class="form-control" id="emailInput" placeholder="Email">
+            <div id="email-error" class="error"></div>
+        </div>
+        <div class="form-group" id="otpdiv">
+            <label for="inputpassword">OTP</label>
+            <input type="text" class="form-control" id="otpInput" placeholder="OTP">
+            <div class="form-group pull-right mt-10" id="resend">
+                <a class="text-theme-colored font-weight-600 font-12" href="#">Resend OTP</a>
+            </div>
+            <div id="otp-error" class="error"></div>
+        </div>
+        <div class="clear text-center pt-10">
+            <button type="button" class="btn btn-primary btn-lg btn-block no-border mt-15 mb-15" id="btnLogin" href="#" style="background-color:#3b5998">Login</button>
+            <button type="button" class="btn btn-danger btn-lg btn-block no-border" id="btnReset" style="background-color:#00acee">Reset</button>
+        </div>
+    </form>
+    <script src="js/global.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <script src="custom-js/MemberLogin.js"></script>
+</div>

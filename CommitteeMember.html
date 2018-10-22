@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="Imfundo - Education University School Kindergarten Learning HTML Template" />
+    <meta name="keywords" content="education,school,university,educational,learn,learning,teaching,workshop" />
+    <meta name="author" content="ThemeMascot" />
+    <title>UGPS</title>
+    <link href="images/favicon.png" rel="shortcut icon" type="image/png">
+    <link href="images/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
+    <link href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
+    <link href="images/apple-touch-icon-144x144.png" rel="apple-touch-icon" sizes="144x144">
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/jquery-ui.min.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+    <link href="css/css-plugin-collections.css" rel="stylesheet" />
+    <link href="css/menuzord-megamenu.css" rel="stylesheet" />
+    <link id="menuzord-menu-skins" href="css/menuzord-skins/menuzord-boxed.css" rel="stylesheet" />
+    <link href="css/style-main.css" rel="stylesheet" type="text/css">
+    <link href="css/preloader.css" rel="stylesheet" type="text/css">
+    <link href="css/custom-bootstrap-margin-padding.css" rel="stylesheet" type="text/css">
+    <link href="css/responsive.css" rel="stylesheet" type="text/css">
+    <link href="js/revolution-slider/css/settings.css" rel="stylesheet" type="text/css" />
+    <link href="js/revolution-slider/css/layers.css" rel="stylesheet" type="text/css" />
+    <link href="js/revolution-slider/css/navigation.css" rel="stylesheet" type="text/css" />
+    <link href="css/colors/theme-skin-color-set1.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-2.2.4.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-plugin-collection.js"></script>
+    <script src="js/revolution-slider/js/jquery.themepunch.tools.min.js"></script>
+    <script src="js/revolution-slider/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="js/global.js"></script>
+    <script src="custom-js/StatisticalInfo.js"></script>
+    <script src="custom-js/CommitteeMember.js"></script>
+    <script src="custom-js/MemberLogin.js"></script>
+    <script src="js/custom.js"></script>
+    <script>
+        $(window).load(function () {
+            $("#header").load("SubHeader.html");
+            $("#footer").load("Footer.html");
+        });
+    </script>
+</head>
+<body class="has-side-panel side-panel-right fullwidth-page">
+    <div id="wrapper" class="clearfix">
+        <div id="preloader">
+            <div id="spinner">
+                <img alt="" src="images/preloaders/5.gif">
+            </div>
+            <div id="disable-preloader" class="btn btn-default btn-sm">Disable Preloader</div>
+        </div>
+        <div id="header"></div>
+        <div class="main-content">
+			<section id="schedule" class="divider parallax overlay-white-8">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-11 ml-50">
+							<div class="section-content">
+								<div class="row">
+									<div class="col-sm-2 fa-icon-pull-left">
+                                        <select class="form-control border-1px dark" id="maxRows">
+                                            <option value="" disabled selected>Select Pages</option>
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="30">30 </option>
+                                        </select>
+									</div>
+									<div class="col-md-5 pull-right">
+										<div class="input-group">
+											<span class="input-group-btn">
+												<select class="btn btn-gray btn-flat btn-lg" style="height:45px;width:120px;padding-left:8px;padding-right:5px" id="searchName">
+													<option value="CommitteeMemberData.FullName">Full Name</option>
+													<option value="CommitteeMemberData.Email">Email</option>
+													<option value="DesignationData.Designation">Designation</option>
+												</select>
+											</span>
+											<div class="mt-3">
+												<input type="text" placeholder="Click to Search" id="searchValue" class="form-control">
+											</div>
+											<span class="input-group-btn">
+												<button type="submit" class="btn btn-gray btn-lg" style="height:45px; width:30px;padding-left:15px" id="search"><i class="fa fa-search"></i></button>
+												<button type="submit" class="btn btn-danger btn-lg " style="height:45px; width:30px;padding-left:15px" id="cancelSearch"><i class="fa fa-close"></i></button>
+											</span>
+										</div>
+									</div>
+								</div>
+								<hr class="mb-0" />
+								<div class="row">
+									<div class="col-md-12 table-responsive">
+										<table class="table table-striped table-schedule" id="memberTable">
+											<thead>
+												<tr class="bg-gray-silver">
+													<th>Committee Member</th>
+													<th id="committeeMemberDesignation">
+														Designation
+														<span class="arrow_up" aria-hidden="false"></span>
+													</th>
+													<th>Name/Address/Email</th>
+												</tr>
+											</thead>
+											<tbody id="committeeMemberTableBody"></tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<hr class="mt-0" />
+							<div class="row">
+								<div class="col-sm-4 pt-0">
+									<span class="text-black font-weight-600">Total Committee Members: </span><span class="text-black font-weight-600" id="memberCount"></span>
+								</div>
+								<div class="pull-right mt-0 mr-20">
+									<nav>
+										<ul class="pagination mt-0 mb-0"></ul>
+									</nav>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal fade bs-example-modal-md" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+					<div class="modal-dialog modal-md" role="document">
+						<div class="modal-content bg-lighter">
+						</div>
+					</div>
+				</div>
+			</section>
+            <div id="footer"></div>
+            <script src="js/custom.js"></script>
+        </div>
+    </div>
+</body>
+</html>
