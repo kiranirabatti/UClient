@@ -181,41 +181,83 @@
         }
     }
 
+    var oldFileName = '';
+    var FileNameInFolder = '';
+    var fileName = ''
     $('#myModal').on('shown.bs.modal', function (e) {
         familymemberId = $(e.relatedTarget).attr('data-id');
-        fileName = $(e.relatedTarget).attr('data-fileName');
+        dataFileName = $(e.relatedTarget).attr('data-fileName');
         getFamilyMemberData(familymemberId)
-        $("#updateFamilyMemberProfile").click(function () {
-            var fname = $('#firstName').val();
-            var maritalStatus = $('#MaritalStatus').val();
-            var phone = $('#mobileNumber').val();
-            var email = $('#emailId').val();
-            var addr = $('#address').val();
-            if (familymemberId) {
-                var familyeMberData = { "FamilyMemberId": familymemberId, "Name": fname, "MaritalStatus": maritalStatus, "Mobile": phone, "Email": email };
-                if ($('#firstName-error').text() != '' || $('#mobile-error').text() != '' || $('#email-error').text() != '') {
-                }
-                else
-                    $.ajax({
-                        url: nodeURL + '/familyMemberById/' + familymemberId,
-                        type: "PUT",
-                        contentType: "application/json",
-                        data: JSON.stringify(familyeMberData),
-                        dataType: "json",
-                        success: function (familyMember) {
-                            if (familyMember != '') {
-                                $('#form-result').html('Family member updatead successfully').fadeIn('slow');
-                                setTimeout(function () { $('#form-result').fadeOut('slow') }, 5000);
-                            }
-                        },
-                        error: function (err) {
-                            console.log(err);
-                        }
-                    });
+
+
+    });
+    $('#EditImage').hide();
+    var isImageChange = false;
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#MemberImageEdit').attr('src', e.target.result);
+                isImageChange = true;
             }
-        });
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    var newFileName = '';
+    $("#EditImage").change(function (e) {
+        var val = $(this).val();
+        newFileName = e.target.files[0].name;
+        switch (val.substring(val.lastIndexOf('.') + 1).toLowerCase()) {
+            case 'jpeg': case 'jpg': case 'png':
+                $('#image_error').text("");
+                $('#updateMemberProfile').removeAttr('disabled');
+                break;
+            default:
+                $(this).val('');
+                $('#image_error').text("Please select only image file");
+                break;
+        }
+        readURL(this);
     });
 
+    var Image = '';
+    $("#updateFamilyMemberProfile").click(function () {
+        var fname = $('#firstName').val();
+        var maritalStatus = $('#MaritalStatus').val();
+        var phone = $('#mobileNumber').val();
+        var email = $('#emailId').val();
+        var addr = $('#address').val();
+        isImageChange == true ? Image = $('#MemberImageEdit').attr('src') : Image = nodeURL + '/getDefaultMemberImage';
+        var FileName = newFileName != '' ? newFileName : fileName;
+        FileNameInFolder = '';
+        if (familymemberId) {
+            var familyMemberData = { "FamilyMemberId": familymemberId, "Name": fname, "MaritalStatus": maritalStatus, "Mobile": phone, "Email": email, "Image": Image, "OldFileName": oldFileName, "Filename": FileName, "FileNameInFolder": FileNameInFolder, 'MemberId': memberId };
+            if ($('#firstName-error').text() != '' || $('#mobile-error').text() != '' || $('#email-error').text() != '') {
+            }
+            else
+                $.ajax({
+                    url: nodeURL + '/familyMemberById/' + familymemberId,
+                    type: "PUT",
+                    contentType: "application/json",
+                    data: JSON.stringify(familyMemberData),
+                    dataType: "json",
+                    success: function (familyMember) {
+                        if (familyMember != '') {
+                            $('#form-result').html('Family member updatead successfully').fadeIn('slow');
+                            setTimeout(function () { $('#form-result').fadeOut('slow') }, 5000);
+                            getFamilyMemberData(familymemberId);
+                            getAllMember();
+                            isImageChange = false
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+        }
+    });
+    var memberId = '';
     function getFamilyMemberData(familymemberId) {
         $.ajax({
             url: nodeURL + '/familyMemberById/' + familymemberId,
@@ -227,6 +269,11 @@
                 $('#MaritalStatus').val(result[0].MaritalStatus);
                 $('#emailId').val(result[0].Email);
                 $('#mobileNumber').val(result[0].Mobile);
+                result[0].FileNameInFolder != "" ? $('.familyMemberImage').attr('src', nodeURL + "/getFamilyMemberImage/" + result[0].MemberId + '/' + result[0].FamilyMemberId + '/' + result[0].FileNameInFolder) :
+                    $('.familyMemberImage').attr('src', nodeURL + "/defaultImage");
+                oldFileName = result[0].FileNameInFolder;
+                fileName = result[0].Filename;
+                memberId = result[0].MemberId
             },
             error: function (err) {
                 console.log(err.statusText);

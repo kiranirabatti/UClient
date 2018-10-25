@@ -1,8 +1,6 @@
 ﻿var Male = 0;
 var Female = 0;
 $(document).ready(function () {
-    $('totalMember').data('value', 140);
-    
     $.ajax({
         url: nodeURL + '/allmembers/',
         type: "GET",
