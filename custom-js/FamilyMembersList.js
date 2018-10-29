@@ -108,23 +108,20 @@
     });
 
     function emailvaidate(email) {
-        if (email == '') {
-            $('#email-error').text("This field is required");
-            $('#emailId').addClass("form-control error");
-            return false;
-        }
-        else {
+        if (email != '') {
             var emailregex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
             if (emailregex.test(email)) {
                 $('#email-error').text("");
-                $('#emailId').removeClass("form-control error").addClass("form-control");
                 return true;
             }
             else {
                 $('#email-error').text("Please enter valid email address");
-                $('#emailId').addClass("form-control error");
                 return false;
             }
+        }
+        else {
+            $('#email-error').text("");
+            return true;
         }
     }
 
@@ -132,26 +129,34 @@
         var firstName = $('#firstName').val()
         if (firstName == '') {
             $('#firstName-error').text("This field is required");
-            $('#firstName').addClass("form-control error");
             return false;
         }
         else {
             $('#firstName-error').text("");
-            $('#firstName').removeClass("form-control error").addClass("form-control");
             return true;
         }
     });
 
-    $('#memberSurname').on('input', function () {
-        var firstName = $('#memberSurname').val()
-        if (firstName == '') {
-            $('#surname-error').text("This field is required");
-            $('#memberSurname').addClass("form-control error");
+    $("select").change(function () {
+        var maritalStatus = $('#MaritalStatus').val();
+        if (maritalStatus == 'Married') {
+            $('#isMarriageDate').show();
+        }
+        else {
+            $('#isMarriageDate').hide();
+            $('#marriageDate-error').text("");
+        }
+    });
+
+    $('#marriageDate').change(function () {
+        var marriageDate = $('#marriageDate').val()
+        var maritalStatus = $('#MaritalStatus').val();
+        if (maritalStatus == 'Married' && marriageDate == '') {
+            $('#marriageDate-error').text("This field is required");
             return false;
         }
         else {
-            $('#surname-error').text("");
-            $('#memberSurname').removeClass("form-control error").addClass("form-control");
+            $('#marriageDate-error').text("");
             return true;
         }
     });
@@ -161,23 +166,20 @@
     });
 
     function validatePhone(txtPhone) {
-        if (txtPhone == '') {
-            $('#mobile-error').text("This field is required");
-            $('#mobileNumber').addClass("form-control error");
-            return false;
-        }
-        else {
+        if (txtPhone != '') {
             var mobileNumberRegex = /^\d{10}$/;
             if (mobileNumberRegex.test(txtPhone)) {
                 $('#mobile-error').text("");
-                $('#mobileNumber').removeClass("form-control error").addClass("form-control");
                 return true;
             }
             else {
                 $('#mobile-error').text("Please enter valid mobile number");
-                $('#mobileNumber').addClass("form-control error");
                 return false;
             }
+        }
+        else {
+            $('#mobile-error').text("");
+            return true;
         }
     }
 
@@ -196,11 +198,17 @@
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#MemberImageEdit').attr('src', e.target.result);
-                isImageChange = true;
+            let max_size = 512000;
+            var file = input.files[0];
+            if (file.size > max_size) {
+                $('#image_error').text("Image size must be less than 500kb");
+            } else {
+                reader.onload = function (e) {
+                    $('#MemberImageEdit').attr('src', e.target.result);
+                    isImageChange = true;
+                }
+                reader.readAsDataURL(input.files[0]);
             }
-            reader.readAsDataURL(input.files[0]);
         }
     }
 
@@ -211,7 +219,6 @@
         switch (val.substring(val.lastIndexOf('.') + 1).toLowerCase()) {
             case 'jpeg': case 'jpg': case 'png':
                 $('#image_error').text("");
-                $('#updateMemberProfile').removeAttr('disabled');
                 break;
             default:
                 $(this).val('');
@@ -228,14 +235,26 @@
         var phone = $('#mobileNumber').val();
         var email = $('#emailId').val();
         var addr = $('#address').val();
+        var marriageDate = $('#marriageDate').val()
+        var LookingForPartner = maritalStatus == 'Married' ? 'No' : lookingForPartner;
+        var MarriageDate = maritalStatus == 'Married' ? moment(marriageDate, "YYYY-MM-DD").format("DD-MM-YYYY") : '';
         isImageChange == true ? Image = $('#MemberImageEdit').attr('src') : Image = nodeURL + '/getDefaultMemberImage';
         var FileName = newFileName != '' ? newFileName : fileName;
         FileNameInFolder = '';
-        if (familymemberId) {
-            var familyMemberData = { "FamilyMemberId": familymemberId, "Name": fname, "MaritalStatus": maritalStatus, "Mobile": phone, "Email": email, "Image": Image, "OldFileName": oldFileName, "Filename": FileName, "FileNameInFolder": FileNameInFolder, 'MemberId': memberId };
-            if ($('#firstName-error').text() != '' || $('#mobile-error').text() != '' || $('#email-error').text() != '') {
+        if (maritalStatus === 'Married' && (MarriageDate == '' || MarriageDate == 'Invalid date')) {
+            $('#marriageDate-error').text("This field is required");
+        }
+        if (maritalStatus != 'Married' && lookingForPartner == 'Yes') {
+            if (email == '') {
+                $('#email-error').text("This field is required");
             }
-            else
+            if (phone == '') {
+                $('#mobile-error').text("This field is required");
+            }
+        }
+        if (familymemberId) {
+            var familyMemberData = { "FamilyMemberId": familymemberId, "Name": fname, "MaritalStatus": maritalStatus, "Mobile": phone, "Email": email, "Image": Image, "OldFileName": oldFileName, "Filename": FileName, "FileNameInFolder": FileNameInFolder, 'MemberId': memberId, 'MarriageDate': MarriageDate, 'LookingForPartner': LookingForPartner };
+            if ($('#firstName-error').text() == '' && $('#mobile-error').text() == '' && $('#email-error').text() == '' && $('#marriageDate-error').text() == '' && $('#image_error').text() == '') {
                 $.ajax({
                     url: nodeURL + '/familyMemberById/' + familymemberId,
                     type: "PUT",
@@ -246,7 +265,7 @@
                         if (familyMember != '') {
                             $('#form-result').html('Family member updatead successfully').fadeIn('slow');
                             setTimeout(function () { $('#form-result').fadeOut('slow') }, 5000);
-                            getFamilyMemberData(familymemberId);
+                            getFamilyMemberData(familyMember.FamilyMemberId);
                             getAllMember();
                             isImageChange = false
                         }
@@ -255,25 +274,49 @@
                         console.log(err);
                     }
                 });
+            }
         }
     });
+
     var memberId = '';
+    var lookingForPartner = '';
+    var age = '';
     function getFamilyMemberData(familymemberId) {
+        $('#MaritalStatus').html('');
         $.ajax({
             url: nodeURL + '/familyMemberById/' + familymemberId,
             type: "GET",
             data: {},
             dataType: "json",
             success: function (result) {
+                age = result[0].Age
+                valuesForGreaterAge = ["Married", "Unmarried", "Widower", "Divorced"];
+                valuesForLessAge = ["Unmarried"]
+                if (age < 18) {
+                    Optionarray = valuesForLessAge;
+                } else {
+                    Optionarray = valuesForGreaterAge;
+                }
+                $.each(Optionarray, function (key, value) {
+                    $('#MaritalStatus')
+                        .append($("<option></option>")
+                            .attr("value", value)
+                            .text(value));
+                });
                 $('#firstName').val(result[0].Name);
                 $('#MaritalStatus').val(result[0].MaritalStatus);
                 $('#emailId').val(result[0].Email);
                 $('#mobileNumber').val(result[0].Mobile);
+                var date = moment(result[0].MarriageDate, "DD-MM-YYYY").format("YYYY-MM-DD")
+                result[0].MaritalStatus == 'Married' ? $('#isMarriageDate').show() : $('#isMarriageDate').hide();
+                result[0].MaritalStatus == 'Married' ? $('#marriageDate').val(date) : null;
                 result[0].FileNameInFolder != "" ? $('.familyMemberImage').attr('src', nodeURL + "/getFamilyMemberImage/" + result[0].MemberId + '/' + result[0].FamilyMemberId + '/' + result[0].FileNameInFolder) :
                     $('.familyMemberImage').attr('src', nodeURL + "/defaultImage");
                 oldFileName = result[0].FileNameInFolder;
                 fileName = result[0].Filename;
                 memberId = result[0].MemberId
+                lookingForPartner = result[0].LookingForPartner
+
             },
             error: function (err) {
                 console.log(err.statusText);
@@ -291,9 +334,7 @@
 
     $("#CancelUpdate").click(function () {
         getFamilyMemberData(familymemberId)
-        $('#firstName').removeClass("form-control error").addClass("form-control");
-        $('#mobileNumber').removeClass("form-control error").addClass("form-control");
-        $('#emailId').removeClass("form-control error").addClass("form-control");
+        $('#marriageDate-error').text("");
         $('#firstName-error').text("");
         $('#mobile-error').text("");
         $('#email-error').text("");

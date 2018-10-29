@@ -41,7 +41,7 @@
 			data: {},
 			dataType: "json",
             success: function (member) {
-				$('#fullName').html(member[0].FullName + " " + member[0].SurName);
+				$('#fullName').html(member[0].FullName);
 				$('#mobileNumber').html(member[0].MobileNo);
 				$('#homePhone').html(member[0].HomePhone);
 				$('#emailId').html(member[0].Email);

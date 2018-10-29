@@ -9,6 +9,9 @@
         data: {},
         dataType: "json",
         success: function (result) {
+            if (result.length == 0) {
+                $('#home').hide()
+            }
             $.each(result, function (index, value) {
                 if (result[index].IsActive == true) {
                     if (result[index].BannerWithPhoto.length > 0) {
@@ -20,10 +23,10 @@
                                      id="slide-`+ imageCount + `-layer-2"
                                      data-x="['left','left','left','left']" data-hoffset="['50','50','50','30']"
                                      data-y="['top','top','top','top']" data-voffset="['250','160','140','150']"
-                                     data-fontsize="['52','46','40','28']"
-                                     data-lineheight="['68','60','54','42']"
-                                     data-fontweight="['800','800','800','800']"
-                                     data-width="['700','650','600','420']"
+                                     data-fontsize="['22','36','30','18']"
+                                     data-lineheight="['58','50','44','32']"
+                                     data-fontweight="['700','700','700','700']"
+                                     data-width="['600','550','500','320']"
                                      data-height="none"
                                      data-whitespace="normal"
                                      data-transform_idle="o:1;"
@@ -45,6 +48,9 @@
                     }
                 }
             });
+            if (imageCount == 0) {
+                $('#home').hide()
+            }
         }
     });
 });

@@ -101,7 +101,7 @@
                     success: function (result) {
 						if (result.FullName) {
                             emailflag = 1;
-                            localStorage.setItem('fullName', result.FullName + ' ' + result.SurName);
+                            localStorage.setItem('fullName', result.FullName);
                             localStorage.setItem('loginMemberId', result.MemberId);
                             $('#otpdiv').show();
                             $('#loading').hide();

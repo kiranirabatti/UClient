@@ -63,45 +63,42 @@
                 <div class="container">
                     <div class="section-content">
                         <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="col-md-8 col-md-offset-3">
                                 <form name="editprofile-form" id="editMember_form" method="post">
                                     <div class="row">
-                                        <div class="image-box-thumb col-sm-6 mb-10 mb-0 p-0">
-                                            <div class="col-lg-3"> <label><img src="" class="memberImage border-2px" height="120" width="380" id="MemberImageEdit"><input type="file" id="EditImage" /></label></div>
-                                            <div class="col-lg-4"> <h3 class="text-gray pt-10 mt-0 mb-30">Edit Profile</h3></div>
+                                        <div class="image-box-thumb col-sm-10 mb-10 mb-0 p-0">
+                                            <div class="col-lg-3"> <label><img src="" class="memberImage img-circle border-2px" height="120" width="380" id="MemberImageEdit"><input type="file" id="EditImage" /></label></div>
+                                            <div class="col-lg-7"> <h3 class="text-gray pt-10 mt-0 mb-30">Edit Member Profile</h3></div>
                                         </div>
                                     </div>
                                     <div id="image_error" class="error"></div>
-                                    <hr>
+                                    <hr class="col-md-10">
                                     <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label>First Name</label>
-                                            <input name="form_name" class="form-control required" type="text" id="firstName" required="">
+                                        <div class="form-group col-md-10">
+                                            <label>Full Name</label>
+                                            <input name="form_name" class="form-control required" type="text" id="firstName" required="" maxlength="50">
                                             <div id="firstName-error" class="error"></div>
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label>Surname</label>
-                                            <input name="form_name" class="form-control required" type="text" id="memberSurname">
-                                            <div id="surname-error" class="error"></div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-10">
                                             <label>Mobile</label>
-                                            <input name="form_phone" class="form-control" type="text" id="mobileNumber">
+                                            <input name="form_phone" class="form-control" type="text" id="mobileNumber" maxlength="10">
                                             <div id="mobile-error" class="error"></div>
                                         </div>
-                                        <div class="form-group col-md-6">
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-10">
                                             <label>Email</label>
-                                            <input name="form_email" class="form-control" type="email" id="emailId">
+                                            <input name="form_email" class="form-control" type="email" id="emailId" maxlength="50">
                                             <div id="email-error" class="error"></div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="form-group col-md-12">
+                                        <div class="form-group col-md-10">
                                             <label>Address</label>
-                                            <textarea name="form_address" class="form-control " cols="20" rows="5" id="address"></textarea>
-                                            <div id="Address-error" class="error"></div>
+                                            <textarea name="form_address" class="form-control " cols="20" rows="5" id="address" maxlength="200"></textarea>
+                                            <div id="address-error" class="error"></div>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -110,7 +107,7 @@
                                     </div>
                                     <div id="form-result" class="alert alert-success" role="alert" style="display: none;"></div>
                                 </form>
-                                <hr class="mt-70 mb-70">
+                                <hr class="mt-70 mb-70 col-md-10">
                             </div>
                         </div>
                     </div>

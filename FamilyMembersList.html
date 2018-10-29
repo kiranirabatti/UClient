@@ -63,7 +63,8 @@
                                         <table class="table table-striped table-schedule" id="memberTable">
                                             <thead>
                                                 <tr class="bg-gray-silver text-white">
-                                                    <th class="pl-20 font-17" colspan="2" style="text-transform:none">Name</th>
+                                                    <th></th>
+                                                    <th class="pl-20 font-17" style="text-transform:none">Name</th>
                                                     <th class="ml-15 font-17" style="text-transform:none">Email</th>
                                                     <th class="ml-15 font-17" style="text-transform:none">Date of birth</th>
                                                     <th class="ml-15 font-17" style="text-transform:none">Mobile </th>
@@ -100,15 +101,15 @@
                                 <h4 class="text-theme-colored mt-0 pt-5 text-center"> Edit Family member</h4>
                             </div>
                             <div class="modal-body">
-                                <form name="editprofile-form" id="editMember_form" method="post">
+                                <form name="editprofile-form" id="editMember_form" method="post" data-toggle="validator">
                                     <div class="row">
                                         <div class="image-box-thumb col-md-12 mb-10 mb-0 p-0">
                                             <div class="col-lg-4"></div>
-                                                <div class="col-lg-3"> <label><img src="" class="familyMemberImage border-2px" height="120" width="380" id="MemberImageEdit"><input type="file" id="EditImage" /></label></div>
-                                            <div class="col-lg-3"></div>   
+                                            <div class="col-lg-3"> <label><img src="" class="familyMemberImage img-circle border-2px" height="120" width="380" id="MemberImageEdit"><input type="file" id="EditImage" /></label></div>
+                                            <div class="col-lg-3"></div>
                                         </div>
                                     </div>
-                                    <div id="image_error" class="error"></div>
+                                    <div id="image_error" class="error text-center"></div>
                                     <div class="form-group">
                                         <label>First Name</label>
                                         <input name="form_name" class="form-control required" type="text" id="firstName" required="">
@@ -116,12 +117,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <input name="form_email" class="form-control" type="email" id="emailId">
+                                        <input name="form_email" class="form-control" type="email" id="emailId" maxlength="50">
                                         <div id="email-error" class="error"></div>
                                     </div>
                                     <div class="form-group">
                                         <label>Mobile</label>
-                                        <input name="form_phone" class="form-control" type="text" id="mobileNumber">
+                                        <input name="form_phone" class="form-control" type="text" id="mobileNumber" maxlength="10">
                                         <div id="mobile-error" class="error"></div>
                                     </div>
                                     <div class="form-group">
@@ -129,16 +130,17 @@
                                         <div class="fa-icon-pull-left">
                                             <select class="form-control border-1px dark" id="MaritalStatus">
                                                 <option value="" disabled selected>Select</option>
-                                                <option value="Married">Married</option>
-                                                <option value="Unmarried">Unmarried</option>
-                                                <option value="Widower">Widower</option>
-                                                <option value="Divorced">Divorced </option>
                                             </select>
                                         </div>
                                         <div id="marritalstatus-error" class="error"></div>
                                     </div>
+                                    <div class="form-group" id="isMarriageDate">
+                                        <label>Marriage Date</label>
+                                        <input type="date" class="form-control pt-10 pb-10" id="marriageDate" value="2-10-2018" />
+                                        <div id="marriageDate-error" class="error"></div>
+                                    </div>
                                     <div class="form-group">
-                                        <button class="btn btn-dark btn-lg mt-15" type="button" id="updateFamilyMemberProfile">Update</button>
+                                        <button class="btn btn-dark btn-lg mt-15" type="button" id="updateFamilyMemberProfile">Submit</button>
                                         <button class="btn btn-dark btn-lg mt-15" type="button" id="CancelUpdate">Cancel</button>
                                     </div>
                                     <div id="form-result" class="alert alert-success" role="alert" style="display: none;"></div>

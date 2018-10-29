@@ -36,11 +36,18 @@
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#MemberImageEdit').attr('src', e.target.result);
-                isImageChange = true;
+            let max_size = 512000;
+            var file = input.files[0];
+            if (file.size > max_size) {
+                $('#image_error').text("Image size must be less than 500kb");
+                $('#updateMemberProfile').attr('disabled', 'disabled');
+            } else {
+                reader.onload = function (e) {
+                    $('#MemberImageEdit').attr('src', e.target.result);
+                    isImageChange = true;
+                }
+                reader.readAsDataURL(input.files[0]);
             }
-            reader.readAsDataURL(input.files[0]);
         }
     }
     var newFileName = '';
@@ -55,6 +62,7 @@
             default:
                 $(this).val('');
                 $('#image_error').text("Please select only image file");
+                $('#updateMemberProfile').attr('disabled', 'disabled');
                 break;
         }
         readURL(this);
@@ -101,21 +109,6 @@
         }
     });
 
-    $('#memberSurname').on('input', function () {
-        var firstName = $('#memberSurname').val()
-        if (firstName == '') {
-            $('#surname-error').text("This field is required");
-            $('#memberSurname').addClass("form-control error");
-            return false;
-        }
-        else {
-            $('#surname-error').text("");
-            $('#memberSurname').removeClass("form-control error").addClass("form-control");
-            $('#updateMemberProfile').removeAttr('disabled');
-            return true;
-        }
-    });
-
     $('#mobileNumber').on('input', function () {
         validatePhone($('#mobileNumber').val());
         $('#updateMemberProfile').removeAttr('disabled');
@@ -143,7 +136,18 @@
     }
 
     $('#address').on('input', function () {
-        $('#updateMemberProfile').removeAttr('disabled');
+        var address = $('#address').val()
+        if (address == '') {
+            $('#address-error').text("This field is required");
+            $('#address').addClass("form-control error");
+            return false;
+        }
+        else {
+            $('#address-error').text("");
+            $('#address').removeClass("form-control error").addClass("form-control");
+            $('#updateMemberProfile').removeAttr('disabled');
+            return true;
+        }
     });
 
     var oldFileName = '';
@@ -163,7 +167,6 @@
                     $('#mobileNumber').val(member[0].MobileNo);
                     $('#emailId').val(member[0].Email);
                     $('#address').val(member[0].Address);
-                    $('#memberSurname').val(member[0].SurName);
                     member[0].FileNameInFolder != "" ? $('.memberImage').attr('src', nodeURL + '/getMemberPhoto/' + member[0].MemberId + '/' + member[0].FileNameInFolder) :
                         $('.memberImage').attr('src', nodeURL + "/getDefaultMemberImage");
                     oldFileName = member[0].FileNameInFolder;
@@ -178,17 +181,16 @@
         var Image = '';
         $("#updateMemberProfile").click(function () {
             var fname = $('#firstName').val();
-            var lname = $('#memberSurname').val();
             var phone = $('#mobileNumber').val();
             var email = $('#emailId').val();
             var addr = $('#address').val();
             isImageChange == true ? Image = $('#MemberImageEdit').attr('src') : Image=nodeURL + '/getDefaultMemberImage';
             var FileName = newFileName != '' ? newFileName : fileName;
-            if ($('#firstName-error').text() != '' || $('#surname-error').text() != '' || $('#mobile-error').text() != '' || $('#email-error').text() != '' || $('#Address-error').text() != '') {
+            if ($('#firstName-error').text() != '' || $('#mobile-error').text() != '' || $('#email-error').text() != '' || $('#address-error').text() != '') {
             }
             else
                 if (memberId) {
-                    var memberData = { "memberId": memberId, "FullName": fname, "SurName": lname, "MobileNo": phone, "email": email, "Address": addr, "Image": Image, "OldFileName": oldFileName, "FileName": FileName, "FileNameInFolder": FileNameInFolder };
+                    var memberData = { "memberId": memberId, "FullName": fname,"MobileNo": phone, "email": email, "Address": addr, "Image": Image, "OldFileName": oldFileName, "FileName": FileName, "FileNameInFolder": FileNameInFolder };
                     $.ajax({
                         url: nodeURL + '/membersbyId/' + memberId,
                         type: "PUT",
@@ -198,9 +200,9 @@
                         success: function (member) {
                             if (member != '') {
                                 localStorage.removeItem('fullName')
-                                localStorage.setItem('fullName', member.FullName + ' ' + member.SurName)
+                                localStorage.setItem('fullName', member.FullName)
                                 $('#memberWelcome').html(localStorage.getItem('fullName'));
-                                $('#form-result').html('Member Updatead successfully').fadeIn('slow');
+                                $('#form-result').html('Member updatead successfully').fadeIn('slow');
                                 setTimeout(function () { $('#form-result').fadeOut('slow') }, 5000);
                                 isImageChange = false;
                                 getMemberData();
@@ -217,15 +219,13 @@
         $("#CancelUpdate").click(function () {
             getMemberData();
             $('#firstName').removeClass("form-control error").addClass("form-control");
-            $('#memberSurname').removeClass("form-control error").addClass("form-control");
             $('#mobileNumber').removeClass("form-control error").addClass("form-control");
             $('#emailId').removeClass("form-control error").addClass("form-control");
             $('#address').removeClass("form-control error").addClass("form-control");
             $('#firstName-error').text("");
-            $('#surname-error').text("");
             $('#mobile-error').text("");
             $('#email-error').text("");
-            $('#Address-error').text("");
+            $('#address-error').text("");
         });
     }
 });

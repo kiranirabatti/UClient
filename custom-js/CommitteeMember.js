@@ -24,7 +24,7 @@
                         if (committeeMember.CommitteeMemberData.IsActive == true) {
                             totalRows++;
                             committeeMemberImage = committeeMember.CommitteeMemberData.FileNameInFolder != "" ? nodeURL + '/getMemberPhoto/' + committeeMember.CommitteeMemberData.MemberId + '/' + committeeMember.CommitteeMemberData.FileNameInFolder : nodeURL + "/defaultImage";
-                            committeeMemberFullName = committeeMember.CommitteeMemberData.FullName + ' ' + committeeMember.CommitteeMemberData.FatherName + ' ' + committeeMember.CommitteeMemberData.SurName;
+                            committeeMemberFullName = committeeMember.CommitteeMemberData.FullName;
                             committeeMemberAddress = committeeMember.CommitteeMemberData.Address + ' ' + committeeMember.CommitteeMemberData.Taluka + ' ' + committeeMember.CommitteeMemberData.Jeello + ' ' + committeeMember.CommitteeMemberData.PinCode
                             committeeMemberEmail = committeeMember.CommitteeMemberData.Email;
                             committeeMemberData += "<tr><td class='ml-100'><div><img src=" + committeeMemberImage + " class='memberImage border-2px' height='120' width='150'></div></td><td>" + committeeMember.DesignationData.Designation + "</td> <td> <h4 class='text-info font-weight-500 mt-0 mb-5'>" + committeeMemberFullName + '</h4>' + committeeMemberAddress + '<br/>' + committeeMemberEmail + "</td></tr > ";
@@ -74,7 +74,7 @@
                             if (committeeMember.CommitteeMemberData.IsActive == true) {
                                 totalRows++;
                                 committeeMemberImage = committeeMember.CommitteeMemberData.FileNameInFolder != "" ? nodeURL + '/getMemberPhoto/' + committeeMember.CommitteeMemberData.MemberId + '/' + committeeMember.CommitteeMemberData.FileNameInFolder : nodeURL + "/defaultImage";
-                                committeeMemberFullName = committeeMember.CommitteeMemberData.FullName + ' ' + committeeMember.CommitteeMemberData.FatherName + ' ' + committeeMember.CommitteeMemberData.SurName;
+                                committeeMemberFullName = committeeMember.CommitteeMemberData.FullName;
                                 committeeMemberAddress = committeeMember.CommitteeMemberData.Address + ' ' + committeeMember.CommitteeMemberData.Taluka + ' ' + committeeMember.CommitteeMemberData.Jeello + ' ' + committeeMember.CommitteeMemberData.PinCode
                                 committeeMemberEmail = committeeMember.CommitteeMemberData.Email;
                                 committeeMemberSearchData += "<tr><td class='ml-100'><div><img src=" + committeeMemberImage + " class='memberImage border-2px' height='120' width='150'></div></td><td>" + committeeMember.DesignationData.Designation + "</td> <td> <h4 class='text-info font-weight-500 mt-0 mb-5'>" + committeeMemberFullName + '</h4>' + committeeMemberAddress + '<br/>' + committeeMemberEmail + "</td></tr > ";
