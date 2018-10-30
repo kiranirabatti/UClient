@@ -74,23 +74,19 @@
     });
 
     function emailvaidate(email) {
-        if (email == '') {
-            $('#email-error').text("This field is required");
-            $('#emailId').addClass("form-control error");
-            return false;
-        }
-        else {
+        if (email != ''){
             var emailregex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
             if (emailregex.test(email)) {
                 $('#email-error').text("");
-                $('#emailId').removeClass("form-control error").addClass("form-control");
                 return true;
             }
             else {
                 $('#email-error').text("Please enter valid email address");
-                $('#emailId').addClass("form-control error");
                 return false;
             }
+        }else{
+            $('#email-error').text("");
+                return true;
         }
     }
 
@@ -98,12 +94,10 @@
         var firstName = $('#firstName').val()
         if (firstName == '') {
             $('#firstName-error').text("This field is required");
-            $('#firstName').addClass("form-control error");
             return false;
         }
         else {
             $('#firstName-error').text("");
-            $('#firstName').removeClass("form-control error").addClass("form-control");
             $('#updateMemberProfile').removeAttr('disabled');
             return true;
         }
@@ -117,19 +111,16 @@
     function validatePhone(txtPhone) {
         if (txtPhone == '') {
             $('#mobile-error').text("This field is required");
-            $('#mobileNumber').addClass("form-control error");
             return false;
         }
         else {
             var mobileNumberRegex = /^\d{10}$/;
             if (mobileNumberRegex.test(txtPhone)) {
                 $('#mobile-error').text("");
-                $('#mobileNumber').removeClass("form-control error").addClass("form-control");
                 return true;
             }
             else {
                 $('#mobile-error').text("Please enter valid mobile number");
-                $('#mobileNumber').addClass("form-control error");
                 return false;
             }
         }
@@ -139,12 +130,10 @@
         var address = $('#address').val()
         if (address == '') {
             $('#address-error').text("This field is required");
-            $('#address').addClass("form-control error");
             return false;
         }
         else {
             $('#address-error').text("");
-            $('#address').removeClass("form-control error").addClass("form-control");
             $('#updateMemberProfile').removeAttr('disabled');
             return true;
         }
@@ -186,9 +175,7 @@
             var addr = $('#address').val();
             isImageChange == true ? Image = $('#MemberImageEdit').attr('src') : Image=nodeURL + '/getDefaultMemberImage';
             var FileName = newFileName != '' ? newFileName : fileName;
-            if ($('#firstName-error').text() != '' || $('#mobile-error').text() != '' || $('#email-error').text() != '' || $('#address-error').text() != '') {
-            }
-            else
+            if ($('#firstName-error').text() == '' || $('#mobile-error').text() == '' || $('#email-error').text() == '' || $('#address-error').text() == '') {
                 if (memberId) {
                     var memberData = { "memberId": memberId, "FullName": fname,"MobileNo": phone, "email": email, "Address": addr, "Image": Image, "OldFileName": oldFileName, "FileName": FileName, "FileNameInFolder": FileNameInFolder };
                     $.ajax({
@@ -214,14 +201,11 @@
                         }
                     });
                 }
+            }
         });
 
         $("#CancelUpdate").click(function () {
             getMemberData();
-            $('#firstName').removeClass("form-control error").addClass("form-control");
-            $('#mobileNumber').removeClass("form-control error").addClass("form-control");
-            $('#emailId').removeClass("form-control error").addClass("form-control");
-            $('#address').removeClass("form-control error").addClass("form-control");
             $('#firstName-error').text("");
             $('#mobile-error').text("");
             $('#email-error').text("");

@@ -148,19 +148,6 @@
         }
     });
 
-    $('#marriageDate').change(function () {
-        var marriageDate = $('#marriageDate').val()
-        var maritalStatus = $('#MaritalStatus').val();
-        if (maritalStatus == 'Married' && marriageDate == '') {
-            $('#marriageDate-error').text("This field is required");
-            return false;
-        }
-        else {
-            $('#marriageDate-error').text("");
-            return true;
-        }
-    });
-
     $('#mobileNumber').on('input', function () {
         validatePhone($('#mobileNumber').val());
     });
@@ -237,17 +224,11 @@
         var addr = $('#address').val();
         var marriageDate = $('#marriageDate').val()
         var LookingForPartner = maritalStatus == 'Married' ? 'No' : lookingForPartner;
-        var MarriageDate = maritalStatus == 'Married' ? moment(marriageDate, "YYYY-MM-DD").format("DD-MM-YYYY") : '';
+        var MarriageDate = maritalStatus == 'Married' ?  (marriageDate==''|| marriageDate == 'Invalid date'?"" : moment(marriageDate, "YYYY-MM-DD").format("DD-MM-YYYY")) : '';
         isImageChange == true ? Image = $('#MemberImageEdit').attr('src') : Image = nodeURL + '/getDefaultMemberImage';
         var FileName = newFileName != '' ? newFileName : fileName;
         FileNameInFolder = '';
-        if (maritalStatus === 'Married' && (MarriageDate == '' || MarriageDate == 'Invalid date')) {
-            $('#marriageDate-error').text("This field is required");
-        }
         if (maritalStatus != 'Married' && lookingForPartner == 'Yes') {
-            if (email == '') {
-                $('#email-error').text("This field is required");
-            }
             if (phone == '') {
                 $('#mobile-error').text("This field is required");
             }
