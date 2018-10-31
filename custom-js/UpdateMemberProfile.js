@@ -30,7 +30,6 @@
         window.location.href = "index.html";
     }
 
-    $('#updateMemberProfile').attr('disabled', 'disabled');
     $('#EditImage').hide();
     var isImageChange = false;
     function readURL(input) {
@@ -40,7 +39,6 @@
             var file = input.files[0];
             if (file.size > max_size) {
                 $('#image_error').text("Image size must be less than 500kb");
-                $('#updateMemberProfile').attr('disabled', 'disabled');
             } else {
                 reader.onload = function (e) {
                     $('#MemberImageEdit').attr('src', e.target.result);
@@ -57,12 +55,10 @@
         switch (val.substring(val.lastIndexOf('.') + 1).toLowerCase()) {
             case 'jpeg': case 'jpg': case 'png':
                 $('#image_error').text("");
-                $('#updateMemberProfile').removeAttr('disabled');
                 break;
             default:
                 $(this).val('');
                 $('#image_error').text("Please select only image file");
-                $('#updateMemberProfile').attr('disabled', 'disabled');
                 break;
         }
         readURL(this);
@@ -70,7 +66,6 @@
 
     $('#emailId').on('input', function () {
         emailvaidate($('#emailId').val());
-        $('#updateMemberProfile').removeAttr('disabled');
     });
 
     function emailvaidate(email) {
@@ -98,14 +93,12 @@
         }
         else {
             $('#firstName-error').text("");
-            $('#updateMemberProfile').removeAttr('disabled');
             return true;
         }
     });
 
     $('#mobileNumber').on('input', function () {
         validatePhone($('#mobileNumber').val());
-        $('#updateMemberProfile').removeAttr('disabled');
     });
 
     function validatePhone(txtPhone) {
@@ -134,7 +127,6 @@
         }
         else {
             $('#address-error').text("");
-            $('#updateMemberProfile').removeAttr('disabled');
             return true;
         }
     });
@@ -175,7 +167,7 @@
             var addr = $('#address').val();
             isImageChange == true ? Image = $('#MemberImageEdit').attr('src') : Image=nodeURL + '/getDefaultMemberImage';
             var FileName = newFileName != '' ? newFileName : fileName;
-            if ($('#firstName-error').text() == '' || $('#mobile-error').text() == '' || $('#email-error').text() == '' || $('#address-error').text() == '') {
+            if ($('#firstName-error').text() == '' && $('#mobile-error').text() == '' && $('#email-error').text() == '' && $('#address-error').text() == '' && $('#image_error').text() == '') {
                 if (memberId) {
                     var memberData = { "memberId": memberId, "FullName": fname,"MobileNo": phone, "email": email, "Address": addr, "Image": Image, "OldFileName": oldFileName, "FileName": FileName, "FileNameInFolder": FileNameInFolder };
                     $.ajax({
@@ -193,7 +185,6 @@
                                 setTimeout(function () { $('#form-result').fadeOut('slow') }, 5000);
                                 isImageChange = false;
                                 getMemberData();
-                                $('#updateMemberProfile').attr('disabled', 'disabled');
                             }
                         },
                         error: function (err) {
@@ -210,6 +201,7 @@
             $('#mobile-error').text("");
             $('#email-error').text("");
             $('#address-error').text("");
+            $('#image_error').text("");
         });
     }
 });

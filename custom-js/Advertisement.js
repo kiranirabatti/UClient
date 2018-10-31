@@ -19,7 +19,9 @@
             }
             $.each(result, function (index, value) {
                 var currentDate = formatDate(new Date);
-                if (result[index].photos.length > 0 && result[index].EndDate >= currentDate && result[index].IsActive == true && result[index].StartDate <= currentDate) {
+                var isEndDateValid = moment(result[index].EndDate, "DD-MM-YYYY").format("YYYY-MM-DD") >= moment(currentDate, "DD-MM-YYYY").format("YYYY-MM-DD");
+                var isStartDateValid = moment(result[index].StartDate, "DD-MM-YYYY").format("YYYY-MM-DD") <= moment(currentDate, "DD-MM-YYYY").format("YYYY-MM-DD");
+                if (result[index].photos.length > 0 && isEndDateValid && result[index].IsActive == true && isStartDateValid) {
                     var leftCarousel = $('<div class="owl-carousel-1col mb-15" data-dots="true" data-nav="true">');
                     var rightCarousel = $('<div class="owl-carousel-1col mb-15" data-dots="true" data-nav="true">');
                     $.each(result[index].photos, function (key, value) {

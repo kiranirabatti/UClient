@@ -319,6 +319,6 @@
         $('#firstName-error').text("");
         $('#mobile-error').text("");
         $('#email-error').text("");
-
+        $('#image_error').text("");
     });
 });
