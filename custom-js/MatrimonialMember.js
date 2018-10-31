@@ -22,8 +22,12 @@
                 var details = $('<div class="course-details clearfix p-20 pt-15">');
                 var innerDiv = $(' <div class="course-top-part">');
                 var headElement1 = $('<h4 class="mt-5 mb-5">').text(result[index].Name);
-                var headElement2 = $('<h5 class="text-gray font-14 mt-0">').text(result[index].Age + ' Years,   Height: ' + result[index].HeightData.Description);
-                var headElement3 = $('<h5 class="text-gray font-14 mt-0 mb-0">').text(result[index].CityData.CityName + ',  ' + result[index].CitizenshipData.Description);
+                var height = result[index].HeightData.length==0 ? '' : result[index].HeightData[0].Description
+                var headElement2 = $('<h5 class="text-gray font-14 mt-0">').text(result[index].Age + ' Years,   Height: ' + height);
+                var cityName = result[index].CityData.length == 0 ? '' : result[index].CityData[0].CityName;
+                var citizenship = result[index].CitizenshipData.length == 0 ? '' : result[index].CitizenshipData[0].Description
+                cityCitizenship = cityName == '' ?citizenship : cityName + ',  ' + citizenship
+                var headElement3 = $('<h5 class="text-gray font-14 mt-0 mb-0">').text('City: '+cityCitizenship);
                 innerDiv.append(headElement1, headElement2, headElement3);
                 details.append(innerDiv);
                 viewDetailsDiv = $('<div class="course-meta mb-20">');
@@ -39,10 +43,9 @@
 
             $.each(result, function (index, value) {
                 if (result[index].LookingForPartner == 'Yes' && result[index].MaritalStatus != 'Married') {
-                    result[index].Gender == 'Male' ? maleCount++ : femaleCount++;
+                    result[index].Gender == 'Male' || result[index].Gender == 'male' || result[index].Gender == 'MALE'  ? maleCount++ : femaleCount++;
                 }
             });
-
             $.each(result, function (index, value) {
                 if (result[index].LookingForPartner == 'Yes' && result[index].MaritalStatus != 'Married') {
                     if (maleCount > 3 && result[index].Gender == 'Male') {
@@ -55,7 +58,7 @@
                         createComponent(index);
                         items.appendTo('#femaleSlider');
                     }
-                    else if (maleCount <= 3 && result[index].Gender == 'Male') {
+                    else if (maleCount <= 3 && (result[index].Gender == 'Male' || result[index].Gender == 'male' || result[index].Gender == 'MALE')) {
                         items = $('<div class="col-md-4 pl-10 pr-10">');
                         createComponent(index);
                         items.appendTo('#maleIndividual');

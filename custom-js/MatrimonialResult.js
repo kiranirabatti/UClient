@@ -24,7 +24,7 @@
 		url: nodeURL + '/searchMatrimonial/' + fromAge + "/" + toAge + "/" + manglik + "/" + marital + "/" + gender + "/" + education + "/" + city + "/" + citizenship + "/" + native + "/" + height + "/" + handicap,
 		type: 'GET',
 		dataType: 'json',
-		success: function (result) {
+        success: function (result) {
 			var resultFound = '<h5 class="font-16 mt-5">' + result.length + ' Result(s) Found</h5>';
 			$(".resultFound").append(resultFound);
 			if (result.length > 0) {
@@ -36,6 +36,7 @@
 
 					var imgURL = member.FileNameInFolder == '' ? nodeURL + "/defaultImage" : nodeURL + "/getFamilyMemberImage/" + member.MemberId + '/' + member.FamilyMemberId + '/' + member.FileNameInFolder;
 
+                    var CityName = member.CityData.length == 0 ? '' : member.CityData[0].CityName
 					divHTML = '<div class="col-xs-12 col-sm-6 col-md-6 pag">' + '<div class="team-members mb-40">' + '<div class="team-thumb pull-left team-pull-none flip mr-sm-0 t-mr-0">' +
 						'<img src =' + imgURL + ' width="270" height="225"/>' +
 						'</div>' +
@@ -44,7 +45,7 @@
 						'<ul>' +
 						'<li class="m-0 pr-10"> <i class="fa fa-tint text-theme-colored2 mr-5"></i> <a class="text-gray" href="#">' + member.BloodGroup + '</a> </li>' +
 						'<li class="m-0 pr-10"> <i class="fa fa-envelope-o text-theme-colored2 mr-5"></i> <a class="text-gray" href="#">' + member.Email + '</a> </li>' +
-						'<li class="m-0 pr-10"> <i class="fa fa-address-card text-theme-colored2 mr-5"></i> <a class="text-gray" href="#">' + member.CityData.CityName + '</a> </li>' +
+                        '<li class="m-0 pr-10"> <i class="fa fa-address-card text-theme-colored2 mr-5"></i> <a class="text-gray" href="#">' + CityName + '</a> </li>' +
 						'</ul >' +
 						'<div class="icon-theme-colored mt-15">' +
 						buttonURL +

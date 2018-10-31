@@ -123,30 +123,36 @@
 												type: "GET",
 												data: {},
 												dataType: "json",
-												success: function (result) {
+                                                success: function (result) {
 													$.each(result, function (index, value) {
-														if (result[index].FamilyMemberId == FamilyId) {
+                                                        if (result[index].FamilyMemberId == FamilyId) {
+                                                            var cityName = result[index].CityData.length == 0 ? '' : result[index].CityData[0].CityName
+                                                            var citizenship = result[index].CitizenshipData.length == 0 ? '' : result[index].CitizenshipData[0].Description
+                                                            var native = result[index].NativeData.length == 0 ? '' : result[index].NativeData[0].Name;
+                                                            var education = result[index].EducationData.length == 0 ? '' : result[index].EducationData[0].Description;
+                                                            var height = result[index].HeightData.length == 0 ? '' : result[index].HeightData[0].Description;
+                                                            var weight = result[index].Weight == 'undefined' || result[index].Weight == '' ? '' : result[index].Weight;
 															$('#Image').attr('src', (result[index].FileNameInFolder == '' ? nodeURL + "/defaultImage" : nodeURL + "/getFamilyMemberImage/" + result[index].MemberId + '/' + result[index].FamilyMemberId + '/' + result[index].FileNameInFolder));
 															$('#fullname').html(result[index].Name);
 															$('#name').html(result[index].Name);
 															$('#gender').html(result[index].Gender);
 															$('#age').html(result[index].Age);
 															$('#marital').html(result[index].MaritalStatus);
-															$('#height').html(result[index].HeightData.Description);
-															$('#weight').html(result[index].Weight);
+                                                            $('#height').html(height);
+                                                            $('#weight').html(weight);
 															$('#bgroup').html(result[index].BloodGroup);
 															$('#handicap').html(result[index].Handicaped == true ? 'Yes' : 'No');
 															$('#dob').html(result[index].Dob);
 															$('#manglik').html(result[index].Manglik);
-															$('#education').html(result[index].EducationData.Description);
+                                                            $('#education').html(education);
 															$('#occupation').html(result[index].Occupation);
 															$('#type').html(result[index].OccupationType);
 															$('#baddr').html(result[index].BusinessAddress);
 															$('#email').html(result[index].Email);
 															$('#mobile').html(result[index].Mobile);
-															$('#native').html(result[index].NativeData.Name);
-															$('#city').html(result[index].CityData.CityName);
-															$('#citizenship').html(result[index].CitizenshipData.Description);
+                                                            $('#native').html(native);
+                                                            $('#city').html(cityName);
+                                                            $('#citizenship').html(citizenship);
 															result[index].OccupationType == '' ? $('#occupationType').hide() : $('#occupationType').show();
 														}
 													})
