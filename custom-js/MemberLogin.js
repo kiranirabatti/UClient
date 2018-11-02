@@ -102,7 +102,7 @@
                             $('#loading').hide();
                             $('.preloader-orbit-loading').hide();
                             $('#mobileNumber').prop('disabled', true);
-                            $('#mobile-error').text('OTP is sent to your registred email address');
+                            $('#mobile-error').text('OTP is sent to your registred Mobile Number');
                             $('#btnLogin').prop('disabled', false);
                             $('#btnReset').prop('disabled', false);
                         }
@@ -116,14 +116,14 @@
                             $('#loading').hide();
                             $('.preloader-orbit-loading').hide();
                             $('#mobileNumber').prop('disabled', true);
-                            $('#mobile-error').text('OTP is sent to your registred email address');
+                            $('#mobile-error').text('OTP is sent to your registred Mobile Number');
                             $('#btnLogin').prop('disabled', false);
                             $('#btnReset').prop('disabled', false);
                         }
                         else {
                             $('#loading').hide();
                             $('.preloader-orbit-loading').hide();
-                            $('#mobile-error').text('Invalid email address');
+                            $('#mobile-error').text('Invalid Mobile Number');
                             $('#btnLogin').prop('disabled', false);
                             $('#btnReset').prop('disabled', false);
                         }
