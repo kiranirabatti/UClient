@@ -1,8 +1,9 @@
 ﻿$(document).ready(function () {
+    $('#otpdiv').hide();
     $('.preloader-orbit-loading').hide();
 	var memberId = '';
 	var fileName = '';
-	var emailflag = 0;
+	var mobileNumberflag = 0;
     var viewLogin = localStorage.getItem('isLoggedIn');
     var familyMemberId=localStorage.getItem('familyMemberId')
     if (viewLogin == 'true') {
@@ -17,7 +18,7 @@
 	}
 
     $('#myModal').on('shown.bs.modal', function (e) {
-		member_Id = $(e.relatedTarget).attr('data-id');
+        memberId = $(e.relatedTarget).attr('data-id');
         fileName = $(e.relatedTarget).attr('data-fileName');
 	});
 	
@@ -43,71 +44,135 @@
         }
     }
 
+    $('#otpInput').on('input', function () {
+        otpvalidate($('#otpInput').val());
+    });
+
+    function otpvalidate(otp) {
+        if (otp == '') {
+            $('#otp-error').text("This field is required");
+            $('#otpInput').addClass("form-control error");
+            return false;
+        }
+        else {
+            var otpregex = /^[0-9]{0,4}$/;
+            if (otpregex.test(otp)) {
+                $('#otp-error').text("");
+                $('#otpInput').removeClass("form-control error").addClass("form-control");
+                return true;
+            }
+            else {
+                $('#otp-error').text("Please enter valid OTP");
+                $('#otpInput').addClass("form-control error");
+                return false;
+            }
+        }
+    }
+
 	function clearinput() {
-		emailflag = 0;
+        mobileNumberflag = 0;
         $('#mobileNumber').val('');
-        $('#mobile-error').text("")
+        $('#otpInput').val('');
+        $('#otpdiv').hide();
+        $('#mobile-error').text("");
+        $('#otp-error').text('');
 		$('#btnLogin').prop('disabled', false);
 		$('#btnReset').prop('disabled', false);
 	}
 
+    var referenceId = '';
+    var isMember = false;
     $('#btnLogin').click(function () {
         var mobileNumber = $('#mobileNumber').val();
-        if (mobileNumber != '' && $('#mobile-error').text()=='') {
-            $.ajax({
-                url: nodeURL + '/authenticateMemberMobile/' + mobileNumber,
-                type: 'GET',
-                data: {},
-                success: function (result) {
-                    console.log(result)
-                    if (result != '' && result.MemberId && !result.FamilyMemberId) {
-                        $('#mobileNumber').val('');
-                        localStorage.setItem('fullName', result.FullName);
-                        localStorage.setItem('memberId', result.MemberId);
-                        localStorage.setItem('isLoggedIn', true);
-                        localStorage.setItem('memberEmailAddress', result.EmailAddress);
-                        if (member_Id == null) {
-                            window.location = "index.html";
+        var otp = $('#otpInput').val();
+        if (!otp && mobileNumberflag == 0) {
+            if (mobileNumber != '' && $('#mobile-error').text() == '') {
+                $.ajax({
+                    url: nodeURL + '/authenticateMemberMobile/' + mobileNumber,
+                    type: 'GET',
+                    data: {},
+                    success: function (result) {
+                        if (result != '' && result.MemberId && !result.FamilyMemberId) {
+                            referenceId = result.MemberId
+                            isMember = true;
+                            mobileNumberflag = 1;
+                            localStorage.setItem('fullName', result.FullName);
+                            localStorage.setItem('loginMemberId', result.MemberId);
+                            $('#otpdiv').show();
+                            $('#loading').hide();
+                            $('.preloader-orbit-loading').hide();
+                            $('#mobileNumber').prop('disabled', true);
+                            $('#mobile-error').text('OTP is sent to your registred email address');
+                            $('#btnLogin').prop('disabled', false);
+                            $('#btnReset').prop('disabled', false);
                         }
-                        else if (fileName == 'Matrimonial') {
-                            window.location = "ViewMatrimonialDetails.html?id=" + member_Id + "&fileName=Matrimonial";
-                        }
-                        else if (fileName == 'MatrimonialMember') {
-                            window.location = "ViewMatrimonialDetails.html?id=" + member_Id;
-                        }
-                        else {
-                            window.location = "MemberDetails.html?id=" + member_Id;
-                        }
-                    }
-                    else if (result != '' && result.FamilyMemberId) { 
-                        $('#mobileNumber').val('');
-                        localStorage.setItem('fullName', result.Name);
-                        localStorage.setItem('memberId', result.MemberId);
-                        localStorage.setItem('familyMemberId', result.FamilyMemberId);
-                        localStorage.setItem('isLoggedIn', true);
-                        if (member_Id == null) {
-                            window.location = "index.html";
-                        }
-                        else if (fileName == 'Matrimonial') {
-                            window.location = "ViewMatrimonialDetails.html?id=" + member_Id + "&fileName=Matrimonial";
-                        }
-                        else if (fileName == 'MatrimonialMember') {
-                            window.location = "ViewMatrimonialDetails.html?id=" + member_Id;
+                        else if (result != '' && result.FamilyMemberId) {
+                            referenceId = result.FamilyMemberId;
+                            isMember: false;
+                            localStorage.setItem('fullName', result.Name);
+                            localStorage.setItem('loginMemberId', result.MemberId);
+                            localStorage.setItem('loginfamilyMemberId', result.FamilyMemberId);
+                            $('#otpdiv').show();
+                            $('#loading').hide();
+                            $('.preloader-orbit-loading').hide();
+                            $('#mobileNumber').prop('disabled', true);
+                            $('#mobile-error').text('OTP is sent to your registred email address');
+                            $('#btnLogin').prop('disabled', false);
+                            $('#btnReset').prop('disabled', false);
                         }
                         else {
-                            window.location = "MemberDetails.html?id=" + member_Id;
+                            $('#loading').hide();
+                            $('.preloader-orbit-loading').hide();
+                            $('#mobile-error').text('Invalid email address');
+                            $('#btnLogin').prop('disabled', false);
+                            $('#btnReset').prop('disabled', false);
                         }
                     }
-					else {
-                        $('#mobile-error').text('Invalid Member');
-					}
-                }
-            });
+                });
+            }
+        }
+        else {
+            var otpstatus = otpvalidate(otp);
+            if (otpstatus) {
+                $.ajax({
+                    url: nodeURL + '/authenticateOTP/' + mobileNumber + '/' + otp + '/' + referenceId + '/' + isMember,
+                    type: 'GET',
+                    data: {},
+                    success: function (result) {
+                        if (result.OTP) {
+                            var encrypted = CryptoJS.AES.encrypt((result.OTP).toString(), "Secret");
+                            $('#mobileNumber').val('');
+                            $('#otpInput').val('');
+                            localStorage.setItem('memberId', localStorage.getItem('loginMemberId'));
+                            localStorage.setItem('familyMemberId', localStorage.getItem('loginfamilyMemberId'));
+                            localStorage.setItem('isLoggedIn', true);
+                            localStorage.setItem('encryptedOTP', encrypted);
+                            if (memberId == null) {
+                                window.location = "index.html";
+                            }
+                            else if (fileName == 'Matrimonial') {
+                                window.location = "ViewMatrimonialDetails.html?id=" + memberId + "&fileName=Matrimonial";
+                            }
+                            else if (fileName == 'MatrimonialMember') {
+                                window.location = "ViewMatrimonialDetails.html?id=" + memberId;
+                            }
+                            else {
+                                window.location = "MemberDetails.html?id=" + memberId;
+                            }
+                        }
+                        else {
+                            $('#otp-error').text('Invalid OTP');
+                        }
+                    },
+                    error: function (err) {
+                        $('#otp-error').text('Something went wrong');
+                    }
+                });
+            }
         }
 
 	});
 
-	
 
 	$('#myModal').on('hidden.bs.modal', function (e) {
 		clearinput();
@@ -118,9 +183,9 @@
         localStorage.removeItem('fullName');
         localStorage.removeItem('memberId');
 		localStorage.removeItem('encryptedOTP');
-		localStorage.removeItem('memberEmailAddress');
         localStorage.removeItem('loginMemberId');
         localStorage.removeItem('familyMemberId')
+        localStorage.removeItem('loginfamilyMemberId')
 	});
 });
 

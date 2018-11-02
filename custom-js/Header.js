@@ -29,7 +29,7 @@
 
     var memberId = localStorage.getItem('memberId');
     var familyMemberId = localStorage.getItem('familyMemberId')
-    if (memberId != null && familyMemberId == null) {
+    if (memberId != null && familyMemberId == 'null') {
             $('#showMenuMember').show();
         }
         else {
