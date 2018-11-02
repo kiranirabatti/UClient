@@ -53,21 +53,12 @@
 <div class="modal-body">
     <form id="login-form">
         <div class="form-group">
-            <label for="InputEmail">Email</label>
-            <input type="email" class="form-control" id="emailInput" placeholder="Email">
-            <div id="email-error" class="error"></div>
-        </div>
-        <div class="form-group" id="otpdiv">
-            <label for="inputpassword">OTP</label>
-            <input type="text" class="form-control" id="otpInput" placeholder="OTP">
-            <div class="form-group pull-right mt-10" id="resend">
-                <a class="text-theme-colored font-weight-600 font-12" href="#">Resend OTP</a>
-            </div>
-            <div id="otp-error" class="error"></div>
+            <label for="InputEmail">Mobile No.</label>
+            <input type="text" class="form-control" id="mobileNumber" placeholder="Mobile No." maxlength="10">
+            <div id="mobile-error" class="error"></div>
         </div>
         <div class="clear text-center pt-10">
             <button type="button" class="btn btn-primary btn-lg btn-block no-border mt-15 mb-15" id="btnLogin" href="#" style="background-color:#3b5998">Login</button>
-            <button type="button" class="btn btn-danger btn-lg btn-block no-border" id="btnReset" style="background-color:#00acee">Reset</button>
         </div>
     </form>
     <script src="js/global.js"></script>

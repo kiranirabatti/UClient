@@ -28,7 +28,8 @@
     currentPageUrl == 'FamilyMembersList.html' ? $('#pageName').html('Family Member') : null;
 
     var memberId = localStorage.getItem('memberId');
-        if (memberId!=null) {
+    var familyMemberId = localStorage.getItem('familyMemberId')
+    if (memberId != null && familyMemberId == null) {
             $('#showMenuMember').show();
         }
         else {

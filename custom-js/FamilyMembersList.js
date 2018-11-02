@@ -139,7 +139,7 @@
 
     $("select").change(function () {
         var maritalStatus = $('#MaritalStatus').val();
-        if (maritalStatus == 'Married') {
+        if (maritalStatus == 'married') {
             $('#isMarriageDate').show();
         }
         else {
@@ -223,12 +223,12 @@
         var email = $('#emailId').val();
         var addr = $('#address').val();
         var marriageDate = $('#marriageDate').val()
-        var LookingForPartner = maritalStatus == 'Married' ? 'No' : lookingForPartner;
-        var MarriageDate = maritalStatus == 'Married' ?  (marriageDate==''|| marriageDate == 'Invalid date'?"" : moment(marriageDate, "YYYY-MM-DD").format("DD-MM-YYYY")) : '';
+        var LookingForPartner = maritalStatus.toLowerCase() == 'married' ? 'No' : lookingForPartner;
+        var MarriageDate = maritalStatus.toLowerCase == 'married' ?  (marriageDate==''|| marriageDate == 'Invalid date'?"" : moment(marriageDate, "YYYY-MM-DD").format("DD-MM-YYYY")) : '';
         isImageChange == true ? Image = $('#MemberImageEdit').attr('src') : Image = nodeURL + '/getDefaultMemberImage';
         var FileName = newFileName != '' ? newFileName : fileName;
         FileNameInFolder = '';
-        if (maritalStatus != 'Married' && lookingForPartner == 'Yes') {
+        if (maritalStatus.toLowerCase() != 'married' && lookingForPartner == 'Yes') {
             if (phone == '') {
                 $('#mobile-error').text("This field is required");
             }
@@ -271,26 +271,26 @@
             dataType: "json",
             success: function (result) {
                 age = result[0].Age
-                valuesForGreaterAge = ["Married", "Unmarried", "Widower", "Divorced"];
-                valuesForLessAge = ["Unmarried"]
+                valuesForGreaterAge = [{ value: "married", text: 'Married' }, { value: "unmarried", text: 'Unmarried' }, { value: "widower", text: 'Widower' }, { value: "divorced", text: 'Divorced' }];
+                valuesForSmallerAge = [{ value: "unmarried", text: 'Unmarried' }]
                 if (age < 18) {
-                    Optionarray = valuesForLessAge;
+                    Optionarray = valuesForSmallerAge;
                 } else {
                     Optionarray = valuesForGreaterAge;
                 }
                 $.each(Optionarray, function (key, value) {
                     $('#MaritalStatus')
                         .append($("<option></option>")
-                            .attr("value", value)
-                            .text(value));
+                            .attr("value", value.value)
+                            .text(value.text));
                 });
                 $('#firstName').val(result[0].Name);
-                $('#MaritalStatus').val(result[0].MaritalStatus);
+                $('#MaritalStatus').val(result[0].MaritalStatus.toLowerCase());
                 $('#emailId').val(result[0].Email);
                 $('#mobileNumber').val(result[0].Mobile);
                 var date = moment(result[0].MarriageDate, "DD-MM-YYYY").format("YYYY-MM-DD")
-                result[0].MaritalStatus == 'Married' ? $('#isMarriageDate').show() : $('#isMarriageDate').hide();
-                result[0].MaritalStatus == 'Married' ? $('#marriageDate').val(date) : null;
+                result[0].MaritalStatus.toLowerCase() == 'married' ? $('#isMarriageDate').show() : $('#isMarriageDate').hide();
+                result[0].MaritalStatus.toLowerCase() == 'married' ? $('#marriageDate').val(date) : null;
                 result[0].FileNameInFolder != "" ? $('.familyMemberImage').attr('src', nodeURL + "/getFamilyMemberImage/" + result[0].MemberId + '/' + result[0].FamilyMemberId + '/' + result[0].FileNameInFolder) :
                     $('.familyMemberImage').attr('src', nodeURL + "/defaultImage");
                 oldFileName = result[0].FileNameInFolder;
@@ -310,6 +310,7 @@
         $('#MaritalStatus').val('');
         $('#emailId').val('');
         $('#mobileNumber').val('');
+        $('#image_error').text("");
         getAllMember();
     })
 

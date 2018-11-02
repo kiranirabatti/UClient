@@ -62,35 +62,11 @@
 							<section>
 								<script>
 									$(document).ready(function () {
-										if (localStorage.getItem('encryptedOTP') && localStorage.getItem('memberEmailAddress')) {
-											try {
-												var decrypted = CryptoJS.AES.decrypt(localStorage.getItem('encryptedOTP'), 'Secret');
-												var otp = JSON.parse(CryptoJS.enc.Utf8.stringify(decrypted));
-											}
-											catch (err) {
-												window.location.href = "index.html";
-											}
-											var email = localStorage.getItem('memberEmailAddress');
-											$.ajax({
-												url: nodeURL + '/validateMember/' + email + '/' + otp,
-												type: "GET",
-												data: {},
-												dataType: "json",
-												success: function (result) {
-													if (result[0].OTP) {
-														getData();
-													}
-													else
-														window.location.href = "index.html";
-												},
-												error: function (err) {
-													window.location.href = "index.html";
-												}
-											});
-										}
-										else
-											window.location.href = "index.html";
-
+                                        if (!localStorage.getItem('isLoggedIn')) {
+                                            window.location.href = "index.html";
+                                        }
+                                        else
+                                            getData()
 										function getData() {
 											var getUrlParameter = function getUrlParameter(Param) {
 												var PageURL = decodeURIComponent(window.location.search.substring(1)),

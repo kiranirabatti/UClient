@@ -1,34 +1,9 @@
 ﻿$(document).ready(function () {
-    if (localStorage.getItem('encryptedOTP') && localStorage.getItem('memberEmailAddress')) {
-        try {
-            var decrypted = CryptoJS.AES.decrypt(localStorage.getItem('encryptedOTP'), 'Secret');
-            var otp = JSON.parse(CryptoJS.enc.Utf8.stringify(decrypted));
-        }
-        catch (err) {
-            window.location.href = "index.html";
-        }
-        var email = localStorage.getItem('memberEmailAddress');
-        $.ajax({
-            url: nodeURL + '/validateMember/' + email + '/' + otp,
-            type: "GET",
-            data: {},
-            dataType: "json",
-            success: function (result) {
-                if (result[0].OTP) {
-                    getData();
-                }
-                else {
-                    window.location.href = "index.html";
-                }
-            },
-            error: function (err) {
-                window.location.href = "index.html";
-            }
-        });
-    }
-    else {
+    if (!localStorage.getItem('isLoggedIn')) {
         window.location.href = "index.html";
     }
+    else 
+        getData();
 
     $('#EditImage').hide();
     var isImageChange = false;
@@ -181,7 +156,7 @@
                                 localStorage.removeItem('fullName')
                                 localStorage.setItem('fullName', member.FullName)
                                 $('#memberWelcome').html(localStorage.getItem('fullName'));
-                                $('#form-result').html('Member updatead successfully').fadeIn('slow');
+                                $('#form-result').html('Member updated successfully').fadeIn('slow');
                                 setTimeout(function () { $('#form-result').fadeOut('slow') }, 5000);
                                 isImageChange = false;
                                 getMemberData();
