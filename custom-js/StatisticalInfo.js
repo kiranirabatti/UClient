@@ -10,7 +10,7 @@ $(document).ready(function () {
             var total = result.length;
             $('#members').attr('data-value', total);
             $.each(result, function (key, value) {
-                result[key].Gender == 'Male' ? Male++ : Female++;
+                result[key].Gender.toLowerCase() == 'male' ? Male++ : Female++;
             });
         },
         error: function (err) {
@@ -26,7 +26,7 @@ $(document).ready(function () {
             var fmembers = result.length;
             $('#familyMembers').attr('data-value', fmembers);
             $.each(result, function (key, value) {
-                result[key].Gender == 'Male' ? Male++ : Female++;
+                result[key].Gender.toLowerCase() == 'male' ? Male++ : Female++;
             });
             $('#male').attr('data-value', Male);
             $('#female').attr('data-value', Female);

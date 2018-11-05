@@ -5,6 +5,11 @@
     else 
         getData();
 
+    var isFormChanged = false;
+    $('form :input').on('change', function () {
+        isFormChanged = true
+    });
+
     $('#EditImage').hide();
     var isImageChange = false;
     function readURL(input) {
@@ -12,15 +17,11 @@
             var reader = new FileReader();
             let max_size = 512000;
             var file = input.files[0];
-            if (file.size > max_size) {
-                $('#image_error').text("Image size must be less than 500kb");
-            } else {
                 reader.onload = function (e) {
                     $('#MemberImageEdit').attr('src', e.target.result);
                     isImageChange = true;
                 }
                 reader.readAsDataURL(input.files[0]);
-            }
         }
     }
     var newFileName = '';
@@ -142,7 +143,7 @@
             var addr = $('#address').val();
             isImageChange == true ? Image = $('#MemberImageEdit').attr('src') : Image=nodeURL + '/getDefaultMemberImage';
             var FileName = newFileName != '' ? newFileName : fileName;
-            if ($('#firstName-error').text() == '' && $('#mobile-error').text() == '' && $('#email-error').text() == '' && $('#address-error').text() == '' && $('#image_error').text() == '') {
+            if (isFormChanged == true && $('#firstName-error').text() == '' && $('#mobile-error').text() == '' && $('#email-error').text() == '' && $('#address-error').text() == '' && $('#image_error').text() == '') {
                 if (memberId) {
                     var memberData = { "memberId": memberId, "FullName": fname,"MobileNo": phone, "email": email, "Address": addr, "Image": Image, "OldFileName": oldFileName, "FileName": FileName, "FileNameInFolder": FileNameInFolder };
                     $.ajax({
@@ -160,6 +161,7 @@
                                 setTimeout(function () { $('#form-result').fadeOut('slow') }, 5000);
                                 isImageChange = false;
                                 getMemberData();
+                                clear();
                             }
                         },
                         error: function (err) {
@@ -171,12 +173,17 @@
         });
 
         $("#CancelUpdate").click(function () {
+            clear();
+        });
+
+        function clear() {
             getMemberData();
             $('#firstName-error').text("");
             $('#mobile-error').text("");
             $('#email-error').text("");
             $('#address-error').text("");
             $('#image_error').text("");
-        });
+            isFormChanged = false;
+        }
     }
 });

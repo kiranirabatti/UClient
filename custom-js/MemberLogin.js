@@ -51,19 +51,16 @@
     function otpvalidate(otp) {
         if (otp == '') {
             $('#otp-error').text("This field is required");
-            $('#otpInput').addClass("form-control error");
             return false;
         }
         else {
             var otpregex = /^[0-9]{0,4}$/;
             if (otpregex.test(otp)) {
                 $('#otp-error').text("");
-                $('#otpInput').removeClass("form-control error").addClass("form-control");
                 return true;
             }
             else {
                 $('#otp-error').text("Please enter valid OTP");
-                $('#otpInput').addClass("form-control error");
                 return false;
             }
         }
@@ -76,6 +73,7 @@
         $('#otpdiv').hide();
         $('#mobile-error').text("");
         $('#otp-error').text('');
+        $('#mobileNumber').prop('disabled', false);
 		$('#btnLogin').prop('disabled', false);
 		$('#btnReset').prop('disabled', false);
 	}
@@ -87,6 +85,9 @@
         var otp = $('#otpInput').val();
         if (!otp && mobileNumberflag == 0) {
             if (mobileNumber != '' && $('#mobile-error').text() == '') {
+                $('#btnLogin').prop('disabled', true);
+                $('#btnReset').prop('disabled', true);
+                $('#loading').html($('.preloader-orbit-loading').show()).css("display", "block");
                 $.ajax({
                     url: nodeURL + '/authenticateMemberMobile/' + mobileNumber,
                     type: 'GET',
@@ -102,7 +103,7 @@
                             $('#loading').hide();
                             $('.preloader-orbit-loading').hide();
                             $('#mobileNumber').prop('disabled', true);
-                            $('#mobile-error').text('OTP is sent to your registred Mobile Number');
+                            $('#mobile-error').text('OTP is sent to your registered mobile number');
                             $('#btnLogin').prop('disabled', false);
                             $('#btnReset').prop('disabled', false);
                         }
@@ -134,6 +135,9 @@
         else {
             var otpstatus = otpvalidate(otp);
             if (otpstatus) {
+                $('#btnLogin').prop('disabled', true);
+                $('#btnReset').prop('disabled', true);
+                $('#loading').html($('.preloader-orbit-loading').show()).css("display", "block");
                 $.ajax({
                     url: nodeURL + '/authenticateOTP/' + mobileNumber + '/' + otp + '/' + referenceId + '/' + isMember,
                     type: 'GET',
@@ -143,6 +147,8 @@
                             var encrypted = CryptoJS.AES.encrypt((result.OTP).toString(), "Secret");
                             $('#mobileNumber').val('');
                             $('#otpInput').val('');
+                            $('#loading').hide();
+                            $('.preloader-orbit-loading').hide();
                             localStorage.setItem('memberId', localStorage.getItem('loginMemberId'));
                             localStorage.setItem('familyMemberId', localStorage.getItem('loginfamilyMemberId'));
                             localStorage.setItem('isLoggedIn', true);
@@ -161,6 +167,10 @@
                             }
                         }
                         else {
+                            $('#loading').hide();
+                            $('.preloader-orbit-loading').hide();
+                            $('#btnLogin').prop('disabled', false);
+                            $('#btnReset').prop('disabled', false);
                             $('#otp-error').text('Invalid OTP');
                         }
                     },

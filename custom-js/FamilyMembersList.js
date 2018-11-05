@@ -187,15 +187,11 @@
             var reader = new FileReader();
             let max_size = 512000;
             var file = input.files[0];
-            if (file.size > max_size) {
-                $('#image_error').text("Image size must be less than 500kb");
-            } else {
                 reader.onload = function (e) {
                     $('#MemberImageEdit').attr('src', e.target.result);
                     isImageChange = true;
                 }
                 reader.readAsDataURL(input.files[0]);
-            }
         }
     }
 
@@ -213,6 +209,11 @@
                 break;
         }
         readURL(this);
+    });
+
+    var isFormChanged = false;
+    $('form :input').on('change', function () {
+        isFormChanged = true
     });
 
     var Image = '';
@@ -235,7 +236,7 @@
         }
         if (familymemberId) {
             var familyMemberData = { "FamilyMemberId": familymemberId, "Name": fname, "MaritalStatus": maritalStatus, "Mobile": phone, "Email": email, "Image": Image, "OldFileName": oldFileName, "Filename": FileName, "FileNameInFolder": FileNameInFolder, 'MemberId': memberId, 'MarriageDate': MarriageDate, 'LookingForPartner': LookingForPartner };
-            if ($('#firstName-error').text() == '' && $('#mobile-error').text() == '' && $('#email-error').text() == '' && $('#marriageDate-error').text() == '' && $('#image_error').text() == '') {
+            if (isFormChanged == true && $('#firstName-error').text() == '' && $('#mobile-error').text() == '' && $('#email-error').text() == '' && $('#marriageDate-error').text() == '' && $('#image_error').text() == '') {
                 $.ajax({
                     url: nodeURL + '/familyMemberById/' + familymemberId,
                     type: "PUT",
@@ -244,7 +245,7 @@
                     dataType: "json",
                     success: function (familyMember) {
                         if (familyMember != '') {
-                            $('#form-result').html('Family member updatead successfully').fadeIn('slow');
+                            $('#form-result').html('Family member updated successfully').fadeIn('slow');
                             setTimeout(function () { $('#form-result').fadeOut('slow') }, 5000);
                             getFamilyMemberData(familyMember.FamilyMemberId);
                             getAllMember();
@@ -312,6 +313,7 @@
         $('#mobileNumber').val('');
         $('#image_error').text("");
         getAllMember();
+        isFormChanged = false;
     })
 
     $("#CancelUpdate").click(function () {
@@ -321,5 +323,6 @@
         $('#mobile-error').text("");
         $('#email-error').text("");
         $('#image_error').text("");
+        isFormChanged = false;
     });
 });

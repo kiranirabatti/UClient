@@ -35,7 +35,7 @@
 				}
 				$('#MemberTableBody').html(memberData);
 				$('#memberCount').html(totalRows);
-				pagination(10);
+				pagination(20);
 			},
 			error: function (err) {
 				console.log(err.statusText);
