@@ -28,7 +28,7 @@
                         if (member.IsActive == true) {
                             memberImage = member.FileNameInFolder != "" ? nodeURL + '/getMemberPhoto/' + member.MemberId + '/' + member.FileNameInFolder: nodeURL + "/defaultImage";
 							totalRows++;
-                            memberData += "<tr><td class='pr-5 pt-5'><div class='row'><img alt='' src='" + memberImage +"' class='img-circle familyMemberImage mr-10 mt-0' width='50' height='50'></td><td>" + member.FullName + "</div></td><td>" + member.FatherName +"</td><td>" + member.GrandFatherName + "</td><td>" + member.Gol + "</td><td>" + member.MulVatan + "</td><td>" + buttonURL + "</td></tr>";
+                            memberData += "<tr><td class='pr-5 pt-5'><div class='row pl-10'><img alt='' src='" + memberImage +"' class='img-circle familyMemberImage mr-10 mt-0' width='50' height='50'></td><td>" + member.FullName + "</div></td><td>" + member.FatherName +"</td><td>" + member.GrandFatherName + "</td><td>" + member.Gol + "</td><td>" + member.MulVatan + "</td><td>" + buttonURL + "</td></tr>";
 						}
                     });
                     totalRows != 0 ? memberData : memberData = " <tr><td colspan='8' class='text-black font-weight-600 text-center'> No records found</td></tr>";

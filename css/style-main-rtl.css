@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /*------------------------------------------------------------------
 [Master Stylesheet]
 
@@ -3826,7 +3826,7 @@ textarea {
   float: right;
   margin-left: 15px;
   margin-top: 5px;
-  width: 55px;
+  width: 64px;
 }
 .table-schedule tbody tr td .title {
   font-size: 15px;

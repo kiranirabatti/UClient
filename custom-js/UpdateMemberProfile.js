@@ -145,7 +145,7 @@
             var FileName = newFileName != '' ? newFileName : fileName;
             if (isFormChanged == true && $('#firstName-error').text() == '' && $('#mobile-error').text() == '' && $('#email-error').text() == '' && $('#address-error').text() == '' && $('#image_error').text() == '') {
                 if (memberId) {
-                    var memberData = { "memberId": memberId, "FullName": fname,"MobileNo": phone, "email": email, "Address": addr, "Image": Image, "OldFileName": oldFileName, "FileName": FileName, "FileNameInFolder": FileNameInFolder };
+                    var memberData = { "memberId": memberId, "FullName": $.trim(fname), "MobileNo": phone, "email": $.trim(email), "Address": $.trim(addr), "Image": Image, "OldFileName": oldFileName, "FileName": FileName, "FileNameInFolder": FileNameInFolder };
                     $.ajax({
                         url: nodeURL + '/membersbyId/' + memberId,
                         type: "PUT",

@@ -31,18 +31,22 @@
                         if (result[index].photos[key].AdvertisementLocation == '1') {
                             image.height(600);
                             image.width(320);
-                            image.appendTo(item);
+                            //image.appendTo(item);
+                            item.append(image)
                             if (result[index].locationData.AdvertisementLocation == 'Left side') {
-                                item.appendTo(leftCarousel);
+                                // item.appendTo(leftCarousel);
+                                leftCarousel.append(item)
                                 leftCount++;
                             }
                         }
                         else if (result[index].photos[key].AdvertisementLocation == '2') {
                             image.height(300);
                             image.width(320);
-                            image.appendTo(item);
+                           // image.appendTo(item);
+                            item.append(image);
                             if (result[index].locationData.AdvertisementLocation == 'Right side') {
-                                item.appendTo(rightCarousel);
+                                //item.appendTo(rightCarousel);
+                                rightCarousel.append(item)
                                 rightCount++;
                             }
                         }

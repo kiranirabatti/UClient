@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /*------------------------------------------------------------------
 [Master Stylesheet]
 
@@ -3824,7 +3824,7 @@ textarea {
 .table-schedule thead tr th {
   color: #fff;
   font-size: 16px;
-  padding: 15px 25px;
+  padding: 15px 15px;
   text-transform: uppercase;
 }
 .table-schedule > tbody > tr {
@@ -3837,7 +3837,7 @@ textarea {
   border-top: 1px solid #ddd;
   color: #333;
   font-weight: 300;
-  padding: 15px 25px;
+  padding: 15px 15px;
 }
 .table-schedule tbody tr td .speaker-thumb {
   float: left;

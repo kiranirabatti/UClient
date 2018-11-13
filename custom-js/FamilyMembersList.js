@@ -235,7 +235,7 @@
             }
         }
         if (familymemberId) {
-            var familyMemberData = { "FamilyMemberId": familymemberId, "Name": fname, "MaritalStatus": maritalStatus, "Mobile": phone, "Email": email, "Image": Image, "OldFileName": oldFileName, "Filename": FileName, "FileNameInFolder": FileNameInFolder, 'MemberId': memberId, 'MarriageDate': MarriageDate, 'LookingForPartner': LookingForPartner };
+            var familyMemberData = { "FamilyMemberId": familymemberId, "Name": $.trim(fname), "MaritalStatus": maritalStatus, "Mobile": phone, "Email": $.trim(email), "Image": Image, "OldFileName": oldFileName, "Filename": FileName, "FileNameInFolder": FileNameInFolder, 'MemberId': memberId, 'MarriageDate': MarriageDate, 'LookingForPartner': LookingForPartner };
             if (isFormChanged == true && $('#firstName-error').text() == '' && $('#mobile-error').text() == '' && $('#email-error').text() == '' && $('#marriageDate-error').text() == '' && $('#image_error').text() == '') {
                 $.ajax({
                     url: nodeURL + '/familyMemberById/' + familymemberId,
@@ -249,7 +249,8 @@
                             setTimeout(function () { $('#form-result').fadeOut('slow') }, 5000);
                             getFamilyMemberData(familyMember.FamilyMemberId);
                             getAllMember();
-                            isImageChange = false
+                            isImageChange = false;
+                            isFormChanged = false;
                         }
                     },
                     error: function (err) {
