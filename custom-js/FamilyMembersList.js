@@ -127,7 +127,8 @@
 
     $('#firstName').on('input', function () {
         var firstName = $('#firstName').val()
-        if (firstName == '') {
+        var name = firstName.replace(/\s+/g, '');
+        if (name.length == 0) {
             $('#firstName-error').text("This field is required");
             return false;
         }
@@ -251,6 +252,7 @@
                             getAllMember();
                             isImageChange = false;
                             isFormChanged = false;
+                            $('#emailId').val('');
                         }
                     },
                     error: function (err) {

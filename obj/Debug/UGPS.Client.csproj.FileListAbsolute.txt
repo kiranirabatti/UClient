@@ -54,4 +54,3 @@ D:\TFS\UGPS\UGPS.Client\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.x
 D:\TFS\UGPS\UGPS.Client\obj\Debug\UGPS.Client.csproj.CoreCompileInputs.cache
 D:\TFS\UGPS\UGPS.Client\obj\Debug\UGPS.Client.dll
 D:\TFS\UGPS\UGPS.Client\obj\Debug\UGPS.Client.pdb
-D:\TFS\UGPS\UGPS.Client\obj\Debug\UGPS.Client.csprojResolveAssemblyReference.cache
