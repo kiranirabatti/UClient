@@ -1,6 +1,6 @@
-﻿var Male = 0;
-var Female = 0;
-$(document).ready(function () {
+﻿$(document).ready(function () {
+    var Male = 0;
+    var Female = 0;
     $.ajax({
         url: nodeURL + '/allmembers/',
         type: "GET",

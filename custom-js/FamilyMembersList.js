@@ -172,8 +172,7 @@
     }
 
     var oldFileName = '';
-    var FileNameInFolder = '';
-    var fileName = ''
+    var FileNameInFolder = '';   
     $('#myModal').on('shown.bs.modal', function (e) {
         familymemberId = $(e.relatedTarget).attr('data-id');
         dataFileName = $(e.relatedTarget).attr('data-fileName');
@@ -266,6 +265,7 @@
     var memberId = '';
     var lookingForPartner = '';
     var age = '';
+    var fileName = '';
     function getFamilyMemberData(familymemberId) {
         $('#MaritalStatus').html('');
         $.ajax({
@@ -298,7 +298,7 @@
                 result[0].FileNameInFolder != "" ? $('.familyMemberImage').attr('src', nodeURL + "/getFamilyMemberImage/" + result[0].MemberId + '/' + result[0].FamilyMemberId + '/' + result[0].FileNameInFolder) :
                     $('.familyMemberImage').attr('src', nodeURL + "/defaultImage");
                 oldFileName = result[0].FileNameInFolder;
-                fileName = result[0].Filename;
+                fileName = result[0].Filename == undefined?'': result[0].Filename;
                 memberId = result[0].MemberId
                 lookingForPartner = result[0].LookingForPartner
 
