@@ -2,6 +2,7 @@
     var Male = 0;
     var Female = 0;
     $.ajax({
+        async: false,
         url: nodeURL + '/allmembers/',
         type: "GET",
         data: {},
@@ -18,6 +19,7 @@
         }
     });
     $.ajax({
+        async: false,
         url: nodeURL + '/allFamilyMembers/',
         type: "GET",
         data: {},
