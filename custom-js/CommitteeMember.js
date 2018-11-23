@@ -23,7 +23,7 @@
                     $.each(committeeData, function (key, committeeMember) {
                         if (committeeMember.CommitteeMemberData.IsActive == true) {
                             totalRows++;
-                            committeeMemberImage = committeeMember.CommitteeMemberData.FileNameInFolder != "" ? nodeURL + '/getMemberPhoto/' + committeeMember.CommitteeMemberData.MemberId + '/' + committeeMember.CommitteeMemberData.FileNameInFolder : nodeURL + "/defaultImage";
+                            committeeMemberImage = !committeeMember.CommitteeMemberData.FileNameInFolder ? nodeURL + "/defaultImage" : committeeMember.CommitteeMemberData.FileNameInFolder != "" ? nodeURL + '/getMemberPhoto/' + committeeMember.CommitteeMemberData.MemberId + '/' + committeeMember.CommitteeMemberData.FileNameInFolder : nodeURL + "/defaultImage";
                             committeeMemberFullName = committeeMember.CommitteeMemberData.FullName;
                             committeeMemberAddress = committeeMember.CommitteeMemberData.Address + ' ' + committeeMember.CommitteeMemberData.Taluka + ' ' + committeeMember.CommitteeMemberData.Jeello + ' ' + committeeMember.CommitteeMemberData.PinCode
                             committeeMemberEmail = committeeMember.CommitteeMemberData.Email;

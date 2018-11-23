@@ -6,6 +6,7 @@
         data: {},
         dataType: "json",
         success: function (result) {
+           
             var maleCount = 0;
             var femaleCount = 0;
             var items = $('<div class="item">');
@@ -71,7 +72,7 @@
                         $('#femaleSlider').hide();
                     }
                 }
-                (maleCount == 0 && femaleCount == 0) ? $('#matrimonialDisplay').hide() : '';
+                 (maleCount == 0 && femaleCount == 0) ? $('#matrimonialContent').hide() : '';
                 if (maleCount == 0) {
                     $('#maleHead').hide();
                     $('#maleSlider').hide();
@@ -82,7 +83,13 @@
                     $('#femaleSlider').hide();
                     $('#femaleIndividual').hide();
                 }
+                
             });
+            if (maleCount == 0 && femaleCount == 0) {
+                $('#maleHead').hide();
+                $('#femaleHead').hide();
+                $('#nameMatrimonial').hide();
+            }
         },
         error: function (err) {
             console.log(err.statusText);

@@ -28,30 +28,17 @@
                     var leftCarousel = $('<div class="owl-carousel-1col mb-15" data-dots="true" data-nav="true">');
                     var rightCarousel = $('<div class="owl-carousel-1col mb-15" data-dots="true" data-nav="true">');
                     $.each(result[index].photos, function (key, value) {
-                        var item = $('<div class="item">');
                         var image = $('<img>');
                         image.attr('src', (nodeURL + "/getAdvPhotos/" + result[index].AdvertisementId + '/' + result[index].photos[key].FileNameInFolder));
                         var ImageCorosole = nodeURL + "/getAdvPhotos/" + result[index].AdvertisementId + '/' + result[index].photos[key].FileNameInFolder;
                         if (result[index].photos[key].AdvertisementLocation == '1') {
-                           // image.height(600);
-                           // image.width(320);
-                            //image.appendTo(item);
-                            //item.append(image)
                             if (result[index].locationData.AdvertisementLocation == 'Left side') {
-                                // item.appendTo(leftCarousel);
-                                //leftCarousel.append(item)
                                 corosoleLeft += '<div class="item"><img src=' + ImageCorosole +' style="height:600px;width:320px;"></div>'
                                 leftCount++;
                             }
-                        }
+                        } 
                         else if (result[index].photos[key].AdvertisementLocation == '2') {
-                           // image.height(300);
-                            //image.width(320);
-                           // image.appendTo(item);
-                           // item.append(image);
                             if (result[index].locationData.AdvertisementLocation == 'Right side') {
-                                //item.appendTo(rightCarousel);
-                                // rightCarousel.append(item)
                                 corosoleRight += '<div class="item"><img src=' + ImageCorosole + ' style="height:280px;width:320px;"></div>'
                                 rightCount++;
                             }
@@ -69,11 +56,8 @@
                             }
                         }
                     });
-                    //leftCarousel.appendTo('#leftSide');
-                   // rightCarousel.appendTo('#rightSide');
                     $('#leftSide').append('<div class="owl-carousel-1col" data-dots="true" data-nav="true">' + corosoleLeft + '</div>');
                     $('#rightSide').append('<div class="owl-carousel-1col" data-dots="true" data-nav="true">' + corosoleRight + '</div>');
-
                 }
             });
             var item = $('<div class="item">');

@@ -124,7 +124,7 @@
                         else {
                             $('#loading').hide();
                             $('.preloader-orbit-loading').hide();
-                            $('#mobile-error').text('Invalid Mobile Number');
+                            !result ? $('#mobile-error').text('Invalid Mobile Number') : result != '' ? $('#mobile-error').text(result) : $('#mobile-error').text('');
                             $('#btnLogin').prop('disabled', false);
                             $('#btnReset').prop('disabled', false);
                         }
