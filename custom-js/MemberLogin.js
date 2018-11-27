@@ -183,6 +183,43 @@
 
 	});
 
+    $('#resend').click(function () {
+        var mobileNumber = $('#mobileNumber').val();
+        $('#otp-error').text('');
+        $('#otpInput').val('');
+        $('#mobile-error').text('');
+        $('#btnLogin').prop('disabled', true);
+        $('#loading').html($('.preloader-orbit-loading').show()).css("display", "block");
+        $.ajax({
+            url: nodeURL + '/authenticateMemberMobile/' + mobileNumber,
+            type: 'GET',
+            data: {},
+            success: function (result) {
+                if (result.FullName) {
+                    $('#mobileNumber').prop('disabled', true);
+                    $('#mobile-error').text('OTP is sent to your registered mobile number');
+                    $('#loading').hide();
+                    $('.preloader-orbit-loading').hide();
+                    $('#btnLogin').prop('disabled', false);
+                    $('#btnReset').prop('disabled', false);
+                }
+                else {
+                    !result ? $('#mobile-error').text('Invalid Mobile Number') : result != '' ? $('#mobile-error').text(result) : $('#mobile-error').text('');
+                    $('#loading').hide();
+                    $('.preloader-orbit-loading').hide();
+                    $('#btnLogin').prop('disabled', false);
+                    $('#btnReset').prop('disabled', false);
+                }
+            },
+            error: function (err) {
+                $('#mobile-error').text('Something went wrong');
+                $('#loading').hide();
+                $('.preloader-orbit-loading').hide();
+                $('#btnLogin').prop('disabled', false);
+                $('#btnReset').prop('disabled', false);
+            }
+        });
+    });
 
 	$('#myModal').on('hidden.bs.modal', function (e) {
 		clearinput();

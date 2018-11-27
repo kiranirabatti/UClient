@@ -16,7 +16,8 @@
                     $('#name').html(result[index].EventName);
                     $('#venue').html(result[index].EventVenue);
                     $('#date').html(moment(result[index].EventDate, "DD-MM-YYYY").format("DD-MM-YYYY"));
-                    $('#description').html(result[index].EventDescription);
+                    eventDescription = result[index].EventDescription;
+                    $('#description').html($(eventDescription).text());
                     $.each(result[index].EventWithPhoto, function (key, value) {
                         var mainDiv = $(' <div class="col-xs-12 col-sm-4 col-md-4 mb-20" >');
                         var imageDiv = $(' <div class="image-box-thum">');

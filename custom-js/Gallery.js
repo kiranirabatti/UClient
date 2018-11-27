@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿$(window).load(function () {
     $.ajax({
         url: nodeURL +'/eventwithphotos/',
         type: "GET",
@@ -12,7 +12,7 @@
                     var wrapper = $('<div class="flexslider-wrapper" data-direction="vertical">');
                     var flexslider = $('<div class="flexslider">');
                     var unorderedList = $('<ul class="slides">');
-                    mainDiv.width(380);
+                    mainDiv.width(360);
                     mainDiv.height(270);
                     mainDiv.append(thumb);
                     thumb.append(wrapper);
@@ -20,10 +20,10 @@
                     flexslider.append(unorderedList);
                     $.each(result[index].EventWithPhoto, function (key, value) {
                         var eventImage = nodeURL + "/getEventPhotos/" + result[index].EventId + '/' + result[index].EventWithPhoto[key].FileNameInFolder;
-                        var images = ' <li><a href=' + eventImage + '><img src=' + eventImage +' style="height:200px;width:400px;"></a></li></div></div>'
+                        var images = ' <li><a href=' + eventImage + '><img src=' + eventImage + ' style="height:200px;width:400px;"></a></li>'
                         unorderedList.append(images);
                     });
-                    var closingFlex = $('<div class="overlay-shade"></div>');
+                    var closingFlex = $('</div></div><div class="overlay-shade"></div>');
                     var holder = $('<div class="icons-holder"><div class="icons-holder-inner"><div class="styled-icons icon-sm icon-dark icon-circled icon-theme-colored"><a href="#"><i class="fa fa-picture-o"></i></a></div></div></div></div></div>');
                     thumb.append(closingFlex);
                     thumb.append(holder)

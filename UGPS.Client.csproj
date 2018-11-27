@@ -2961,7 +2961,9 @@
     <Content Include="video\ocean.mp4" />
     <Content Include="video\ocean.webm" />
     <Content Include="ViewMatrimonialDetails.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlobalSuppressions.cs" />

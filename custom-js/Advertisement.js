@@ -36,7 +36,7 @@
                                 corosoleLeft += '<div class="item"><img src=' + ImageCorosole +' style="height:600px;width:320px;"></div>'
                                 leftCount++;
                             }
-                        } 
+                        }
                         else if (result[index].photos[key].AdvertisementLocation == '2') {
                             if (result[index].locationData.AdvertisementLocation == 'Right side') {
                                 corosoleRight += '<div class="item"><img src=' + ImageCorosole + ' style="height:280px;width:320px;"></div>'

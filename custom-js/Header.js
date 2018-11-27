@@ -21,7 +21,7 @@
     currentPageUrl == 'MatrimonialResult.html' ? $('#pageName').html('Matrimonial Details') : null;
     currentPageUrl == 'MatrimonialSearch.html' ? $('#pageName').html('Matrimonial Search') : null;
     currentPageUrl == 'MemberDetails.html' ? $('#pageName').html('Member Details') : null;
-    currentPageUrl == 'Members.html' ? $('#pageName').html('Member') : null;
+    currentPageUrl == 'Members.html' ? $('#pageName').html('Members') : null;
     currentPageUrl == 'prajapatiHistory.html' ? $('#pageName').html('Prajapati History') : null;
     currentPageUrl == 'presidentMessage.html' ? $('#pageName').html('President Message') : null;
     currentPageUrl == 'MemberProfileEdit.html' ? $('#pageName').html('Edit Member Profile') : null;
