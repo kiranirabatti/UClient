@@ -88,7 +88,7 @@
 		var toAge = $('#ddToAge').find(":selected").val();
 		var manglik = $('#ddMaglik').find(":selected").val();
 		var citizenship = $('#ddCitizenship').find(":selected").val();
-		var marital = $('#ddMarital').find(":selected").val();
+        var marital = $('#ddMarital').find(":selected").val();
 		var gender = $('#ddGender').find(":selected").val();
 		var height = $('#ddHeight').find(":selected").val();
 		var education = $('#ddEducation').find(":selected").val();

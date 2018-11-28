@@ -65,7 +65,8 @@
 				data: {},
 				dataType: "json",
 				success: function (result) {
-					totalRows = 0
+                    totalRows = 0
+                    $('#MemberTableBody').html("");
 					if (result.length == 0) {
 						totalRows = 0
 						memberData = " <tr><td colspan='8' class='text-black font-weight-600 text-center'> No records found</td></tr>"
@@ -84,7 +85,7 @@
 					}
 					totalRows != 0 ? $('#MemberTableBody').html(memberData) : $('#MemberTableBody').html(" <tr><td colspan='8' class='text-black font-weight-600 text-center'> No records found</td></tr>");
 					totalRows != 0 ? $('#memberCount').html(totalRows) : $('#memberCount').html('0');
-					pagination(10);
+					pagination(20);
 
 
 					$(".viewDetails").on('click', function () {

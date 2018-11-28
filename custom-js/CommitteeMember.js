@@ -23,7 +23,7 @@
                     $.each(committeeData, function (key, committeeMember) {
                         if (committeeMember.CommitteeMemberData.IsActive == true) {
                             totalRows++;
-                            committeeMemberImage = !committeeMember.CommitteeMemberData.FileNameInFolder ? nodeURL + "/defaultImage" : committeeMember.CommitteeMemberData.FileNameInFolder != "" ? nodeURL + '/getMemberPhoto/' + committeeMember.CommitteeMemberData.MemberId + '/' + committeeMember.CommitteeMemberData.FileNameInFolder : nodeURL + "/defaultImage";
+                            committeeMemberImage = committeeMember.CommitteeMemberData.FileNameInFolder != "" ? nodeURL + '/getMemberPhoto/' + committeeMember.CommitteeMemberData.MemberId + '/' + committeeMember.CommitteeMemberData.FileNameInFolder : nodeURL + "/defaultImage";
                             committeeMemberFullName = committeeMember.CommitteeMemberData.FullName;
                             committeeMemberAddress = committeeMember.CommitteeMemberData.Address + ' ' + committeeMember.CommitteeMemberData.Taluka + ' ' + committeeMember.CommitteeMemberData.Jeello + ' ' + committeeMember.CommitteeMemberData.PinCode
                             committeeMemberEmail = committeeMember.CommitteeMemberData.Email;
@@ -56,7 +56,7 @@
     $('#search').on('click', function () {
         dropDownValue = $("#searchName").val()
         searchValue = $("#searchValue").val()
-        committeeMemberSearchData = '';
+        committeeMemberSearchData = "";
         if ($("#searchValue").val().replace(/^\s+|\s+$/g, "").length != 0) {
             $.ajax({
                 url: nodeURL + "/searchCommitteeMember/" + dropDownValue + "/" + searchValue,
@@ -64,6 +64,7 @@
                 data: {},
                 dataType: "json",
                 success: function (committeeData) {
+                    $('#committeeMemberTableBody').html("")
                     if (committeeData.length == 0) {
                         totalRows = 0;
                         committeeMemberSearchData = " <tr><td colspan='3' class='text-black font-weight-600 text-center'> No records found</td></tr>"
