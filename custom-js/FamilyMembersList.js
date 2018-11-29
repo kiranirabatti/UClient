@@ -171,15 +171,15 @@
         }
     }
 
+    var familyMember_Data = "";
     var oldFileName = '';
     var FileNameInFolder = '';   
     $('#myModal').on('shown.bs.modal', function (e) {
         familymemberId = $(e.relatedTarget).attr('data-id');
         dataFileName = $(e.relatedTarget).attr('data-fileName');
         getFamilyMemberData(familymemberId)
-
-
     });
+
     $('#EditImage').hide();
     var isImageChange = false;
     function readURL(input) {
@@ -211,6 +211,60 @@
         readURL(this);
     });
 
+    var memberId = '';
+    var lookingForPartner = '';
+    var age = '';
+    var fileName = '';
+    function getFamilyMemberData(familymemberId) {
+        $('#MaritalStatus').html('');
+        $.ajax({
+            url: nodeURL + '/familyMemberById/' + familymemberId,
+            type: "GET",
+            data: {},
+            dataType: "json",
+            success: function (result) {
+                if (result) {
+                    familyMember_Data = result[0];
+                    setFamilymemberData(familyMember_Data);
+                }
+            },
+            error: function (err) {
+                console.log(err.statusText);
+            }
+        });
+    }
+
+    function setFamilymemberData(result) {
+        age = result.Age
+        valuesForGreaterAge = [{ value: "married", text: 'Married' }, { value: "unmarried", text: 'Unmarried' }, { value: "widower", text: 'Widower' }, { value: "divorced", text: 'Divorced' }];
+        valuesForSmallerAge = [{ value: "unmarried", text: 'Unmarried' }]
+        if (age < 18) {
+            Optionarray = valuesForSmallerAge;
+        } else {
+            Optionarray = valuesForGreaterAge;
+        }
+        $('#MaritalStatus').html("");
+        $.each(Optionarray, function (key, value) {
+            $('#MaritalStatus')
+                .append($("<option></option>")
+                    .attr("value", value.value)
+                    .text(value.text));
+        });
+        $('#firstName').val(result.Name);
+        $('#MaritalStatus').val(result.MaritalStatus.toLowerCase());
+        $('#emailId').val(result.Email);
+        $('#mobileNumber').val(result.Mobile);
+        var date = moment(result.MarriageDate, "DD-MM-YYYY").format("YYYY-MM-DD")
+        result.MaritalStatus.toLowerCase() == 'married' ? $('#isMarriageDate').show() : $('#isMarriageDate').hide();
+        result.MaritalStatus.toLowerCase() == 'married' ? $('#marriageDate').val(date) : null;
+        result.FileNameInFolder != "" ? $('.familyMemberImage').attr('src', nodeURL + "/getFamilyMemberImage/" + result.MemberId + '/' + result.FamilyMemberId + '/' + result.FileNameInFolder) :
+            $('.familyMemberImage').attr('src', nodeURL + "/defaultImage");
+        oldFileName = result.FileNameInFolder;
+        fileName = result.Filename == undefined ? '' : result.Filename;
+        memberId = result.MemberId
+        lookingForPartner = result.LookingForPartner
+    }
+    
     var isFormChanged = false;
     $('form :input').on('change', function () {
         isFormChanged = true
@@ -225,7 +279,7 @@
         var addr = $('#address').val();
         var marriageDate = $('#marriageDate').val()
         var LookingForPartner = maritalStatus.toLowerCase() == 'married' ? 'No' : lookingForPartner;
-        var MarriageDate = maritalStatus.toLowerCase == 'married' ?  (marriageDate==''|| marriageDate == 'Invalid date'?"" : moment(marriageDate, "YYYY-MM-DD").format("DD-MM-YYYY")) : '';
+        var MarriageDate = maritalStatus.toLowerCase() == 'married' ?  (marriageDate==''|| marriageDate == 'Invalid date'?"" : moment(marriageDate, "YYYY-MM-DD").format("DD-MM-YYYY")) : '';
         isImageChange == true ? Image = $('#MemberImageEdit').attr('src') : Image = nodeURL + '/getDefaultMemberImage';
         var FileName = newFileName != '' ? newFileName : fileName;
         FileNameInFolder = '';
@@ -247,11 +301,11 @@
                         if (familyMember != '') {
                             $('#form-result').html('Family member updated successfully').fadeIn('slow');
                             setTimeout(function () { $('#form-result').fadeOut('slow') }, 5000);
-                            getFamilyMemberData(familyMember.FamilyMemberId);
+                            familyMember_Data = "";
+                            familyMember_Data = familyMember;
                             getAllMember();
                             isImageChange = false;
                             isFormChanged = false;
-                            $('#emailId').val('');
                         }
                     },
                     error: function (err) {
@@ -262,70 +316,32 @@
         }
     });
 
-    var memberId = '';
-    var lookingForPartner = '';
-    var age = '';
-    var fileName = '';
-    function getFamilyMemberData(familymemberId) {
-        $('#MaritalStatus').html('');
-        $.ajax({
-            url: nodeURL + '/familyMemberById/' + familymemberId,
-            type: "GET",
-            data: {},
-            dataType: "json",
-            success: function (result) {
-                age = result[0].Age
-                valuesForGreaterAge = [{ value: "married", text: 'Married' }, { value: "unmarried", text: 'Unmarried' }, { value: "widower", text: 'Widower' }, { value: "divorced", text: 'Divorced' }];
-                valuesForSmallerAge = [{ value: "unmarried", text: 'Unmarried' }]
-                if (age < 18) {
-                    Optionarray = valuesForSmallerAge;
-                } else {
-                    Optionarray = valuesForGreaterAge;
-                }
-                $.each(Optionarray, function (key, value) {
-                    $('#MaritalStatus')
-                        .append($("<option></option>")
-                            .attr("value", value.value)
-                            .text(value.text));
-                });
-                $('#firstName').val(result[0].Name);
-                $('#MaritalStatus').val(result[0].MaritalStatus.toLowerCase());
-                $('#emailId').val(result[0].Email);
-                $('#mobileNumber').val(result[0].Mobile);
-                var date = moment(result[0].MarriageDate, "DD-MM-YYYY").format("YYYY-MM-DD")
-                result[0].MaritalStatus.toLowerCase() == 'married' ? $('#isMarriageDate').show() : $('#isMarriageDate').hide();
-                result[0].MaritalStatus.toLowerCase() == 'married' ? $('#marriageDate').val(date) : null;
-                result[0].FileNameInFolder != "" ? $('.familyMemberImage').attr('src', nodeURL + "/getFamilyMemberImage/" + result[0].MemberId + '/' + result[0].FamilyMemberId + '/' + result[0].FileNameInFolder) :
-                    $('.familyMemberImage').attr('src', nodeURL + "/defaultImage");
-                oldFileName = result[0].FileNameInFolder;
-                fileName = result[0].Filename == undefined?'': result[0].Filename;
-                memberId = result[0].MemberId
-                lookingForPartner = result[0].LookingForPartner
-
-            },
-            error: function (err) {
-                console.log(err.statusText);
-            }
-        });
-    }
+   
 
     $('#myModal').on('hidden.bs.modal', function (e) {
+        $('#MemberImageEdit').attr('src', "");
+        $('#form-result').text("");
         $('#firstName').val('');
         $('#MaritalStatus').val('');
         $('#emailId').val('');
         $('#mobileNumber').val('');
         $('#image_error').text("");
+        $('#form-result').fadeOut();
         getAllMember();
         isFormChanged = false;
+        isImageChange = false;
     })
 
     $("#CancelUpdate").click(function () {
-        getFamilyMemberData(familymemberId)
-        $('#marriageDate-error').text("");
-        $('#firstName-error').text("");
-        $('#mobile-error').text("");
-        $('#email-error').text("");
-        $('#image_error').text("");
-        isFormChanged = false;
+        if (isFormChanged == true) {
+            setFamilymemberData(familyMember_Data)
+            $('#marriageDate-error').text("");
+            $('#firstName-error').text("");
+            $('#mobile-error').text("");
+            $('#email-error').text("");
+            $('#image_error').text("");
+            isImageChange = false;
+            isFormChanged = false;
+        }
     });
 });

@@ -3,8 +3,6 @@
         window.location.href = "index.html";
     }
     else 
-        getData();
-
     var isFormChanged = false;
     $('form :input').on('change', function () {
         isFormChanged = true
@@ -15,7 +13,6 @@
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-            let max_size = 512000;
             var file = input.files[0];
                 reader.onload = function (e) {
                     $('#MemberImageEdit').attr('src', e.target.result);
@@ -108,10 +105,10 @@
         }
     });
 
+    var member_data = "";
     var oldFileName = '';
     var FileNameInFolder = '';
     var fileName = ''
-    function getData() {
         var memberId = localStorage.getItem('memberId');
         getMemberData();
         function getMemberData() {
@@ -121,20 +118,25 @@
                 data: {},
                 dataType: "json",
                 success: function (member) {
-                    $('#firstName').val(member[0].FullName);
-                    $('#mobileNumber').val(member[0].MobileNo);
-                    $('#emailId').val($.trim(member[0].Email));
-                    $('#address').val(member[0].Address);
-                    member[0].FileNameInFolder != "" ? $('.memberImage').attr('src', nodeURL + '/getMemberPhoto/' + member[0].MemberId + '/' + member[0].FileNameInFolder) :
-                        $('.memberImage').attr('src', nodeURL + "/getDefaultMemberImage");
-                    oldFileName = member[0].FileNameInFolder;
-                    fileName = member[0].FileName;
+                    member_data = member[0];
+                    setMemberData(member_data);
                 },
                 error: function (err) {
                     console.log(err.statusText);
                 }
             });
         } 
+
+        function setMemberData(member){
+            $('#firstName').val(member.FullName);
+            $('#mobileNumber').val(member.MobileNo);
+            $('#emailId').val($.trim(member.Email));
+            $('#address').val(member.Address);
+            member.FileNameInFolder != "" ? $('.memberImage').attr('src', nodeURL + '/getMemberPhoto/' + member.MemberId + '/' + member.FileNameInFolder) :
+                $('.memberImage').attr('src', nodeURL + "/getDefaultMemberImage");
+            oldFileName = member.FileNameInFolder;
+            fileName = member.FileName;
+        }
 
         var Image = '';
         $("#updateMemberProfile").click(function () {
@@ -155,14 +157,15 @@
                         dataType: "json",
                         success: function (member) {
                             if (member != '') {
+                                member_data = "";
+                                member_data = member;
                                 localStorage.removeItem('fullName')
                                 localStorage.setItem('fullName', member.FullName)
                                 $('#memberWelcome').html(localStorage.getItem('fullName'));
                                 $('#form-result').html('Member updated successfully').fadeIn('slow');
                                 setTimeout(function () { $('#form-result').fadeOut('slow') }, 5000);
                                 isImageChange = false;
-                                clear();
-                                getMemberData();
+                                setMemberData(member_data)
                             }
                         },
                         error: function (err) {
@@ -174,21 +177,19 @@
         });
 
         $("#CancelUpdate").click(function () {
-            clear();
+            if (isFormChanged == true) {
+                $('#MemberImageEdit').attr('src', "");
+                $('#firstName-error').text("");
+                $('#mobile-error').text("");
+                $('#email-error').text("");
+                $('#address-error').text("");
+                $('#image_error').text("");
+                $('#firstName').val("");
+                $('#emailId').val("");
+                $('#mobileNumber').val("");
+                $('#address').val("");
+                isFormChanged = false;
+                setMemberData(member_data);
+            }
         });
-
-        function clear() {
-            getMemberData();
-            $('#firstName-error').text("");
-            $('#mobile-error').text("");
-            $('#email-error').text("");
-            $('#address-error').text("");
-            $('#image_error').text("");
-            $('#firstName').val("");
-            $('#emailId').val("");
-            $('#mobileNumber').val("");
-            $('#address').val(""); 
-            isFormChanged = false;
-        }
-    }
 });
