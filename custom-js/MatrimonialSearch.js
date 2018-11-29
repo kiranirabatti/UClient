@@ -94,7 +94,7 @@
 		var education = $('#ddEducation').find(":selected").val();
 		var city = $('#ddCity').find(":selected").val();
 		var native = $('#ddNative').find(":selected").val();
-		var handicap = $("#cbHandicap").prop('checked') == true;
+        var handicap = $("#cbHandicap").prop('checked') == true;
 		data["fromAge"] = fromAge ? fromAge : 'null';
 		data["toAge"] = toAge ? toAge : 'null';
 		data["manglik"] = manglik ? (manglik == 'All' ? 'null' : manglik) : 'null';
@@ -104,8 +104,8 @@
 		data["height"] = height ? (height == '1' ? 'null' : height) : 'null';
 		data["education"] = education ? (education == '1' ? 'null' : education) : 'null';
 		data["city"] = city ? (city == '1' ? 'null' : city) : 'null';
-		data["native"] = native ? (native == '1' ? 'null' : native) : 'null';
-		data["handicap"] = handicap ? handicap : 'null';
+        data["native"] = native ? (native == '1' ? 'null' : native) : 'null';
+        data["handicap"] = handicap ? handicap : false;
 		var encrypted = CryptoJS.AES.encrypt(JSON.stringify(data), "Secret");
 		localStorage.setItem("formData", encrypted.toString());
 		window.location.href = "MatrimonialResult.html?formData=" + encrypted.toString();
