@@ -3,6 +3,10 @@
     var totalRows, pagenum, maxRows, trIndex, trNumber, currentPage, rows, i, memberId, sortOrder = 0;
     var loggedIn = localStorage.getItem('isLoggedIn');
 
+    var familyMember_Data = "";
+    var oldFileName = '';
+    var FileNameInFolder = '';  
+
     getAllMember();
     function getAllMember() {
         var memberId = localStorage.getItem('memberId');
@@ -29,6 +33,11 @@
                 $('#MemberTableBody').html(memberData);
                 $('#memberCount').html(totalRows);
                 pagination(10);
+
+                $('.viewDetails').on('click', function (e) {
+                    var familymemberId = $(this).attr('data-id');
+                    getFamilyMemberData(familymemberId)
+                });
             },
             error: function (err) {
                 console.log(err.statusText);
@@ -171,15 +180,12 @@
         }
     }
 
-    var familyMember_Data = "";
-    var oldFileName = '';
-    var FileNameInFolder = '';   
     $('#myModal').on('shown.bs.modal', function (e) {
         familymemberId = $(e.relatedTarget).attr('data-id');
         dataFileName = $(e.relatedTarget).attr('data-fileName');
-        getFamilyMemberData(familymemberId)
     });
 
+    $('#isMarriageDate').hide()
     $('#EditImage').hide();
     var isImageChange = false;
     function readURL(input) {
@@ -327,6 +333,7 @@
         $('#mobileNumber').val('');
         $('#image_error').text("");
         $('#form-result').fadeOut();
+        $('#isMarriageDate').hide()
         getAllMember();
         isFormChanged = false;
         isImageChange = false;
