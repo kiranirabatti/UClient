@@ -47,7 +47,6 @@
     });
 
     function pagination(maxRows) {
-
         $(".pagination").html('');
         var totalRows = $('.eventList').length;
         var limitPerPage = maxRows;
@@ -112,7 +111,6 @@
             return showPage(currentPage - 1);
         });
     }
-
 
     function getPageList(totalPages, page, maxLength) {
         if (maxLength < 5) throw "maxLength must be at least 5";

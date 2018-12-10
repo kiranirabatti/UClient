@@ -95,6 +95,8 @@
     <Content Include="FamilyMembersList.html" />
     <Content Include="Footer.html" />
     <Content Include="HomeHeader.html" />
+    <Content Include="images\samaj logo-1.jpg" />
+    <Content Include="images\UGPS_logo.jpg" />
     <Content Include="LoginModal.html" />
     <Content Include="MemberProfileEdit.html" />
     <Content Include="SubHeader.html" />

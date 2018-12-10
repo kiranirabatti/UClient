@@ -127,7 +127,6 @@
         });
     }
 
-
     function getPageList(totalPages, page, maxLength) {
         if (maxLength < 5) throw "maxLength must be at least 5";
 
