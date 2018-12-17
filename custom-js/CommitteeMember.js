@@ -6,6 +6,7 @@
     $('#cancelSearch').prop("disabled", true);
     $("#searchName").val('DesignationData.Designation');
     $("#searchValue").val('');
+    $("#committeeMemberType").val('All');
     function loadCommitteeMemberData() {
         committeeMemberData = '';
         $.ajax({
@@ -27,7 +28,7 @@
                             committeeMemberFullName = committeeMember.CommitteeMemberData.FullName;
                             committeeMemberAddress = committeeMember.CommitteeMemberData.Address + ' ' + committeeMember.CommitteeMemberData.Taluka + ' ' + committeeMember.CommitteeMemberData.Jeello + ' ' + committeeMember.CommitteeMemberData.PinCode
                             committeeMemberEmail = committeeMember.CommitteeMemberData.Email;
-                            committeeMemberData += "<tr><td class='ml-100'><div><img src=" + committeeMemberImage + " class='memberImage border-2px' height='120' width='150'></div></td><td>" + committeeMember.DesignationData.Designation + "</td> <td> <h4 class='text-info font-weight-500 mt-0 mb-5'>" + committeeMemberFullName + '</h4>' + committeeMemberAddress + '<br/>' + committeeMemberEmail + "</td></tr > ";
+                            committeeMemberData += "<tr><td class='ml-100'><div><img src=" + committeeMemberImage + " class='memberImage border-2px' height='120' width='150'></div></td><td>" + committeeMember.DesignationData.Designation + "</td> <td>" + committeeMember.MemberType+"</td><td> <h4 class='text-info font-weight-500 mt-0 mb-5'>" + committeeMemberFullName + '</h4>' + committeeMemberAddress + '<br/>' + committeeMemberEmail + "</td></tr > ";
                         }
                     });
                     totalRows != 0 ? committeeMemberData : committeeMemberData= " <tr><td colspan='3' class='text-black font-weight-600 text-center'> No records found</td></tr>";
@@ -54,12 +55,15 @@
     });
 
     $('#search').on('click', function () {
+         var memberTypeValue = $("#committeeMemberType").val();
         dropDownValue = $("#searchName").val()
         searchValue = $("#searchValue").val()
+
+       var memberType= memberTypeValue == 'All' ? 'null' : memberTypeValue;
         committeeMemberSearchData = "";
         if ($("#searchValue").val().replace(/^\s+|\s+$/g, "").length != 0) {
             $.ajax({
-                url: nodeURL + "/searchCommitteeMember/" + dropDownValue + "/" + searchValue,
+                url: nodeURL + "/searchCommitteeMember/" + memberType+ "/" + dropDownValue + "/" + searchValue,
                 type: "GET",
                 data: {},
                 dataType: "json",
@@ -67,7 +71,7 @@
                     $('#committeeMemberTableBody').html("")
                     if (committeeData.length == 0) {
                         totalRows = 0;
-                        committeeMemberSearchData = " <tr><td colspan='3' class='text-black font-weight-600 text-center'> No records found</td></tr>"
+                        committeeMemberSearchData = " <tr><td colspan='4' class='text-black font-weight-600 text-center'> No records found</td></tr>"
                     }
                     else {
                         totalRows = 0
@@ -78,11 +82,11 @@
                                 committeeMemberFullName = committeeMember.CommitteeMemberData.FullName;
                                 committeeMemberAddress = committeeMember.CommitteeMemberData.Address + ' ' + committeeMember.CommitteeMemberData.Taluka + ' ' + committeeMember.CommitteeMemberData.Jeello + ' ' + committeeMember.CommitteeMemberData.PinCode
                                 committeeMemberEmail = committeeMember.CommitteeMemberData.Email;
-                                committeeMemberSearchData += "<tr><td class='ml-100'><div><img src=" + committeeMemberImage + " class='memberImage border-2px' height='120' width='150'></div></td><td>" + committeeMember.DesignationData.Designation + "</td> <td> <h4 class='text-info font-weight-500 mt-0 mb-5'>" + committeeMemberFullName + '</h4>' + committeeMemberAddress + '<br/>' + committeeMemberEmail + "</td></tr > ";
+                                committeeMemberSearchData += "<tr><td class='ml-100'><div><img src=" + committeeMemberImage + " class='memberImage border-2px' height='120' width='150'></div></td><td>" + committeeMember.DesignationData.Designation + "</td> <td>" + committeeMember.MemberType+"</td><td> <h4 class='text-info font-weight-500 mt-0 mb-5'>" + committeeMemberFullName + '</h4>' + committeeMemberAddress + '<br/>' + committeeMemberEmail + "</td></tr > ";
                             }
                             else {
                                 totalRows = 0
-                                committeeMemberSearchData = " <tr><td colspan='3' class='text-black font-weight-600 text-center'> No records found</td></tr>"
+                                committeeMemberSearchData = " <tr><td colspan='4' class='text-black font-weight-600 text-center mr-150'> No records found</td></tr>"
                             }
                         });
                     }
@@ -99,6 +103,7 @@
 
     $("#cancelSearch").on('click', function () {
         totalRows = 0;
+        $("#committeeMemberType").val('All');
         $("#searchName").val('DesignationData.Designation');
         $("#searchValue").val('');
         $('#cancelSearch').prop("disabled", true);
@@ -109,15 +114,14 @@
         maxRows = parseInt($(this).val());
         pagination(maxRows);
     });
-
+    var totalNumberRows, limitPerPage, totalPages = 0;
     function pagination(maxRows) {
-        $(".pagination").html('');
-        var totalRows = $('tbody tr').length;
-        var limitPerPage = maxRows;
-        var totalPages = Math.ceil(totalRows / limitPerPage);
+        $(".pagination").html("");
+         totalNumberRows = $('tbody tr').length;
+         limitPerPage = maxRows;
+         totalPages = Math.ceil(totalNumberRows / limitPerPage);
         var paginationSize = 7;
         var currentPage;
-
         function showPage(whichPage) {
             if (whichPage < 1 || whichPage > totalPages) return false;
             currentPage = whichPage;
@@ -168,14 +172,16 @@
             return showPage(+$(this).text());
         });
         $("#next-page").on("click", function () {
-            return showPage(currentPage + 1);
+            var current = $('.pagination li.active').index();
+            return showPage(current + 1);
         });
 
         $("#previous-page").on("click", function () {
-            return showPage(currentPage - 1);
+            var current = $('.pagination li.active').index();
+            return showPage(current - 1);
         });
+       
     }
-
 
     function getPageList(totalPages, page, maxLength) {
         if (maxLength < 5) throw "maxLength must be at least 5";
@@ -211,6 +217,7 @@
             .concat(range(totalPages - sideWidth + 1, totalPages));
     }
 
+  
     function sortTable(sortOrder, members) {
         rows = $('#committeeMemberTableBody  tr').get();
         rows.sort(function (a, b) {

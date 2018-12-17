@@ -113,11 +113,12 @@
 		pagination(maxRows);
 	});
 
+    var totalNumberRows, limitPerPage, totalPages = 0;
 	function pagination(maxRows) {
 		$(".pagination").html('');
-        var totalRows = $('tbody tr').length;
-        var limitPerPage = maxRows;
-        var totalPages = Math.ceil(totalRows / limitPerPage);
+         totalNumberRows = $('tbody tr').length;
+         limitPerPage = maxRows;
+         totalPages = Math.ceil(totalNumberRows / limitPerPage);
         var paginationSize = 7;
         var currentPage;
 
@@ -171,11 +172,13 @@
             return showPage(+$(this).text());
         });
         $("#next-page").on("click", function () {
-            return showPage(currentPage + 1);
+           var current = $('.pagination li.active').index();
+            return showPage(current + 1);
         });
 
         $("#previous-page").on("click", function () {
-            return showPage(currentPage - 1);
+            var current = $('.pagination li.active').index();
+            return showPage(current - 1);
         });
 	}
 

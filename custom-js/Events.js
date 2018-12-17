@@ -6,11 +6,6 @@
         data: {},
         dataType: "json",
         success: function (result) {
-            console.log(result.length)
-            if (result.length == 0) {
-                var nodData = '<div class="row  bg-secondary"><div class="col-md-12 pr-0 pr-sm-15 text-center">No Events found</div></div>';
-                $('#EventList').html(nodData);
-            }
             totalRows = 0
             $.each(result, function (index, value) {
                 if (result[index].IsActive == true) {

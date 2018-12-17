@@ -1,12 +1,11 @@
 ﻿$(document).ready(function () {
     var member='';
     $.ajax({
-        url: nodeURL + '/allmembers/',
+        url: nodeURL + '/recentlyJoinedMembers/',
         type: "GET",
         data: {},
         dataType: "json",
         success: function (result) {
-            result.reverse();
             count = 1;
             $.each(result, function (index, value) {
                 if (count < 4) {
