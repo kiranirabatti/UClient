@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $.ajax({
-        url: nodeURL + '/eventwithphotos/',
+        url: nodeURL + '/upcomingEvent/',
         type: "GET",
         data: {},
         dataType: "json",

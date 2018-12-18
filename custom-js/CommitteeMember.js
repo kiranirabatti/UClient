@@ -114,14 +114,15 @@
         maxRows = parseInt($(this).val());
         pagination(maxRows);
     });
-    var totalNumberRows, limitPerPage, totalPages = 0;
+
     function pagination(maxRows) {
-        $(".pagination").html("");
-         totalNumberRows = $('tbody tr').length;
-         limitPerPage = maxRows;
-         totalPages = Math.ceil(totalNumberRows / limitPerPage);
+        $(".pagination").html('');
+        var totalRows = $('tbody tr').length;
+        var limitPerPage = maxRows;
+        var totalPages = Math.ceil(totalRows / limitPerPage);
         var paginationSize = 7;
         var currentPage;
+
         function showPage(whichPage) {
             if (whichPage < 1 || whichPage > totalPages) return false;
             currentPage = whichPage;
@@ -172,16 +173,14 @@
             return showPage(+$(this).text());
         });
         $("#next-page").on("click", function () {
-            var current = $('.pagination li.active').index();
-            return showPage(current + 1);
+            return showPage(currentPage + 1);
         });
 
         $("#previous-page").on("click", function () {
-            var current = $('.pagination li.active').index();
-            return showPage(current - 1);
+            return showPage(currentPage - 1);
         });
-       
     }
+
 
     function getPageList(totalPages, page, maxLength) {
         if (maxLength < 5) throw "maxLength must be at least 5";
@@ -216,8 +215,7 @@
             .concat([0])
             .concat(range(totalPages - sideWidth + 1, totalPages));
     }
-
-  
+ 
     function sortTable(sortOrder, members) {
         rows = $('#committeeMemberTableBody  tr').get();
         rows.sort(function (a, b) {

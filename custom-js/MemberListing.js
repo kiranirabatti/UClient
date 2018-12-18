@@ -14,7 +14,7 @@
 			type: "GET",
 			data: {},
 			dataType: "json",
-			success: function (result) {
+            success: function (result) {
 				if (result.length == 0) {
 					totalRows = 0;
 					memberData = " <tr><td colspan='8' class='text-black font-weight-600 text-center'> No records found</td></tr>"
@@ -79,19 +79,13 @@
                             if (member.IsActive == true) {
                                 memberImage = member.FileNameInFolder != "" ? nodeURL + '/getMemberPhoto/' + member.MemberId + '/' + member.FileNameInFolder : nodeURL + "/defaultImage";
                                 totalRows++;
-                                memberData += "<tr><td class='pr-5 pt-5'><div class='row'><img alt='' src='" + memberImage + "' class='img-circle familyMemberImage mr-10 mt-0' width='50' height='50'></td><td>" + member.FullName + "</div></td><td>" + member.FatherName + "</td><td>" + member.GrandFatherName + "</td><td>" + member.Gol + "</td><td>" + member.MulVatan + "</td><td>" + buttonURL + "</td></tr>";
+                                memberData += "<tr><td class='pr-5 pt-5'><div class='row pl-10'><img alt='' src='" + memberImage + "' class='img-circle familyMemberImage mr-10 mt-0' width='50' height='50'></td><td>" + member.FullName + "</div></td><td>" + member.FatherName + "</td><td>" + member.GrandFatherName + "</td><td>" + member.Gol + "</td><td>" + member.MulVatan + "</td><td>" + buttonURL + "</td></tr>";
                             }
 						});
 					}
 					totalRows != 0 ? $('#MemberTableBody').html(memberData) : $('#MemberTableBody').html(" <tr><td colspan='8' class='text-black font-weight-600 text-center'> No records found</td></tr>");
 					totalRows != 0 ? $('#memberCount').html(totalRows) : $('#memberCount').html('0');
 					pagination(20);
-
-
-					$(".viewDetails").on('click', function () {
-						memberId = $(this).attr("value");
-						(loggedIn != 'true') ? window.location = "MemberLogin.html?id=" + memberId + "&fileName=MemberListing" : window.location = "MemberDetails.html?id=" + memberId;
-					});
 				},
 				error: function (err) {
 					console.log(err.statusText);
@@ -113,12 +107,11 @@
 		pagination(maxRows);
 	});
 
-    var totalNumberRows, limitPerPage, totalPages = 0;
-	function pagination(maxRows) {
+    function pagination(maxRows) {
 		$(".pagination").html('');
-         totalNumberRows = $('tbody tr').length;
-         limitPerPage = maxRows;
-         totalPages = Math.ceil(totalNumberRows / limitPerPage);
+        var totalRows = $('tbody tr').length;
+        var limitPerPage = maxRows;
+        var totalPages = Math.ceil(totalRows / limitPerPage);
         var paginationSize = 7;
         var currentPage;
 
@@ -172,13 +165,11 @@
             return showPage(+$(this).text());
         });
         $("#next-page").on("click", function () {
-           var current = $('.pagination li.active').index();
-            return showPage(current + 1);
+            return showPage(currentPage + 1);
         });
 
         $("#previous-page").on("click", function () {
-            var current = $('.pagination li.active').index();
-            return showPage(current - 1);
+            return showPage(currentPage - 1);
         });
 	}
 

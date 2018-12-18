@@ -96,6 +96,7 @@
     <Content Include="Footer.html" />
     <Content Include="HomeHeader.html" />
     <Content Include="images\logo_ugps.png" />
+    <Content Include="images\presidentMessage.jpg" />
     <Content Include="images\samaj logo-1.jpg" />
     <Content Include="images\samaj logo-2.jpg" />
     <Content Include="images\samaj logo-3.jpg" />
