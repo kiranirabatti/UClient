@@ -35,7 +35,7 @@
 				}
 				$('#MemberTableBody').html(memberData);
 				$('#memberCount').html(totalRows);
-				pagination(20);
+				totalRows!=0? pagination(20) :null;
 			},
 			error: function (err) {
 				console.log(err.statusText);
@@ -85,7 +85,7 @@
 					}
 					totalRows != 0 ? $('#MemberTableBody').html(memberData) : $('#MemberTableBody').html(" <tr><td colspan='8' class='text-black font-weight-600 text-center'> No records found</td></tr>");
 					totalRows != 0 ? $('#memberCount').html(totalRows) : $('#memberCount').html('0');
-					pagination(20);
+                    totalRows != 0 ? pagination(20) : null;
 				},
 				error: function (err) {
 					console.log(err.statusText);
