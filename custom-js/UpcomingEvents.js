@@ -18,7 +18,7 @@
             var sortedArray = [];
             var count = 0;
             $.each(result, function (index, value) {
-                if (moment(result[index].EventDate, "DD-MM-YYYY").format("YYYY-MM-DD") >= moment(currentDate, "DD-MM-YYYY").format("YYYY-MM-DD") && result[index].IsActive == true) {
+               // if (moment(result[index].EventDate, "DD-MM-YYYY").format("YYYY-MM-DD") >= moment(currentDate, "DD-MM-YYYY").format("YYYY-MM-DD") && result[index].IsActive == true) {
                     if (count < 3) {
                         sortedArray[count] = result[index];
                         var eventDate = moment(result[index].EventDate, "DD-MM-YYYY").format("YYYY-MM-DD");
@@ -29,7 +29,7 @@
                         $('#location' + count + '').text(result[index].EventVenue);
                     }
                     count++;
-                }
+               // }
             });
             if (count == 3) {
                 $('#noEvents').hide();

@@ -6,13 +6,13 @@
         data: {},
         dataType: "json",
         success: function (result) {
-           
             var maleCount = 0;
             var femaleCount = 0;
             var items = $('<div class="item">');
             var loggedIn = localStorage.getItem('isLoggedIn');
 
             function createComponent(index) {
+                console.log(result[index])
                 var mainItem = $('  <div class="course-single-item bg-white border-1px clearfix">');
                 var imageThumb = $('<div class="course-thumb">');
                 var image = $('<img class="img-fullwidth">');
@@ -48,8 +48,11 @@
                 }
             });
             $.each(result, function (index, value) {
+                console.log(result[index].LookingForPartner)
+
                 if (result[index].LookingForPartner == 'Yes' && result[index].MaritalStatus != 'Married') {
                     if (maleCount > 3 && result[index].Gender == 'Male') {
+                       
                         items = $('<div class="item">');
                         createComponent(index);
                         items.appendTo('#maleSlider');
