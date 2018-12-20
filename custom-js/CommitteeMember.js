@@ -28,7 +28,7 @@
                             committeeMemberFullName = committeeMember.CommitteeMemberData.FullName;
                             committeeMemberAddress = committeeMember.CommitteeMemberData.Address + ' ' + committeeMember.CommitteeMemberData.Taluka + ' ' + committeeMember.CommitteeMemberData.Jeello + ' ' + committeeMember.CommitteeMemberData.PinCode
                             committeeMemberEmail = committeeMember.CommitteeMemberData.Email;
-                            committeeMemberData += "<tr><td class='ml-100'><div><img src=" + committeeMemberImage + " class='memberImage border-2px' height='120' width='150'></div></td><td>" + committeeMember.DesignationData.Designation + "</td> <td>" + committeeMember.MemberType+"</td><td> <h4 class='text-info font-weight-500 mt-0 mb-5'>" + committeeMemberFullName + '</h4>' + committeeMemberAddress + '<br/>' + committeeMemberEmail + "</td></tr > ";
+                            committeeMemberData += "<tr><td class='ml-100'><div><img src=" + committeeMemberImage + " class='memberImage border-2px' height='120' width='150'></div></td><td>" + committeeMember.DesignationData.Designation + "</td> <td>" + committeeMember.CommitteeMemberTypesData.Description+"</td><td> <h4 class='text-info font-weight-500 mt-0 mb-5'>" + committeeMemberFullName + '</h4>' + committeeMemberAddress + '<br/>' + committeeMemberEmail + "</td></tr > ";
                         }
                     });
                     totalRows != 0 ? committeeMemberData : committeeMemberData= " <tr><td colspan='3' class='text-black font-weight-600 text-center'> No records found</td></tr>";
@@ -59,7 +59,7 @@
         dropDownValue = $("#searchName").val()
         searchValue = $("#searchValue").val()
 
-       var memberType= memberTypeValue == 'All' ? 'null' : memberTypeValue;
+        var memberType = memberTypeValue == 'All' ? 'null' : memberTypeValue;
         committeeMemberSearchData = "";
         if ($("#searchValue").val().replace(/^\s+|\s+$/g, "").length != 0) {
             $.ajax({
@@ -82,7 +82,7 @@
                                 committeeMemberFullName = committeeMember.CommitteeMemberData.FullName;
                                 committeeMemberAddress = committeeMember.CommitteeMemberData.Address + ' ' + committeeMember.CommitteeMemberData.Taluka + ' ' + committeeMember.CommitteeMemberData.Jeello + ' ' + committeeMember.CommitteeMemberData.PinCode
                                 committeeMemberEmail = committeeMember.CommitteeMemberData.Email;
-                                committeeMemberSearchData += "<tr><td class='ml-100'><div><img src=" + committeeMemberImage + " class='memberImage border-2px' height='120' width='150'></div></td><td>" + committeeMember.DesignationData.Designation + "</td> <td>" + committeeMember.MemberType+"</td><td> <h4 class='text-info font-weight-500 mt-0 mb-5'>" + committeeMemberFullName + '</h4>' + committeeMemberAddress + '<br/>' + committeeMemberEmail + "</td></tr > ";
+                                committeeMemberSearchData += "<tr><td class='ml-100'><div><img src=" + committeeMemberImage + " class='memberImage border-2px' height='120' width='150'></div></td><td>" + committeeMember.DesignationData.Designation + "</td> <td>" + committeeMember.CommitteeMemberTypesData.Description+"</td><td> <h4 class='text-info font-weight-500 mt-0 mb-5'>" + committeeMemberFullName + '</h4>' + committeeMemberAddress + '<br/>' + committeeMemberEmail + "</td></tr > ";
                             }
                             else {
                                 totalRows = 0
@@ -249,4 +249,5 @@
         sortTable(sortOrder, member);
     }
     $("#committeeMemberDesignation").click(memberSort);
+    $("#memberType").click(memberSort);
 })
