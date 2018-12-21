@@ -35,7 +35,7 @@
                 }
                 $('#committeeMemberTableBody').html(committeeMemberData)
                 $('#memberCount').html(totalRows);
-                totalRows!==0? pagination(5):null;
+                totalRows!==0? pagination(50):null;
             },
             error: function (err) {
                 console.log(err.statusText);
@@ -92,7 +92,7 @@
                     }
                     $('#committeeMemberTableBody').html(committeeMemberSearchData)
                     $('#memberCount').html(totalRows);
-                    totalRows !== 0 ? pagination(5) : null;
+                    totalRows !== 0 ? pagination(50) : null;
                 },
                 error: function (err) {
                     console.log(err.statusText);
