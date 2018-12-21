@@ -42,30 +42,30 @@
             }
 
             $.each(result, function (index, value) {
-                if (result[index].LookingForPartner == 'Yes' && result[index].MaritalStatus != 'Married') {
-                    result[index].Gender == 'Male' || result[index].Gender == 'male' || result[index].Gender == 'MALE'  ? maleCount++ : femaleCount++;
+                if (result[index].LookingForPartner == 'Yes') {
+                    result[index].Gender.toLowerCase() == 'male' ? maleCount++ : femaleCount++;
                 }
             });
             $.each(result, function (index, value) {
-                if (result[index].LookingForPartner == 'Yes' && result[index].MaritalStatus != 'Married') {
-                    if (maleCount > 3 && result[index].Gender == 'Male') {
+                if (result[index].LookingForPartner == 'Yes') {
+                    if (maleCount > 3 && result[index].Gender.toLowerCase() == 'male') {
                        
                         items = $('<div class="item">');
                         createComponent(index);
                         items.appendTo('#maleSlider');
                     }
-                    else if (femaleCount > 3 && result[index].Gender == 'Female') {
+                    else if (femaleCount > 3 && result[index].Gender.toLowerCase() == 'female') {
                         items = $('<div class="item">');
                         createComponent(index);
                         items.appendTo('#femaleSlider');
                     }
-                    else if (maleCount <= 3 && (result[index].Gender == 'Male' || result[index].Gender == 'male' || result[index].Gender == 'MALE')) {
+                    else if (maleCount <= 3 && (result[index].Gender.toLowerCase() == 'male')) {
                         items = $('<div class="col-md-4 pl-10 pr-10">');
                         createComponent(index);
                         items.appendTo('#maleIndividual');
                         $('#maleSlider').hide();
                     }
-                    else if (femaleCount <= 3 && result[index].Gender == 'Female') {
+                    else if (femaleCount <= 3 && result[index].Gender.toLowerCase() == 'female') {
                         items = $('<div class="col-md-4 pl-10 pr-10">');
                         createComponent(index);
                         items.appendTo('#femaleIndividual');
