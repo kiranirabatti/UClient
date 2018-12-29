@@ -248,6 +248,6 @@
         member = $(this).prevAll().length;
         sortTable(sortOrder, member);
     }
-    $("#committeeMemberDesignation").click(memberSort);
-    $("#memberType").click(memberSort);
+   // $("#committeeMemberDesignation").click(memberSort);
+   // $("#memberType").click(memberSort);
 })

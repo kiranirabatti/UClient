@@ -56,8 +56,8 @@
                             }
                         }
                     });
-                    $('#leftSide').append('<div class="owl-carousel-1col" data-dots="true" data-nav="true">' + corosoleLeft + '</div>');
-                    $('#rightSide').append('<div class="owl-carousel-1col" data-dots="true" data-nav="true">' + corosoleRight + '</div>');
+                    $('#leftSide').append('<div class="owl-carousel-1col pb-20" data-dots="true" data-nav="true">' + corosoleLeft + '</div>');
+                    $('#rightSide').append('<div class="owl-carousel-1col pb-20" data-dots="true" data-nav="true">' + corosoleRight + '</div>');
                 }
             });
             var item = $('<div class="item">');
