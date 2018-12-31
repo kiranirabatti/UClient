@@ -95,8 +95,10 @@
 												data: {},
 												dataType: "json",
                                                 success: function (result) {
+                                                    
 													$.each(result, function (index, value) {
                                                         if (result[index].FamilyMemberId == FamilyId) {
+                                                            console.log(result)
                                                             var cityName = result[index].CityData.length == 0 ? '' : result[index].CityData[0].CityName
                                                             var citizenship = result[index].CitizenshipData.length == 0 ? '' : result[index].CitizenshipData[0].Description
                                                             var native = result[index].NativeData.length == 0 ? '' : result[index].NativeData[0].Name;

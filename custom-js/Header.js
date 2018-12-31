@@ -38,7 +38,6 @@
         $('#showMenuMember').show();
     }
     else {
-        console.log("hide")
         $('#showMenuMember').hide();
     }
 })
