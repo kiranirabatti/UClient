@@ -37,18 +37,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
 </head>
 <body class="has-side-panel side-panel-right fullwidth-page">
-	<div id="wrapper" class="clearfix">
-		<!--<div id="preloader">
-			<div id="spinner">
-				<img alt="" src="images/preloaders/5.gif">
-			</div>
-			<div id="disable-preloader" class="btn btn-default btn-sm">Disable Preloader</div>
-		</div>-->
-		<header id="header" class="header">
+    <div id="wrapper" class="clearfix">
+        <!--<div id="preloader">
+            <div id="spinner">
+                <img alt="" src="images/preloaders/5.gif">
+            </div>
+            <div id="disable-preloader" class="btn btn-default btn-sm">Disable Preloader</div>
+        </div>-->
+        <header id="header" class="header">
             <div class="header-top bg-theme-colored border-top-theme-colored2-2px sm-text-center">
-                <div class="pl-20 pr-20">
+                <div class=" container-fluid pl-20 pr-20">
                     <div class="row">
-                        <div class="col-md-3">
+                        <!--<div class="col-md-3">
                             <div class="row pl-10 pt-10">
                                 <div class="col-md-3">
                                     <h5 class="text-white">Welcome:</h5>
@@ -66,8 +66,27 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>-->
+                        <div class="col-md-3">
+                            <div class="widget pt-10">
+                                <ul class="nav navbar-nav">
+                                    <li><h5 class="text-white">Welcome:</h5></li>
+                                    <li>
+                                        <div class="btn-group pl-5">
+                                            <button class="btn btn-primary pr-0 pl-0" style="background-color:transparent;border-color:transparent" type="button" id="memberWelcome"></button>
+                                            <button aria-expanded="false" style="background-color:transparent;border-color:transparent" aria-haspopup="true" data-toggle="dropdown" class="btn btn-dark btn-flat dropdown-toggle" type="button">
+                                                <span class="caret" id="showMenuMember"></span> <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="MemberProfileEdit.html">Member Profile</a></li>
+                                                <li><a href="FamilyMembersList.html">Family Member</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="col-md-6"> <div class="pt-5 pb-5 text-center"><span class="text-theme-colored2 text-center font-28">ઉત્તર ગુજરાત પ્રજાપતિ સમાજ (સુરત) ચેરીટેબલ ટ્રસ્ટ</span></div></div>
+                        <div class="col-md-6"> <div class="pt-5 pb-5 text-center"><span class="text-theme-colored2  font-28">ઉત્તર ગુજરાત પ્રજાપતિ સમાજ (સુરત) ચેરીટેબલ ટ્રસ્ટ</span></div></div>
                         <div class="col-md-3 pr-0">
                             <div class="widget pull-right pt-5">
                                 <ul class="list-inline text-right flip sm-text-center pt-0">
@@ -91,314 +110,314 @@
                     </div>
                 </div>
             </div>
-			<div class="header-nav">
-				<div class="header-nav-wrapper navbar-scrolltofixed bg-white" id="test" style="width:100%;">
-					<div class="container">
-						<nav id="menuzord-right" class="menuzord default theme-colored">
-							<a class=" pull-left flip mt-5 mb-5" href="index.html"><img src="images/samaj logo-3.jpg" height="90"></a>
-							<ul class="menuzord-menu">
-								<li>
-									<a href="index.html">Home</a>
-								</li>
-								<li>
-									<a href="javascript:void(0)">About Us</a>
-									<ul class="dropdown">
-										<li><a href="mandalHistory.html">Mandal History</a></li>
-										<li><a href="prajapatiHistory.html">Prajapati History</a></li>
-										<li><a href="presidentMessage.html">President Message</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="CommitteeMember.html">Committee</a>
-								</li>
-								<li>
-									<a href="Members.html">Members</a>
-								</li>
-								<li>
-									<a href="Event.html">Events</a>
-								</li>
-								<li class="active">
-									<a href="MatrimonialSearch.html">Matrimonial</a>
-								</li>
-								<li>
-									<a href="Gallery.html">Gallery</a>
-								</li>
-							</ul>
-						</nav>
-					</div>
-				</div>
-			</div>
-		</header>
-		<div class="">
-			<section class="inner-header divider layer-overlay overlay-theme-colored-7" data-bg-img="images/bg1.png" style="height:340px">
-				<div class="container pt-120 pb-60">
-					<div class="section-content">
-						<div class="row">
-							<div class="col-md-6">
-								<h2 class="text-theme-colored2 font-36" id="pageName">Matrimonial Details</h2>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-		</div>
-		<div class="main-content">
-			<section id="schedule" class="divider parallax overlay-white-8">
-				<div class="container pt-30 pb-60">
-					<div class="row">
-						<div class="col-sm-12">
-							<section>
-								<div class="container pb-0 pt-10" style="font-size:medium">
-									<h3 class="text-uppercasetext-theme-colored mt-0 mb-0 mt-sm-30">Search Matrimonial Member</h3>
-									<hr />
-									<div class="row">
-										<div class="col-md-12">
-											<div class="row">
-												<div class="col-md-6">
-													<div class="col-md-2">
-														<div class="form-group">
-															<label for="id" class="control-label style">Age Group</label>
-														</div>
-													</div>
-													<div class="col-md-5">
-														<select class="form-control" name="ddFromAge" id="ddFromAge">
-															<option value="18" selected>18</option>
-															<option value="19">19</option>
-															<option value="20">20</option>
-															<option value="21">21</option>
-															<option value="22">22</option>
-															<option value="23">23</option>
-															<option value="24">24</option>
-															<option value="25">25</option>
-															<option value="26">26</option>
-															<option value="27">27</option>
-															<option value="28">28</option>
-															<option value="29">29</option>
-															<option value="30">30</option>
-															<option value="31">31</option>
-															<option value="32">32</option>
-															<option value="33">33</option>
-															<option value="34">34</option>
-															<option value="35">35</option>
-															<option value="36">36</option>
-															<option value="37">37</option>
-															<option value="38">38</option>
-															<option value="39">39</option>
-															<option value="40">40</option>
-															<option value="41">41</option>
-															<option value="42">42</option>
-															<option value="43">43</option>
-															<option value="44">44</option>
-															<option value="45">45</option>
-															<option value="46">46</option>
-															<option value="47">47</option>
-															<option value="48">48</option>
-															<option value="49">49</option>
-															<option value="50">50</option>
-														</select>
-													</div>
-													<div class="col-md-5">
-														<span class="input-group-btn">
-															<select class="form-control" name="ddToAge" id="ddToAge">
-																<option value="18">18</option>
-																<option value="19">19</option>
-																<option value="20">20</option>
-																<option value="21">21</option>
-																<option value="22">22</option>
-																<option value="23">23</option>
-																<option value="24">24</option>
-																<option value="25">25</option>
-																<option value="26">26</option>
-																<option value="27">27</option>
-																<option value="28">28</option>
-																<option value="29">29</option>
-																<option value="30" selected>30</option>
-																<option value="31">31</option>
-																<option value="32">32</option>
-																<option value="33">33</option>
-																<option value="34">34</option>
-																<option value="35">35</option>
-																<option value="36">36</option>
-																<option value="37">37</option>
-																<option value="38">38</option>
-																<option value="39">39</option>
-																<option value="40">40</option>
-																<option value="41">41</option>
-																<option value="42">42</option>
-																<option value="43">43</option>
-																<option value="44">44</option>
-																<option value="45">45</option>
-																<option value="46">46</option>
-																<option value="47">47</option>
-																<option value="48">48</option>
-																<option value="49">49</option>
-																<option value="50">50</option>
-															</select>
-														</span>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="col-md-2">
-														<div class="form-group">
-															<label for="inputManglik" class="control-label style">Manglik</label>
-														</div>
-													</div>
-													<div class="col-md-10">
-														<span class="input-group-btn">
-															<select class="form-control" name="ddMaglik" id="ddMaglik">
-																<option value="All" selected>All</option>
-																<option value="Yes">Yes</option>
-																<option value="No">No</option>
-															</select>
-														</span>
-													</div>
-												</div>
-											</div>
-											<br />
-											<div class="row">
-												<div class="col-md-6">
-													<div class="col-md-2">
-														<div class="form-group">
-															<label for="inputManglik" class="control-label style">Gender</label>
-														</div>
-													</div>
-													<div class="col-md-10">
-														<span class="input-group-btn">
-															<select class="form-control" name="ddGender" id="ddGender">
-																<option value="All" selected>All</option>
-																<option>Male</option>
-																<option>Female</option>
-															</select>
-														</span>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="col-md-2">
-														<div class="form-group">
-															<label for="inputMaritalStatus" class="control-label style">Marital Status</label>
-														</div>
-													</div>
-													<div class="col-md-10">
-														<span class="input-group-btn">
-															<select class="form-control" name="ddMarital" id="ddMarital">
-																<option value="All" selected>All</option>
-																<option value="unmarried">Unmarried</option>
-																<option value="widower">Widower</option>
-																<option value="divorced">Divorced</option>
-															</select>
-														</span>
-													</div>
-												</div>
-											</div>
-											<br />
-											<div class="row">
-												<div class="panel-group toggle accordion-icon-left">
-													<div class="panel panel-default">
-														<div class="panel-heading">
-															<div class="panel-title"> <a class="collapsed" data-toggle="collapse" href="#toggle11"><span class="open-sub"></span>Advanced Search </a> </div>
-														</div>
-														<div id="toggle11" class="panel-collapse collapse">
-															<div class="panel-body">
-																<div class="row">
-																	<div class="col-md-6">
-																		<div class="col-md-2">
-																			<div class="form-group">
-																				<label for="inputCitizenship" class="control-label style">Citizenship</label>
-																			</div>
-																		</div>
-																		<div class="col-md-10">
-																			<select class="form-control" name="ddCitizenship" id="ddCitizenship"></select>
-																		</div>
-																	</div>
-																	<div class="col-md-6">
-																		<div class="col-md-2">
-																			<div class="form-group">
-																				<label for="inputHeight" class="control-label style">Height</label>
-																			</div>
-																		</div>
-																		<div class="col-md-10">
-																			<span class="input-group-btn">
-																				<select class="form-control" name="ddHeight" id="ddHeight"></select>
-																			</span>
-																		</div>
-																	</div>
-																</div>
-																<br />
-																<div class="row">
-																	<div class="col-md-6">
-																		<div class="col-md-2">
-																			<div class="form-group">
-																				<label for="inputEducation" class="control-label style">Education</label>
-																			</div>
-																		</div>
-																		<div class="col-md-10">
-																			<select class="form-control" name="ddEducation" id="ddEducation"></select>
-																		</div>
-																	</div>
-																	<div class="col-md-6">
-																		<div class="col-md-2">
-																			<div class="form-group">
-																				<label for="inputCity" class="control-label style">City</label>
-																			</div>
-																		</div>
-																		<div class="col-md-10">
-																			<span class="input-group-btn">
-																				<select class="form-control" id="ddCity" name="ddCity"></select>
-																			</span>
-																		</div>
-																	</div>
-																</div>
-																<br />
-																<div class="row">
-																	<div class="col-md-6">
-																		<div class="col-md-2">
-																			<div class="form-group">
-																				<label for="inputMaritalStatus" class="control-label style">Native</label>
-																			</div>
-																		</div>
-																		<div class="col-md-10">
-																			<select class="form-control" id="ddNative" name="ddNative"></select>
-																		</div>
-																	</div>
-																	<div class="col-md-6">
-																		<div class="col-md-12">
-																			<div class="checkbox">
-																				<label>
-																					<input type="checkbox" id="cbHandicap" name="cbHandicap" style="margin-top:6px;">
-																					Tick For Handicap
-																				</label>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<br />
-											<div class="row">
-												<div class="col-md-12 text-center">
-													<button class="btn btn-theme-colored2" id="btnNext">Search</button>
-													<button class="btn" id="btnClear" style="margin-left:10px;">Reset</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="modal fade bs-example-modal-md" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
-									<div class="modal-dialog modal-md" role="document">
-										<div class="modal-content bg-lighter">
-										</div>
-									</div>
-								</div>
-							</section>
-						</div>
-					</div>
-				</div>
-			</section>
-		</div>
-		<footer id="footer" class="footer" data-bg-color="#20232E">
+            <div class="header-nav">
+                <div class="header-nav-wrapper navbar-scrolltofixed bg-white" id="test" style="width:100%;">
+                    <div class="container">
+                        <nav id="menuzord-right" class="menuzord default theme-colored">
+                            <a class=" pull-left flip mt-5 mb-5" href="index.html"><img src="images/samaj logo-3.jpg" height="90"></a>
+                            <ul class="menuzord-menu">
+                                <li>
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">About Us</a>
+                                    <ul class="dropdown">
+                                        <li><a href="mandalHistory.html">UGPS History</a></li>
+                                        <li><a href="prajapatiHistory.html">Prajapati History</a></li>
+                                        <li><a href="presidentMessage.html">President Message</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="CommitteeMember.html">Committee</a>
+                                </li>
+                                <li>
+                                    <a href="Members.html">Members</a>
+                                </li>
+                                <li>
+                                    <a href="Event.html">Events</a>
+                                </li>
+                                <li class="active">
+                                    <a href="MatrimonialSearch.html">Matrimonial</a>
+                                </li>
+                                <li>
+                                    <a href="Gallery.html">Gallery</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="">
+            <section class="inner-header divider layer-overlay overlay-theme-colored-7" data-bg-img="images/bg1.png" style="height:340px">
+                <div class="container pt-120 pb-60">
+                    <div class="section-content">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h2 class="text-theme-colored2 font-36" id="pageName">Matrimonial Details</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="main-content">
+            <section id="schedule" class="divider parallax overlay-white-8">
+                <div class="container pt-30 pb-60">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <section>
+                                <div class="container pb-0 pt-10" style="font-size:medium">
+                                    <h3 class="text-uppercasetext-theme-colored mt-0 mb-0 mt-sm-30">Search Matrimonial Member</h3>
+                                    <hr />
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label for="id" class="control-label style">Age Group</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <select class="form-control" name="ddFromAge" id="ddFromAge">
+                                                            <option value="18" selected>18</option>
+                                                            <option value="19">19</option>
+                                                            <option value="20">20</option>
+                                                            <option value="21">21</option>
+                                                            <option value="22">22</option>
+                                                            <option value="23">23</option>
+                                                            <option value="24">24</option>
+                                                            <option value="25">25</option>
+                                                            <option value="26">26</option>
+                                                            <option value="27">27</option>
+                                                            <option value="28">28</option>
+                                                            <option value="29">29</option>
+                                                            <option value="30">30</option>
+                                                            <option value="31">31</option>
+                                                            <option value="32">32</option>
+                                                            <option value="33">33</option>
+                                                            <option value="34">34</option>
+                                                            <option value="35">35</option>
+                                                            <option value="36">36</option>
+                                                            <option value="37">37</option>
+                                                            <option value="38">38</option>
+                                                            <option value="39">39</option>
+                                                            <option value="40">40</option>
+                                                            <option value="41">41</option>
+                                                            <option value="42">42</option>
+                                                            <option value="43">43</option>
+                                                            <option value="44">44</option>
+                                                            <option value="45">45</option>
+                                                            <option value="46">46</option>
+                                                            <option value="47">47</option>
+                                                            <option value="48">48</option>
+                                                            <option value="49">49</option>
+                                                            <option value="50">50</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-5">
+                                                        <span class="input-group-btn">
+                                                            <select class="form-control" name="ddToAge" id="ddToAge">
+                                                                <option value="18">18</option>
+                                                                <option value="19">19</option>
+                                                                <option value="20">20</option>
+                                                                <option value="21">21</option>
+                                                                <option value="22">22</option>
+                                                                <option value="23">23</option>
+                                                                <option value="24">24</option>
+                                                                <option value="25">25</option>
+                                                                <option value="26">26</option>
+                                                                <option value="27">27</option>
+                                                                <option value="28">28</option>
+                                                                <option value="29">29</option>
+                                                                <option value="30" selected>30</option>
+                                                                <option value="31">31</option>
+                                                                <option value="32">32</option>
+                                                                <option value="33">33</option>
+                                                                <option value="34">34</option>
+                                                                <option value="35">35</option>
+                                                                <option value="36">36</option>
+                                                                <option value="37">37</option>
+                                                                <option value="38">38</option>
+                                                                <option value="39">39</option>
+                                                                <option value="40">40</option>
+                                                                <option value="41">41</option>
+                                                                <option value="42">42</option>
+                                                                <option value="43">43</option>
+                                                                <option value="44">44</option>
+                                                                <option value="45">45</option>
+                                                                <option value="46">46</option>
+                                                                <option value="47">47</option>
+                                                                <option value="48">48</option>
+                                                                <option value="49">49</option>
+                                                                <option value="50">50</option>
+                                                            </select>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label for="inputManglik" class="control-label style">Manglik</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-10">
+                                                        <span class="input-group-btn">
+                                                            <select class="form-control" name="ddMaglik" id="ddMaglik">
+                                                                <option value="All" selected>All</option>
+                                                                <option value="Yes">Yes</option>
+                                                                <option value="No">No</option>
+                                                            </select>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label for="inputManglik" class="control-label style">Gender</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-10">
+                                                        <span class="input-group-btn">
+                                                            <select class="form-control" name="ddGender" id="ddGender">
+                                                                <option value="All" selected>All</option>
+                                                                <option>Male</option>
+                                                                <option>Female</option>
+                                                            </select>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label for="inputMaritalStatus" class="control-label style">Marital Status</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-10">
+                                                        <span class="input-group-btn">
+                                                            <select class="form-control" name="ddMarital" id="ddMarital">
+                                                                <option value="All" selected>All</option>
+                                                                <option value="unmarried">Unmarried</option>
+                                                                <option value="widower">Widower</option>
+                                                                <option value="divorced">Divorced</option>
+                                                            </select>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="row">
+                                                <div class="panel-group toggle accordion-icon-left">
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">
+                                                            <div class="panel-title"> <a class="collapsed" data-toggle="collapse" href="#toggle11"><span class="open-sub"></span>Advanced Search </a> </div>
+                                                        </div>
+                                                        <div id="toggle11" class="panel-collapse collapse">
+                                                            <div class="panel-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="col-md-2">
+                                                                            <div class="form-group">
+                                                                                <label for="inputCitizenship" class="control-label style">Citizenship</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-10">
+                                                                            <select class="form-control" name="ddCitizenship" id="ddCitizenship"></select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="col-md-2">
+                                                                            <div class="form-group">
+                                                                                <label for="inputHeight" class="control-label style">Height</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-10">
+                                                                            <span class="input-group-btn">
+                                                                                <select class="form-control" name="ddHeight" id="ddHeight"></select>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <br />
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="col-md-2">
+                                                                            <div class="form-group">
+                                                                                <label for="inputEducation" class="control-label style">Education</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-10">
+                                                                            <select class="form-control" name="ddEducation" id="ddEducation"></select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="col-md-2">
+                                                                            <div class="form-group">
+                                                                                <label for="inputCity" class="control-label style">City</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-10">
+                                                                            <span class="input-group-btn">
+                                                                                <select class="form-control" id="ddCity" name="ddCity"></select>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <br />
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="col-md-2">
+                                                                            <div class="form-group">
+                                                                                <label for="inputMaritalStatus" class="control-label style">Native</label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-10">
+                                                                            <select class="form-control" id="ddNative" name="ddNative"></select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="col-md-12">
+                                                                            <div class="checkbox">
+                                                                                <label>
+                                                                                    <input type="checkbox" id="cbHandicap" name="cbHandicap" style="margin-top:6px;">
+                                                                                    Tick For Handicap
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <div class="row">
+                                                <div class="col-md-12 text-center">
+                                                    <button class="btn btn-theme-colored2" id="btnNext">Search</button>
+                                                    <button class="btn" id="btnClear" style="margin-left:10px;">Reset</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal fade bs-example-modal-md" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+                                    <div class="modal-dialog modal-md" role="document">
+                                        <div class="modal-content bg-lighter">
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <footer id="footer" class="footer" data-bg-color="#20232E">
             <div class="container pt-30">
                 <div class="col-sm-6 col-md-4">
                     <div class="widget dark">
@@ -422,27 +441,27 @@
                     </div>
                 </div>
             </div>
-			<div class="footer-bottom" data-bg-color="#1B1D26">
-				<div class="container pt-20 pb-20">
-					<div class="row">
+            <div class="footer-bottom" data-bg-color="#1B1D26">
+                <div class="container pt-20 pb-20">
+                    <div class="row">
                         <div class="col-md-8">
                             <p class="font-14 sm-text-center m-0">Copyright &copy;<span id="year"> </span> <span class="text-theme-colored2">Uttar Gujarat Prajapati Samaj</span> Sponsored and Powered by <a href="http://www.scriptshub.net" target="_blank">  ScriptsHub Technologies Pvt. Ltd.</a></p>
                         </div>
-					</div>
-				</div>
-			</div>
-		</footer>
-		<a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
-	</div>
-	<script src="js/custom.js"></script>
-	<script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.actions.min.js"></script>
-	<script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.carousel.min.js"></script>
-	<script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.kenburn.min.js"></script>
-	<script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.layeranimation.min.js"></script>
-	<script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.migration.min.js"></script>
-	<script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.navigation.min.js"></script>
-	<script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.parallax.min.js"></script>
-	<script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
-	<script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.video.min.js"></script>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+    </div>
+    <script src="js/custom.js"></script>
+    <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.actions.min.js"></script>
+    <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.carousel.min.js"></script>
+    <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.kenburn.min.js"></script>
+    <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.layeranimation.min.js"></script>
+    <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.migration.min.js"></script>
+    <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.navigation.min.js"></script>
+    <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.parallax.min.js"></script>
+    <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.slideanims.min.js"></script>
+    <script type="text/javascript" src="js/revolution-slider/js/extensions/revolution.extension.video.min.js"></script>
 </body>
 </html>
