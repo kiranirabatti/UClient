@@ -34,7 +34,7 @@
                     $('#EventList').append(event)
                 }
             });
-            totalRows !== 0 ? pagination(5) : null;
+            totalRows !== 0 ? pagination(20) : null;
             $('#eventCount').html(totalRows)
             $(".eventDetails").on('click', function () {
                 eventId = $(this).attr("value");
