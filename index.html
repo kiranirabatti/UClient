@@ -41,7 +41,11 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            var isShow = sessionStorage.getItem("doNotShowAgain");
+            //window.addEventListener('beforeunload', function (event) {
+            //    localStorage.removeItem("doNotShowAgain");
+            //}, false);
+
+            var isShow = localStorage.getItem("doNotShowAgain");
             if (isShow === 'true') {
                 $('#iframe-container').remove();
                 $('#videoPreloader').attr('src', '');
@@ -74,13 +78,12 @@
 
         function doNotShowPopup() {
             $('#iframe-container').remove();
-            sessionStorage.setItem("doNotShowAgain", true)
+            localStorage.setItem("doNotShowAgain", true)
             $('#videoPreloader').attr('src', '');
             $('#videoModal').removeClass('animated zoomInDown').addClass('animated zoomOutUp');
             $('#videoModal').modal('hide');
             $('#videoLoader').hide();
             $('#wrapper').show();
-            console.log(sessionStorage.getItem('doNotShowAgain'))
         }
 
         var player;
@@ -97,15 +100,7 @@
             }
         }
     </script>
-    <!--<style>
-        #videoLoader {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-    </style>-->
+    
 </head>
 <body class="has-side-panel side-panel-right fullwidth-page">
     <div class="modal fade pt-100" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" data-backdrop="static" data-keyboard="false">
@@ -117,7 +112,7 @@
                 <div class="modal-body pt-0 pl-0 pr-0">
                     <div id="iframe-container">
                         <div class="fluid-video-wrapper">
-                            <iframe width="850" height="600" id="videoPreloader" src="https://www.youtube.com/embed/_3nlaBt1NJw?enablejsapi=1&autoplay=1&mute=2" frameborder="0" allow="autoplay" allowfullscreen> x</iframe>
+                            <iframe width="850" height="600" id="videoPreloader" src="https://www.youtube.com/embed/_3nlaBt1NJw?enablejsapi=1&autoplay=1&mute=2&rel=0" frameborder="0" allow="autoplay encrypted-media" allowfullscreen> x</iframe>
                         </div>
                         <u><a href="#" class="button text-danger font-17 pl-10" onClick="doNotShowPopup()" ; return false;">Don't Show me Again</a></u>
                     </div>
@@ -140,25 +135,6 @@
                 <div class="header-top bg-theme-colored border-top-theme-colored2-2px sm-text-center">
                     <div class="container-fluid pl-20 pr-20">
                         <div class="row">
-                            <!--<div class="col-md-3 pl-10 pt-10">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <h5 class="text-white">Welcome:</h5>
-                                    </div>
-                                    <div class="col-md-9 pl-0">
-                                        <div class="btn-group">
-                                            <button class="btn btn-primary pr-0 pl-0" style="background-color:transparent;border-color:transparent" type="button" id="memberWelcome"></button>
-                                            <button aria-expanded="false" style="background-color:transparent;border-color:transparent" aria-haspopup="true" data-toggle="dropdown" class="btn btn-dark btn-flat dropdown-toggle" type="button">
-                                                <span class="caret" id="showMenuMember"></span> <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="MemberProfileEdit.html">Member Profile</a></li>
-                                                <li><a href="FamilyMembersList.html">Family Member</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>-->
                             <div class="col-md-3">
                                 <div class="widget pt-10">
                                     <ul class="nav navbar-nav">
