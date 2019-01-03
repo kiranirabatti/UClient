@@ -548,7 +548,6 @@
     <Content Include="images\blog\comment2.jpg" />
     <Content Include="images\blog\comment3.jpg" />
     <Content Include="images\close.png" />
-    <Content Include="images\favicon.png" />
     <Content Include="images\flat-color-icons-svg\about.svg" />
     <Content Include="images\flat-color-icons-svg\accept_database.svg" />
     <Content Include="images\flat-color-icons-svg\address_book.svg" />
