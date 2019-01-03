@@ -46,11 +46,11 @@
                 $('#iframe-container').remove();
                 $('#videoPreloader').attr('src', '');
                 $('#videoModal').modal('hide');
-                $('#wrapper').show();
+                $('#container').show();
             }
             else {
                 $('#videoModal').modal('show');
-                $('#wrapper').hide();
+                $('#container').hide();
                 $('#videoLoader').show();
                 $('#videoModal').addClass('animated zoomInDown');
             }
@@ -62,14 +62,13 @@
 
         });
 
-
         function onCloseVideoPopup() {
             $('#iframe-container').remove();
             $('#videoPreloader').attr('src', '');
             $('#videoModal').removeClass('animated zoomInDown').addClass('animated zoomOutUp');
             $('#videoModal').modal('hide');
             $('#videoLoader').hide();
-            $('#wrapper').show();
+            $('#container').show();
         }
 
         function doNotShowPopup() {
@@ -79,7 +78,7 @@
             $('#videoModal').removeClass('animated zoomInDown').addClass('animated zoomOutUp');
             $('#videoModal').modal('hide');
             $('#videoLoader').hide();
-            $('#wrapper').show();
+            $('#container').show();
         }
 
         var player;
@@ -95,8 +94,13 @@
                 console.log("close")
             }
         }
+
+        $('#videoModal').on('hidden.bs.modal', function () {
+            var videos = $('#videoPreloader');
+            video.pause()
+        });
     </script>
-    <!--<style>
+    <style>
         #videoLoader {
             position: absolute;
             top: 0;
@@ -104,60 +108,53 @@
             width: 100%;
             height: 100%;
         }
-    </style>-->
+        
+            @media (min-width: 1200px) {
+                .videoModal {
+                    width: 68%;
+                    margin: auto;
+                }
+            }
+
+        @media (min-width: 1300px) {
+            .videoModal {
+                width: 60%;
+                margin: auto;
+            }
+        }
+    </style>
 </head>
 <body class="has-side-panel side-panel-right fullwidth-page">
-    <div class="modal fade pt-100" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header pt-10 pb-5 pr-1 border-bottom">
-                    <button type="button" class="close" data-dismiss="modal" onClick="onCloseVideoPopup()" aria-label="Close"> <div data-icon="" aria-hidden="true" class="fs1 dark"></div></button>
-                </div>
-                <div class="modal-body pt-0 pl-0 pr-0">
-                    <div id="iframe-container">
-                        <div class="fluid-video-wrapper">
-                            <iframe width="850" height="600" id="videoPreloader" src="https://www.youtube.com/embed/_3nlaBt1NJw?enablejsapi=1&rel=0&autoplay=1&mute=2" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen> x</iframe>
+    <div id="wrapper" class="clearfix">
+        <!--<div id="preloader">
+        <div id="spinner">
+            <img src="images/preloaders/5.gif">
+        </div>
+        <div id="disable-preloader" class="btn btn-default btn-sm">Disable Preloader</div>
+    </div>-->
+        <div class="modal fade  pt-10" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" data-backdrop="static" data-keyboard="false" >
+            <div class="modal-dialog modal-lg videoModal" role="document" >
+                <div class="modal-content">
+                    <div class="modal-header pt-10 pb-5 pr-1 border-bottom">
+                        <button type="button" class="close" data-dismiss="modal" onClick="onCloseVideoPopup()" aria-label="Close"> <div data-icon="" aria-hidden="true" class="fs1 dark"></div></button>
+                    </div>
+                    <div class="modal-body pt-0 pl-0 pr-0">
+                        <div id="iframe-container">
+                            <div class="fluid-video-wrapper">
+                                <iframe width="900" height="620" id="videoPreloader" src="https://www.youtube.com/embed/_3nlaBt1NJw?enablejsapi=1&rel=0&autoplay=1&mute=2" frameborder="0" allow="autoplay; encrypted-media"> </iframe>
+                            </div>
+                            <u><a href="#" class="button text-danger font-17 pl-10" onClick="doNotShowPopup()" ; return false;">Don't Show Again</a></u>
                         </div>
-                        <u><a href="#" class="button text-danger font-17 pl-10" onClick="doNotShowPopup()" ; return false;">Don't Show me Again</a></u>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-
-    <div id="wrapper" class="clearfix">
-        <!--<div id="preloader">
-            <div id="spinner">
-                <img src="images/preloaders/5.gif">
-            </div>
-            <div id="disable-preloader" class="btn btn-default btn-sm">Disable Preloader</div>
-        </div>-->
 
         <div id="container">
             <header id="header" class="header">
                 <div class="header-top bg-theme-colored border-top-theme-colored2-2px sm-text-center">
                     <div class="container-fluid pl-20 pr-20">
                         <div class="row">
-                            <!--<div class="col-md-3 pl-10 pt-10">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <h5 class="text-white">Welcome:</h5>
-                                    </div>
-                                    <div class="col-md-9 pl-0">
-                                        <div class="btn-group">
-                                            <button class="btn btn-primary pr-0 pl-0" style="background-color:transparent;border-color:transparent" type="button" id="memberWelcome"></button>
-                                            <button aria-expanded="false" style="background-color:transparent;border-color:transparent" aria-haspopup="true" data-toggle="dropdown" class="btn btn-dark btn-flat dropdown-toggle" type="button">
-                                                <span class="caret" id="showMenuMember"></span> <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="MemberProfileEdit.html">Member Profile</a></li>
-                                                <li><a href="FamilyMembersList.html">Family Member</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>-->
                             <div class="col-md-3">
                                 <div class="widget pt-10">
                                     <ul class="nav navbar-nav">
@@ -517,12 +514,12 @@
                                     </div>
                                 </div>
                                 <!--<div class="col-md-3">
-                                    <div class="fb-page" data-href="https://www.facebook.com/ugps.surat/" data-tabs="timeline" data-small-header="false" data-height="965" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
-                                        <blockquote cite="https://www.facebook.com/ugps.surat/" class="fb-xfbml-parse-ignore">
-                                            <a href="https://www.facebook.com/ugps.surat/">uttar gujarat prajapati samaj surat</a>
-                                        </blockquote>
-                                    </div>
-                                </div>-->
+                                <div class="fb-page" data-href="https://www.facebook.com/ugps.surat/" data-tabs="timeline" data-small-header="false" data-height="965" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                                    <blockquote cite="https://www.facebook.com/ugps.surat/" class="fb-xfbml-parse-ignore">
+                                        <a href="https://www.facebook.com/ugps.surat/">uttar gujarat prajapati samaj surat</a>
+                                    </blockquote>
+                                </div>
+                            </div>-->
                             </div>
                         </div>
                     </div>
@@ -536,17 +533,6 @@
                             fjs.parentNode.insertBefore(js, fjs);
                         }(document, 'script', 'facebook-jssdk'));
                     </script>
-                    <!--<div class="row">
-                        <div class="col-md-4 col-md-offset-4 pb-50 pt-0">
-                            <div id="iframe-container">
-                                <a href='#' onclick='this.parentNode.parentNode.removeChild(this.parentNode)'>Close</a>
-                                <div class="fluid-video-wrapper">
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/oIDqz2BrVec?rel=0&mute=2" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>-->
                     <div class="modal fade bs-example-modal-md" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
                         <div class="modal-dialog modal-md" role="document">
                             <div class="modal-content bg-lighter">
@@ -592,7 +578,6 @@
                 <a class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
             </div>
         </div>
-        <!-- <script src="js/chart.js"></script>-->
         <script src="js/custom.js"></script>
         <script src="js/revolution-slider/js/extensions/revolution.extension.actions.min.js"></script>
         <script src="js/revolution-slider/js/extensions/revolution.extension.carousel.min.js"></script>

@@ -99,6 +99,7 @@
     <Content Include="images\favicon_UGPS.ico" />
     <Content Include="images\PresidentProfilePic.jpeg" />
     <Content Include="images\samaj logo-3.jpg" />
+    <Content Include="images\UGPS_Favicon.png" />
     <Content Include="js\jquery-plugin-collection.min.js" />
     <Content Include="LoginModal.html" />
     <Content Include="MemberProfileEdit.html" />
