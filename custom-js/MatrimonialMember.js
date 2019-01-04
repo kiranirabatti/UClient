@@ -16,8 +16,8 @@
                 var imageThumb = $('<div class="course-thumb">');
                 var image = $('<img class="img-fullwidth">');
                 image.attr('src', (result[index].FileNameInFolder == '' ? nodeURL + "/defaultImage" : nodeURL + "/getFamilyMemberImage/" + result[index].MemberId + '/' + result[index].FamilyMemberId + '/' + result[index].FileNameInFolder));
-                image.height(200);
-                image.width(330);
+                image.height(250);
+                image.width(250);
                 imageThumb.append(image);
                 var details = $('<div class="course-details clearfix p-20 pt-15">');
                 var innerDiv = $(' <div class="course-top-part">');

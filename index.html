@@ -4,9 +4,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <title>UGPS</title>
-    <link id="favicon" href="/images/UGPS_Favicon.png" rel="shortcut icon" type="image/png">
-    <!--<link rel="icon" href="images/favicon_UGPS.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="images/favicon_UGPS.ico" type="image/x-icon" />-->
+    <!--<link id="favicon" rel="shortcut icon" type="image/png">
+    <link rel="icon" href="images/favicon_UGPS.ico" type="image/x-icon" />-->
+    <link href="images/UGPS_Favicon.png" rel="shortcut icon" type="image/png">
     <link href="images/apple-touch-icon.png" rel="apple-touch-icon">
     <link href="images/apple-touch-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
     <link href="images/apple-touch-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
@@ -42,32 +42,32 @@
     <script src="custom-js/Header.js"></script>
 
     <script type="text/javascript">
-       $(document).ready(function () {
+        $(document).ready(function () {
             var isShow = localStorage.getItem("doNotShowAgain");
             if (isShow === 'true') {
                 $('#iframe-container').remove();
-                $('#videoPreloader').attr('src', '');
+                $('#myVideo').attr('src', '');
                 $('#videoModal').modal('hide');
                 $('#container').show();
             }
             else {
                 $('#videoModal').modal('show');
+                $('#myVideo').attr('src', 'images/videoplayback.mp4');
                 $('#container').hide();
                 $('#videoLoader').show();
                 $('#videoModal').addClass('animated zoomInDown');
             }
-
-           
         });
 
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        function playVideo(){
+            setTimeout(function () {
+                video.play();
+            }, 50000);
+        }
 
         function onCloseVideoPopup() {
             $('#iframe-container').remove();
-            $('#videoPreloader').attr('src', '');
+            $('#myVideo').attr('src', '');
             $('#videoModal').removeClass('animated zoomInDown').addClass('animated zoomOutUp');
             $('#videoModal').modal('hide');
             $('#videoLoader').hide();
@@ -77,27 +77,13 @@
         function doNotShowPopup() {
             $('#iframe-container').remove();
             localStorage.setItem("doNotShowAgain", true)
-            $('#videoPreloader').attr('src', '');
             $('#videoModal').removeClass('animated zoomInDown').addClass('animated zoomOutUp');
             $('#videoModal').modal('hide');
             $('#videoLoader').hide();
             $('#container').show();
         }
 
-        var player;
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('videoPreloader', {
-                events: { 'onStateChange': onPlayerStateChange }
-            });
-        }
-
-        function onPlayerStateChange(event) {
-            if (event.data == 0) {
-                onCloseVideoPopup();
-                console.log("close")
-            }
-        }
-
+     
         $('#videoModal').on('hidden.bs.modal', function () {
             var videos = $('#videoPreloader');
             video.pause()
@@ -114,14 +100,16 @@
 
         @media (min-width: 1200px) {
             .videoModal {
-                width: 68%;
+                width: 78%;
+                height:100%;
                 margin: auto;
             }
         }
 
         @media (min-width: 1300px) {
             .videoModal {
-                width: 60%;
+                width: 78%;
+                height: 100%;
                 margin: auto;
             }
         }
@@ -135,7 +123,7 @@
         </div>
         <div id="disable-preloader" class="btn btn-default btn-sm">Disable Preloader</div>
     </div>-->
-        <div class="modal fade" id="videoModal" aria-labelledby="videoModalLabel">
+        <div class="modal fade" id="videoModal" aria-labelledby="videoModalLabel"  data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-lg videoModal" >
                 <div class="modal-content">
                     <div class="modal-header pt-10 pb-5 pr-1 border-bottom">
@@ -144,7 +132,9 @@
                     <div class="modal-body pt-0 pl-0 pr-0">
                         <div id="iframe-container">
                             <div class="fluid-video-wrapper">
-                                <iframe width="900" height="620" id="videoPreloader" src="https://www.youtube.com/embed/_3nlaBt1NJw?enablejsapi=1&rel=0&autoplay=1&mute=2" frameborder="0" allow="autoplay; encrypted-media"> </iframe>
+                                <video width="100%" height="100%" id="myVideo" controls="controls" autoplay onended="onCloseVideoPopup()" oncanplay="playVideo()" >
+                                    <source src="" type="video/mp4" >
+                                </video>
                             </div>
                             <u><a href="#" class="button text-danger font-17 pl-10" onClick="doNotShowPopup()" ; return false;">Don't Show Again</a></u>
                         </div>
